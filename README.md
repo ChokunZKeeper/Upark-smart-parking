@@ -19,3 +19,7 @@ backend
 ```js
 npx nodemon server.js
 ```
+
+```js
+npm install -D sass-embedded
+```
