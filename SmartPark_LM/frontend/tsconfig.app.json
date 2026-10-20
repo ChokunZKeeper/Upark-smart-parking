@@ -18,7 +18,8 @@
 
     /* Path alias */
     "paths": {
-      "@components/*": ["./src/component/*"]
+      "@components/*": ["./src/component/*"],
+      "@/*": ["./src/*"],
     },
 
     /* Linting */

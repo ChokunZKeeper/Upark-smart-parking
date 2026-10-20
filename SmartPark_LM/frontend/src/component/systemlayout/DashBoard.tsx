@@ -1,9 +1,11 @@
+import type { DashboardStats } from "@/types/dashboard";
+import { useState } from "react";
+
 const DashBoard = () => {
-  return (
-    <>
-      <h1>dashboard</h1>
-    </>
-  );
+  const [stats, setstats] = useState<DashboardStats | null>(null); // คล้ายหลัการ def(test:str | int = None)
+  const check = (stats === null) ? "Loading" : "Done";
+  
+  return <>{check}</>;
 };
 
 export default DashBoard;
