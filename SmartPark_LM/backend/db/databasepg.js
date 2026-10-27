@@ -9,12 +9,4 @@ const pool = new Pool({
   database: "uparkdb",
 });
 
-pool.connect();
-
-pool.query("select * from member;", (err, res) => {
-  if (!err) {
-    console.log(res.rows);
-  } else {
-    console.log(err.message);
-  }
-});
+module.exports = pool;
