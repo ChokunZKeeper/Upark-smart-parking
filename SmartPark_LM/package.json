@@ -1,11 +1,15 @@
 {
-    "name" : "Upark",
+    "name": "Upark",
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "upark" : "concurrently \"npm run dev --prefix frontend\" \"node backend/server/server.js\""
+        "upark": "concurrently \"npm run dev --prefix frontend\" \"npm run server --prefix backend/server\""
     },
     "devDependencies": {
         "concurrently": "^9.2.1"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.3.4",
+        "tailwindcss": "^4.3.4"
     }
 }

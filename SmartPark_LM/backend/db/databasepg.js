@@ -1,12 +1,13 @@
 const { Pool } = require("pg"); // Choose Client and Pool a libery pg
-require("dotenv").config();
+const path = require('path');
+require("dotenv").config({path: path.join(__dirname, '../.env')});
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  port: 5432,
+  user: process.env.user,
+  host: process.env.host,
+  port: parseInt(process.env.port, 10),
   password: process.env.password,
-  database: "uparkdb",
+  database: process.env.database,
 });
 
 module.exports = pool;
