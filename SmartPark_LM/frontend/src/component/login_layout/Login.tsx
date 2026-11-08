@@ -2,12 +2,9 @@ import { useState } from "react"
 import allmodules from "@/module/Allmodules"
 import mail from "@/constants/mail.json" with {type: "json"}
 
-
 interface LoginProps{
     onSuccess : (uuid:string) => void;
 }
-
-
 
 function Login({ onSuccess } : LoginProps){
 
@@ -35,9 +32,10 @@ function Login({ onSuccess } : LoginProps){
     }
     return(
         <div>
-            <input id="input_mail" type="text" placeholder="Email address" onChange={(text) => {setmail(text.target.value.trim().toLocaleLowerCase())}}/>
+            <input className="" id="input_mail" type="text" placeholder="Email address" onChange={(text) => {setmail(text.target.value.trim().toLocaleLowerCase())}}/>
             <input id="input_password" type="password" placeholder="Password" onChange={(text) => {setpassword(text.target.value.trim())}}/>
-            <button onClick={continue_mail}>continue</button>
+            
+            <button className="primary-btn" onClick={continue_mail}>Continue</button>
         </div>
     )
 }

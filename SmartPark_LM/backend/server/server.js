@@ -79,9 +79,6 @@ app.post("/verifyotp", async (req, res) => {
   }
 });
 
-
-
-
 app.post("/checkemail", async (req, res) => {
   try {
     const { email } = req.body;
@@ -102,10 +99,6 @@ app.post("/checkemail", async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 });
-
-
-
-
 
 app.post("/getuuid", async(req,res)=>{
   try{
