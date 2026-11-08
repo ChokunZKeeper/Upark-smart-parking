@@ -9,6 +9,11 @@ const pool = new Pool({
   password: process.env.DB_password,
   database: process.env.DB_database,
   max: parseInt(process.env.DB_max,10)
+<<<<<<< HEAD
 }); 
+=======
+});
+>>>>>>> 901b25f (update 2)
+
 
 module.exports = pool;

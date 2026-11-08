@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: "SF Compact light";
   src: url("fonts/Inter_24pt-Light.ttf");
@@ -1044,4 +1045,89 @@ input[type="checkbox"] {
     .otp-inputs {
         gap: 5px;
     }
+=======
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-logo: 'LogoFont', sans-serif;
+
+  --color-brand: #2771D8;
+  --color-brand-dark: #1c5cb5;
+  --color-brand-light: #4a8df0;
+  --color-brand-soft: #dbe4ff;
+
+  --color-heat-low: #dbe2fb;
+  --color-heat-mid: #b4c0f8;
+  --color-heat-high: #4a6cf0;
+
+  --color-ink: #0F172A;
+  --color-line: #D2D2D7;
+  --color-sidebar: #F5F5F7;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Medium.ttf') format('truetype');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LogoFont';
+  src: url('./assets/fonts/Logo_Font.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-[20px] border border-line bg-white shadow-card;
+  }
+  .btn-primary {
+    @apply rounded-full bg-brand px-4 py-1.5 text-xs font-medium text-white transition hover:bg-brand-dark;
+  }
+  .btn-outline {
+    @apply rounded-full border border-gray-300 bg-white px-4 py-1.5 text-xs font-medium text-ink transition hover:bg-gray-50;
+  }
+>>>>>>> 901b25f (update 2)
 }

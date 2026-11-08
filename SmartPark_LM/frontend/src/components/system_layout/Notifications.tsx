@@ -1,0 +1,173 @@
+import { useState } from 'react'
+import { Search } from 'lucide-react'
+import Navbar from '@/components/system_layout/layout/Navbar'
+
+/* ---------- Types ---------- */
+
+type NotificationType = 'info' | 'error' | 'normal'
+
+interface NotificationItem {
+  id: string | number
+  type: NotificationType
+  title: string
+  description?: string
+}
+
+interface Column {
+  label: string
+  width: string
+  hasLeftDivider?: boolean
+}
+
+/* ---------- Constants ---------- */
+
+// ยังไม่มีข้อมูลแจ้งเตือน (ไม่มีวันที่/เนื้อหาละเอียด)
+const INITIAL_NOTIFICATIONS: NotificationItem[] = []
+
+const TITLE_COLOR: Record<NotificationType, string> = {
+  info: 'text-[#2771D8]',
+  error: 'text-[#E53E3E]',
+  normal: 'text-[#0F172A]',
+}
+
+// คอลัมน์ของตาราง: หัวตารางสไตล์เดียวกับหน้า Vehicle Search
+const COLUMNS: Column[] = [
+  { label: 'Date and Time', width: 'w-[22%]' },
+  { label: 'Contents', width: 'w-[63%]', hasLeftDivider: true },
+  { label: '', width: 'w-[15%]' },
+]
+
+const LEFT_DIVIDER =
+  'before:absolute before:left-0 before:top-1/2 before:h-10 before:w-px before:-translate-y-1/2 before:bg-[#D2D2D7]'
+
+// ขนาดปุ่มเดียวกับปุ่มในแถวของหน้า QR Code
+const DISMISS_BUTTON =
+  'mx-auto flex h-9 shrink-0 select-none items-center justify-center whitespace-nowrap rounded-full bg-[#2771D8] px-7 text-[14px] font-normal text-white transition-all duration-150 hover:bg-[#1f5fc2] hover:shadow-md active:scale-95'
+
+const DISMISS_ALL_BUTTON =
+  'flex h-10 shrink-0 select-none items-center gap-1.5 whitespace-nowrap rounded-xl border border-[#d2d2d7] bg-white px-7 text-[14px] text-[#6f6f72] transition hover:bg-gray-50 active:scale-95'
+
+/* ---------- Helpers ---------- */
+
+const filterByTitle = (items: NotificationItem[], search: string) => {
+  const query = search.toLowerCase()
+  return query ? items.filter((item) => item.title.toLowerCase().includes(query)) : items
+}
+
+/* ---------- Sub components ---------- */
+
+// ช่องค้นหา: ขนาดและสไตล์เดียวกับหน้า QR Code
+function SearchBar({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  return (
+    <div className="mb-4 flex justify-end">
+      <div className="relative w-full sm:w-[230px]">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          aria-label="Search notifications"
+          className="h-[36px] w-full rounded-xl border border-[#D2D2D7] bg-white pl-3.5 pr-9 text-[13px] text-[#212121] outline-none transition-colors focus:border-[#2771D8]"
+        />
+        <Search size={15} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#AEAEB2]" />
+      </div>
+    </div>
+  )
+}
+
+function TableHead() {
+  return (
+    <thead>
+      <tr className="h-[84px] border-b border-[#D2D2D7]">
+        {COLUMNS.map((col) => (
+          <th
+            key={col.width}
+            className={`${col.width} relative px-5 text-center align-middle text-[18px] font-medium text-[#0F172A] ${
+              col.hasLeftDivider ? LEFT_DIVIDER : ''
+            }`}
+          >
+            {col.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  )
+}
+
+function NotificationRow({ item, onDismiss }: { item: NotificationItem; onDismiss: (id: NotificationItem['id']) => void }) {
+  return (
+    <tr className="h-[92px] border-b-[1.6px] border-[#D2D2D7] transition-colors last:border-b-0 hover:bg-[#FAFAFB]">
+      {/* Date & Time: เว้นว่างไว้ตั้งใจ */}
+      <td className="px-4 text-center text-[16px] font-normal tabular-nums text-[#0F172A]" />
+
+      {/* Contents */}
+      <td className="px-4 text-center">
+        <p className={`text-[16px] font-normal ${TITLE_COLOR[item.type]}`}>{item.title}</p>
+        {item.description && <p className="mt-1 text-[13px] text-[#8E8E93]">{item.description}</p>}
+      </td>
+
+      {/* Dismiss */}
+      <td className="px-4 text-center">
+        <button type="button" onClick={() => onDismiss(item.id)} className={DISMISS_BUTTON}>
+          Dismiss
+        </button>
+      </td>
+    </tr>
+  )
+}
+
+function EmptyRow() {
+  return (
+    <tr>
+      <td colSpan={COLUMNS.length} className="py-32 text-center text-[#7E7E81]">
+        <p className="text-[17px]">No notifications</p>
+      </td>
+    </tr>
+  )
+}
+
+/* ---------- Page ---------- */
+
+function Notifications() {
+  const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS)
+  const [search, setSearch] = useState('')
+
+  const visible = filterByTitle(notifications, search)
+
+  const dismiss = (id: NotificationItem['id']) => setNotifications((prev) => prev.filter((item) => item.id !== id))
+  const dismissAll = () => setNotifications([])
+
+  return (
+    <>
+      <Navbar
+        title="Notifications"
+        actions={
+          <button type="button" onClick={dismissAll} className={DISMISS_ALL_BUTTON}>
+            Dismiss All
+          </button>
+        }
+      />
+
+      <main className="p-4 sm:p-6">
+        <SearchBar value={search} onChange={setSearch} />
+
+        <section className="overflow-hidden rounded-[16.5px] border border-[#D2D2D7] bg-white">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[1120px] table-fixed border-collapse text-center text-[17px] text-[#212121]">
+              <TableHead />
+
+              <tbody>
+                {visible.map((item) => (
+                  <NotificationRow key={item.id} item={item} onDismiss={dismiss} />
+                ))}
+
+                {visible.length === 0 && <EmptyRow />}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </>
+  )
+}
+
+export default Notifications
