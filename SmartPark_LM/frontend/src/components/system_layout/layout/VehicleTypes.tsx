@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { useMemo, useState, type CSSProperties } from 'react'
 import { useT } from '@/i18n'
+=======
+import { useMemo, useState } from 'react'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -20,6 +24,7 @@ const MAX_AXIS = 10.55
 // ความกว้างที่เว้นไว้ท้ายแท่ง สำหรับแสดงตัวเลข
 const LABEL_SPACE = 32
 
+<<<<<<< HEAD
 // เส้นคั่นใต้หัวการ์ด: Radial gradient (กลางเข้ม -> ปลายสองข้างจางหาย)
 const DIVIDER_STYLE: CSSProperties = {
   background:
@@ -39,12 +44,15 @@ const VEHICLE_NAME_KEYS: Record<string, string> = {
   Vans: 'vehicleTypes.names.vans',
 }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Helpers ---------- */
 
 const sortByCountDesc = (rows: VehicleTypeRow[]) => [...rows].sort((a, b) => b.count - a.count)
 
 const barWidth = (count: number) => `calc((100% - ${LABEL_SPACE}px) * ${count / MAX_AXIS})`
 
+<<<<<<< HEAD
 // อ่านค่าที่บันทึกจากหน้า Settings (ค่าเริ่มต้นคือเปิด)
 const readGradients = () => localStorage.getItem('gradients') !== 'off'
 
@@ -53,6 +61,12 @@ const readGradients = () => localStorage.getItem('gradients') !== 'off'
 function SortButton({ active, onClick }: { active: boolean; onClick: () => void }) {
   const t = useT()
   const stateClass = active ? 'bg-[#2771D8] text-[#FFFFFF]' : 'text-[#6F6F72] hover:bg-[#F2F2F2] hover:text-[#212121] hover:border-[#E5E5E5]'
+=======
+/* ---------- Sub components ---------- */
+
+function SortButton({ active, onClick }: { active: boolean; onClick: () => void }) {
+  const stateClass = active ? 'bg-[#2771D8] text-[#FFFFFF]' : 'text-[#6F6F72] hover:bg-gray-50'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   return (
     <button
@@ -60,20 +74,31 @@ function SortButton({ active, onClick }: { active: boolean; onClick: () => void 
       onClick={onClick}
       className={`rounded-[8px] border border-line px-6.5 py-1 text-[13.5px] font-normal transition ${stateClass}`}
     >
+<<<<<<< HEAD
       {t('vehicleTypes.sort')}
+=======
+      Sort
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </button>
   )
 }
 
 function EmptyState() {
+<<<<<<< HEAD
   const t = useT()
   return (
     <div className="flex min-h-[210px] flex-1 items-center justify-center p-6">
       <span className="text-[18.5px] font-normal text-[#7E7E81]">{t('vehicleTypes.noData')}</span>
+=======
+  return (
+    <div className="flex min-h-[210px] flex-1 items-center justify-center p-6">
+      <span className="text-[18.5px] font-normal text-[#7E7E81]">No Data</span>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   )
 }
 
+<<<<<<< HEAD
 function BarChartRows({ rows, gradients }: { rows: VehicleTypeRow[]; gradients: boolean }) {
   const t = useT()
   return (
@@ -83,6 +108,16 @@ function BarChartRows({ rows, gradients }: { rows: VehicleTypeRow[]; gradients: 
         {rows.map((row) => (
           <li key={row.name} className="flex h-6 items-center justify-end">
             {VEHICLE_NAME_KEYS[row.name] ? t(VEHICLE_NAME_KEYS[row.name]) : row.name}
+=======
+function BarChartRows({ rows }: { rows: VehicleTypeRow[] }) {
+  return (
+    <div className="flex flex-1 px-6 py-5">
+      {/* คอลัมน์ซ้าย: ชื่อประเภทรถ */}
+      <ul className="flex w-20 shrink-0 flex-col justify-around pr-4 text-right text-[15px] font-normal text-[#0F172A]">
+        {rows.map((row) => (
+          <li key={row.name} className="flex h-6 items-center justify-end">
+            {row.name}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
           </li>
         ))}
       </ul>
@@ -92,7 +127,11 @@ function BarChartRows({ rows, gradients }: { rows: VehicleTypeRow[]; gradients: 
         {rows.map((row) => (
           <li key={row.name} className="flex h-6 items-center gap-2.5">
             <div
+<<<<<<< HEAD
               className={`${BAR_BASE_CLASS} ${gradients ? BAR_GRADIENT_CLASS : BAR_SOLID_CLASS}`}
+=======
+              className="h-8.5 rounded-r-sm border border-[#2563EB] bg-gradient-to-r from-white to-[#2347E8] transition-all"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
               style={{ width: barWidth(row.count) }}
             />
             <span className="text-[14px] font-semibold text-[#2563EB]">{row.count}</span>
@@ -106,14 +145,19 @@ function BarChartRows({ rows, gradients }: { rows: VehicleTypeRow[]; gradients: 
 /* ---------- Main component ---------- */
 
 function VehicleTypes({ data }: VehicleTypesProps) {
+<<<<<<< HEAD
   const t = useT()
   const [sorted, setSorted] = useState(false)
   const gradients = readGradients()
+=======
+  const [sorted, setSorted] = useState(false)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   const rows = useMemo(() => (sorted ? sortByCountDesc(data) : data), [data, sorted])
 
   return (
     <section className="card flex h-full min-h-[385px] flex-col overflow-hidden">
+<<<<<<< HEAD
       {/* border-transparent คงความสูงเดิมของเส้น 1px ไว้ แล้ววางเส้น gradient ทับด้านล่าง */}
       <header className="relative flex items-center justify-between border-b border-transparent px-8 py-3.5">
         <h2 className="text-[16.5px] font-medium text-[var(--text)]">{t('vehicleTypes.title')}</h2>
@@ -122,6 +166,14 @@ function VehicleTypes({ data }: VehicleTypesProps) {
       </header>
 
       {rows.length === 0 ? <EmptyState /> : <BarChartRows rows={rows} gradients={gradients} />}
+=======
+      <header className="flex items-center justify-between border-b border-line px-8 py-3.5">
+        <h2 className="text-[16.5px] font-medium text-[#0F172A]">Type of Vehicles</h2>
+        <SortButton active={sorted} onClick={() => setSorted((value) => !value)} />
+      </header>
+
+      {rows.length === 0 ? <EmptyState /> : <BarChartRows rows={rows} />}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </section>
   )
 }

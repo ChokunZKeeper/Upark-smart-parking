@@ -1,4 +1,5 @@
 import Register from "@components/login_layout/Register";
+<<<<<<< HEAD
 import Login from "@components/login_layout/Login";
 import { Icon } from "@iconify/react";
 import { F_LIGHT, F_MED } from "@/styles/Fonts_main";
@@ -7,11 +8,16 @@ import LanguageSwitch from "@/components/LanguageSwitch";
 import { useT } from "@/i18n";
 
 import { useEffect, useState, type MouseEvent } from "react";
+=======
+import Login  from "@components/login_layout/Login";
+import { useState } from "react";
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 interface Props {
   onSuccessProps: (uuid: string) => void;
 }
 
+<<<<<<< HEAD
 type Screen = "signin" | "register";
 
 const PAGE_ZOOM = 0.99;
@@ -227,10 +233,30 @@ export function SigninModal({ onSuccessProps, onClose }: ModalProps) {
           <AuthCard onSuccessProps={onSuccessProps} modal onClose={onClose} />
         </div>
       </div>
+=======
+function Signin({ onSuccessProps } : Props){
+
+  const [showRegister, setShowRegister] = useState(false);
+
+  if(showRegister){
+    return <Register/>
+  }
+  return (
+    <div>
+      <div>
+        <p>New here?</p>
+        <span onClick={() => setShowRegister(true)} style={{cursor: "pointer"}}>
+          Create an account
+        </span>
+      </div>
+
+      <Login onSuccess={onSuccessProps}/>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   );
 }
 
+<<<<<<< HEAD
 /* ============================================================
    Signin — หน้าเต็ม (route /signin เดิม ยังใช้ได้)
    ============================================================ */
@@ -268,4 +294,6 @@ function Signin({ onSuccessProps }: Props) {
   );
 }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 export default Signin;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Search } from 'lucide-react'
@@ -14,6 +15,15 @@ import { canManagePermissions } from '@/constants/viewAs'
 import { useUserInfo } from '@/pages/system/System'
 // ใช้ต่อ URL รูปโปรไฟล์ที่อัปโหลด (/uploads/avatars/xxx.jpg)
 import { API_BASE } from '@/module/Allmodules'
+=======
+import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { Search } from 'lucide-react'
+import { Icon } from '@iconify/react'
+import Navbar from './layout/Navbar'
+import DataTable, { type DataTableColumn } from './layout/DataTable'
+import Select from './layout/Select'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -29,6 +39,7 @@ interface Member {
   joined: string
   floor: FloorValue
   active: boolean
+<<<<<<< HEAD
   color: ColorName
   avatarUrl?: string | null // รูปโปรไฟล์ที่อัปโหลด (ถ้ามี จะใช้แทนวงกลมไล่สี)
   isOwner?: boolean // Owner มีได้คนเดียว ส่วน Super Admin มีได้หลายคน
@@ -62,10 +73,21 @@ interface LiveProfile {
   lastName?: string
   color?: ColorName
   avatarUrl: string | null
+=======
+  color: number
+}
+
+interface MemberForm {
+  name: string
+  email: string
+  role: Role
+  floor: FloorValue
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 /* ---------- Data ---------- */
 
+<<<<<<< HEAD
 const initialMembers: Member[] = [
   { id: 31, name: 'Rachan Kwaonueng', role: 'Admin', email: 'creepertv@gmail.com', joined: '15/11/26', floor: 'A', active: true, color: 'red' },
   { id: 30, name: 'Suprawi Kwaosong', role: 'Admin', email: 'ice_cream@gmail.com', joined: '14/11/26', floor: 'B', active: false, color: 'green' },
@@ -88,11 +110,45 @@ const statusOptions: { value: StatusValue; label: string }[] = [
   { value: 'inactive', label: 'permissions.status.inactive' },
 ]
 
+=======
+const gradients = [
+  'linear-gradient(180deg,#ff0000 0%,#FFEA00 100%)',
+  'linear-gradient(180deg,#00d853 0%,#ffea00 100%)',
+  'linear-gradient(180deg,#0066FF 0%,#00FFE1 100%)',
+  'linear-gradient(180deg,#ff8000 0%,#fff600 100%)',
+  'linear-gradient(180deg,#00BBFF 0%,#FFFF00 100%)',
+]
+
+const initialMembers: Member[] = [
+  { id: 1107, name: 'Rachan Kwaonueng', role: 'Admin', email: 'creepertv@gmail.com', joined: '01/10/26', floor: 'A', active: true, color: 0 },
+  { id: 1106, name: 'Suprawi Kwaosong', role: 'Admin', email: 'ice_cream@gmail.com', joined: '02/10/26', floor: 'B', active: false, color: 1 },
+  { id: 1105, name: 'Narunat Kwaosam', role: 'Admin', email: 'delta_mark@gmail.com', joined: '03/10/26', floor: 'C', active: false, color: 2 },
+  { id: 1104, name: 'Thunjira Kwaosee', role: 'Admin', email: 'alpnum@gmail.com', joined: '04/10/26', floor: 'D', active: true, color: 3 },
+  { id: 1000, name: 'Company', role: 'Super Admin', email: 'company@hotmail.com', joined: '30/9/26', floor: 'All', active: true, color: 4 },
+]
+
+const roleOptions: { value: Role; label: string }[] = [
+  { value: 'Admin', label: 'Admin' },
+  { value: 'Super Admin', label: 'Super Admin' },
+]
+
+const floorOptions: FloorValue[] = ['A', 'B', 'C', 'D', 'All']
+
+const statusOptions: { value: StatusValue; label: string }[] = [
+  { value: 'all', label: 'All' },
+  { value: 'active', label: 'Active' },
+  { value: 'inactive', label: 'Inactive' },
+]
+
+const EMPTY_FORM: MemberForm = { name: '', email: '', role: 'Admin', floor: 'A' }
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 // ใช้ array คงที่ เพื่อไม่ให้ DataTable คำนวณใหม่ทุก render
 const NO_SEARCH_KEYS: (keyof Member)[] = []
 
+<<<<<<< HEAD
 // ลิงก์ที่ใช้ปุ่ม Copy (เปลี่ยนเป็นลิงก์จริงของระบบ)
 const INVITE_LINK = 'https://upark.co/file/e598efdb'
 
@@ -106,12 +162,23 @@ const head = (label: string): ReactNode => (
 
 const cell = (value: ReactNode): ReactNode => (
   <span className="flex min-h-[72px] items-center justify-center text-[17px] text-ink-1">{value}</span>
+=======
+/* ---------- Styles ---------- */
+
+const head = (label: string): ReactNode => (
+  <span className="text-[16px] font-medium text-[#1d1d1f]">{label}</span>
+)
+
+const cell = (value: ReactNode): ReactNode => (
+  <span className="flex min-h-[72px] items-center justify-center text-[17px] text-[#0F172A]">{value}</span>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 )
 
 const ACTION_BTN =
   'flex !h-9 shrink-0 items-center justify-center whitespace-nowrap !rounded-full !py-0 !text-[14px] transition'
 
 const NAV_BTN =
+<<<<<<< HEAD
   'flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border border-[var(--border)] bg-[var(--surface)] px-7 text-[14px] !text-ink-2 transition hover:bg-[#F2F2F2] hover:!text-[#212121] hover:!border-[#E5E5E5]'
 
 const OUTLINE_HOVER =
@@ -128,6 +195,12 @@ const THIN_SCROLL =
   '[&::-webkit-scrollbar-thumb]:bg-[color-mix(in_srgb,var(--text-secondary)_35%,transparent)] ' +
   '[&::-webkit-scrollbar-thumb:hover]:bg-[color-mix(in_srgb,var(--text-secondary)_55%,transparent)] ' +
   '[&::-webkit-scrollbar-button]:hidden'
+=======
+  'flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border border-[#d2d2d7] bg-white px-7 text-[14px] !text-[#6f6f72] transition hover:bg-gray-50'
+
+const FORM_INPUT =
+  'h-10 rounded-xl border border-[#D2D2D7] bg-white px-3.5 text-[13px] text-[#212121] outline-none focus:border-brand'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Helpers ---------- */
 
@@ -138,6 +211,7 @@ const formatDate = (d: Date) =>
 const floorForRole = (role: Role, floor: FloorValue): FloorValue =>
   role === 'Super Admin' ? 'All' : floor === 'All' ? 'A' : floor
 
+<<<<<<< HEAD
 // ช่อง "Email, name..." ช่องเดียว: พิมพ์อีเมลอย่างเดียว หรือ "ชื่อ อีเมล" ก็ได้
 // ถ้าไม่ใส่ชื่อ จะใช้ส่วนหน้า @ ของอีเมลเป็นชื่อ
 const parseInvite = (text: string): { name: string; email: string } => {
@@ -178,6 +252,13 @@ function StatusTabs({ value, onChange }: { value: StatusValue; onChange: (value:
   const t = useT()
   return (
     <div className="inline-flex overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]" role="tablist">
+=======
+/* ---------- Sub components ---------- */
+
+function StatusTabs({ value, onChange }: { value: StatusValue; onChange: (value: StatusValue) => void }) {
+  return (
+    <div className="inline-flex overflow-hidden rounded-xl border border-[#d2d2d7] bg-white" role="tablist">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       {statusOptions.map((o, i) => (
         <button
           key={o.value}
@@ -185,6 +266,7 @@ function StatusTabs({ value, onChange }: { value: StatusValue; onChange: (value:
           role="tab"
           aria-selected={value === o.value}
           onClick={() => onChange(o.value)}
+<<<<<<< HEAD
           className={`h-[36px] w-[80px] text-[13px] transition ${i > 0 ? 'border-l border-[var(--border)]' : ''} ${
             value === o.value
               ? 'bg-[#2771d8] text-white'
@@ -192,12 +274,20 @@ function StatusTabs({ value, onChange }: { value: StatusValue; onChange: (value:
           }`}
         >
           {t(o.label)}
+=======
+          className={`h-[36px] w-[80px] text-[13px] transition ${i > 0 ? 'border-l border-[#d2d2d7]' : ''} ${
+            value === o.value ? 'bg-[#2771d8] text-white' : 'text-[#6f6f72] hover:bg-gray-50'
+          }`}
+        >
+          {o.label}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         </button>
       ))}
     </div>
   )
 }
 
+<<<<<<< HEAD
 // วงกลมไล่สี (หรือรูปที่อัปโหลด) + ตัวอักษรแรกของชื่อ + จุดสถานะ
 function Avatar({ name, color, active, avatarUrl }: { name: string; color: ColorName; active: boolean; avatarUrl?: string | null }) {
   const initial = name.trim().charAt(0).toUpperCase()
@@ -259,12 +349,25 @@ function MiniAvatar({ name, color, avatarUrl }: { name: string; color: ColorName
     >
       {!avatarUrl && <span className="select-none text-[18px] font-light leading-none text-white">{initial}</span>}
     </span>
+=======
+function Avatar({ color, active }: { color: number; active: boolean }) {
+  return (
+    <div className="relative mx-auto h-[43.5px] w-[43.5px]">
+      <div className="h-full w-full rounded-full" style={{ background: gradients[color % gradients.length] }} />
+      <span
+        className={`absolute -bottom-0.5 -right-0.5 h-[11px] w-[11px] rounded-full ${
+          active ? 'bg-[#3cc719]' : 'bg-[#d2d2d7]'
+        }`}
+      />
+    </div>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 
 /* ---------- Page ---------- */
 
 function Permissions() {
+<<<<<<< HEAD
   const t = useT()
   const roleLabel = (r: Role) => t(r === 'Super Admin' ? 'permissions.role.superAdmin' : 'permissions.role.admin')
   const { url_uuid } = useParams()
@@ -302,10 +405,14 @@ function Permissions() {
       avatarSrc: live ? live.avatarUrl : userInfo.avatar_url ? `${API_BASE}${userInfo.avatar_url}` : null,
     }
   }, [userInfo, live])
+=======
+  const { url_uuid } = useParams()
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   const [members, setMembers] = useState<Member[]>(initialMembers)
   const [status, setStatus] = useState<StatusValue>('all')
   const [search, setSearch] = useState('')
+<<<<<<< HEAD
 
   // popover เชิญสมาชิก
   const [formOpen, setFormOpen] = useState(false)
@@ -352,6 +459,16 @@ function Permissions() {
       return [me, ...prev.map((m) => ({ ...m, isOwner: false }))]
     })
   }, [meInfo])
+=======
+  const [formOpen, setFormOpen] = useState(false)
+  const [editingId, setEditingId] = useState<number | null>(null)
+  const [form, setForm] = useState<MemberForm>(EMPTY_FORM)
+  const [error, setError] = useState('')
+
+  // ตัวนับ ID/สี ไม่ซ้ำแม้ลบแล้วเพิ่มใหม่
+  const nextId = useRef(Math.max(...initialMembers.map((m) => m.id)) + 1)
+  const nextColor = useRef(initialMembers.length)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -364,6 +481,7 @@ function Permissions() {
 
   const superAdminCount = members.filter((m) => m.role === 'Super Admin').length
 
+<<<<<<< HEAD
   // People with Access: Owner/ผู้ใช้ที่ล็อกอินขึ้นบนสุด (อีเมลซ้ำจะไม่แสดงซ้ำ)
   const accessList = useMemo(() => {
     const meEmail = meInfo?.email?.toLowerCase() ?? ''
@@ -402,6 +520,12 @@ function Permissions() {
     setEditingId(null)
     setInviteText('')
     setInviteRole('')
+=======
+  const closeForm = () => {
+    setFormOpen(false)
+    setEditingId(null)
+    setForm(EMPTY_FORM)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     setError('')
   }
 
@@ -411,21 +535,32 @@ function Permissions() {
       return
     }
     setEditingId(null)
+<<<<<<< HEAD
     setInviteText('')
     setInviteRole('')
+=======
+    setForm(EMPTY_FORM)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     setError('')
     setFormOpen(true)
   }
 
+<<<<<<< HEAD
   // กด Edit: เปิด popover เดิม เติมชื่อ + อีเมล + role ของคนนั้นให้
   const startEdit = (m: Member) => {
     setEditingId(m.id)
     setInviteText(`${m.name} ${m.email}`)
     setInviteRole(m.role)
+=======
+  const startEdit = (m: Member) => {
+    setEditingId(m.id)
+    setForm({ name: m.name, email: m.email, role: m.role, floor: m.floor })
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     setError('')
     setFormOpen(true)
   }
 
+<<<<<<< HEAD
   // ปิด popover เมื่อคลิกข้างนอกหรือกด Esc
   useEffect(() => {
     if (!formOpen) return
@@ -455,17 +590,30 @@ function Permissions() {
       return
     }
     if (!window.confirm(t('permissions.confirmRemove', { name: m.name }))) return
+=======
+  const removeMember = (m: Member) => {
+    if (m.role === 'Super Admin' && superAdminCount <= 1) {
+      window.alert('ไม่สามารถลบ Super Admin คนสุดท้ายได้')
+      return
+    }
+    if (!window.confirm(`ต้องการลบ ${m.name} ใช่หรือไม่?`)) return
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     setMembers((prev) => prev.filter((x) => x.id !== m.id))
     if (editingId === m.id) closeForm()
   }
 
   const changeRole = (m: Member, role: Role) => {
+<<<<<<< HEAD
     if (m.isOwner && role !== 'Super Admin') {
       window.alert(t('permissions.errors.ownerMustBeSuperAdmin'))
       return
     }
     if (m.role === 'Super Admin' && role !== 'Super Admin' && superAdminCount <= 1) {
       window.alert(t('permissions.errors.needOneSuperAdmin'))
+=======
+    if (m.role === 'Super Admin' && role !== 'Super Admin' && superAdminCount <= 1) {
+      window.alert('ต้องมี Super Admin อย่างน้อย 1 คน')
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       return
     }
     setMembers((prev) =>
@@ -473,6 +621,7 @@ function Permissions() {
     )
   }
 
+<<<<<<< HEAD
   const submitInvite = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const { name, email } = parseInvite(inviteText)
@@ -499,11 +648,39 @@ function Permissions() {
       setMembers((prev) => [
         ...prev,
         { id, name, email, role, floor, joined: formatDate(new Date()), active: true, color },
+=======
+  const submitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const name = form.name.trim()
+    const email = form.email.trim()
+
+    if (!name || !email) return setError('กรุณากรอกชื่อและอีเมล')
+    if (!EMAIL_RE.test(email)) return setError('รูปแบบอีเมลไม่ถูกต้อง')
+    if (members.some((m) => m.id !== editingId && m.email.toLowerCase() === email.toLowerCase()))
+      return setError('อีเมลนี้ถูกใช้แล้ว')
+
+    const floor = floorForRole(form.role, form.floor)
+
+    if (editingId !== null) {
+      const target = members.find((m) => m.id === editingId)
+      if (target?.role === 'Super Admin' && form.role !== 'Super Admin' && superAdminCount <= 1)
+        return setError('ต้องมี Super Admin อย่างน้อย 1 คน')
+      setMembers((prev) =>
+        prev.map((m) => (m.id === editingId ? { ...m, name, email, role: form.role, floor } : m)),
+      )
+    } else {
+      const id = nextId.current++
+      const color = nextColor.current++ % gradients.length
+      setMembers((prev) => [
+        ...prev,
+        { id, name, email, role: form.role, floor, joined: formatDate(new Date()), active: true, color },
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       ])
     }
     closeForm()
   }
 
+<<<<<<< HEAD
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(INVITE_LINK)
@@ -545,10 +722,34 @@ function Permissions() {
     {
       key: 'floor',
       label: head(t('permissions.columns.floor')),
+=======
+  const columns: DataTableColumn<Member>[] = [
+    {
+      key: 'profile',
+      label: head('Profile'),
+      render: (row) => (
+        <span className="flex min-h-[72px] items-center justify-center">
+          <Avatar color={row.color} active={row.active} />
+        </span>
+      ),
+    },
+    { key: 'name', label: head('Name'), render: (row) => cell(row.name) },
+    { key: 'id', label: head('Employee ID'), render: (row) => cell(row.id) },
+    {
+      key: 'email',
+      label: head('Email'),
+      render: (row) => <span className="whitespace-nowrap text-[17px] text-brand">{row.email}</span>,
+    },
+    { key: 'joined', label: head('Date of joining'), render: (row) => cell(row.joined) },
+    {
+      key: 'floor',
+      label: head('Floor Responsible'),
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       render: (row) => <span className="text-[17px] font-normal text-brand">{row.floor}</span>,
     },
     {
       key: 'role',
+<<<<<<< HEAD
       label: head(t('permissions.columns.role')),
       render: (row) => (
         <div className="flex min-h-[72px] items-center justify-center">
@@ -560,6 +761,18 @@ function Permissions() {
             widthClass="w-[175px]"
             triggerClassName="h-9 rounded-full border-[var(--border)] text-[14.5px] !text-ink-2 hover:!bg-transparent hover:!border-[var(--border)] hover:!text-[color:var(--hover-dropdown-text)]"
             panelClassName="min-w-[175px]"
+=======
+      label: head('Role'),
+      render: (row) => (
+        <div className="flex min-h-[72px] items-center justify-center">
+          <Select
+            ariaLabel={`Role of ${row.name}`}
+            value={row.role}
+            onChange={(v: string) => changeRole(row, v as Role)}
+            options={roleOptions}
+            className="w-[175px]"
+            selectClassName="h-9 !rounded-full border-[#d2d2d7] py-0 pl-4 pr-8 text-[14.5px] text-center !text-[#0F172A] font-normal"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
           />
         </div>
       ),
@@ -569,6 +782,7 @@ function Permissions() {
       label: '',
       render: (row) => (
         <div className="flex flex-nowrap items-center justify-end gap-2.5 pr-6">
+<<<<<<< HEAD
           {/* ซ่อนปุ่ม Edit และ Remove เมื่อ role มีสิทธิ์ permissions_manage (View as mode) */}
           {canManage && (
             <>
@@ -586,12 +800,21 @@ function Permissions() {
               </button>
             </>
           )}
+=======
+          <button type="button" className={`btn-outline ${ACTION_BTN} !px-5`} onClick={() => startEdit(row)}>
+            Edit
+          </button>
+          <button type="button" className={`btn-outline ${ACTION_BTN} !px-5`} onClick={() => removeMember(row)}>
+            Remove
+          </button>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         </div>
       ),
     },
   ]
 
   return (
+<<<<<<< HEAD
     <div className="flex h-screen flex-col overflow-hidden">
       <Navbar
         title={t('permissions.title')}
@@ -605,12 +828,95 @@ function Permissions() {
             )}
             <button type="button" data-invite-toggle className={NAV_BTN} onClick={toggleForm}>
               <Icon icon="akar-icons:link-chain" height="1.25em " className="[&_*]:stroke-[1.75]" /> {t('permissions.addMember')}
+=======
+    <>
+      <Navbar
+        title="Permissions"
+        actions={
+          <>
+            {url_uuid && (
+              <Link to={`/system/${url_uuid}/roles`} className={NAV_BTN}>
+                Manage Role
+              </Link>
+            )}
+            <button type="button" className={NAV_BTN} onClick={toggleForm}>
+              <Icon icon="akar-icons:link-chain" height="1.25em " /> Add new member
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             </button>
           </>
         }
       />
 
+<<<<<<< HEAD
       <main className="relative min-h-0 flex-1 space-y-4 overflow-y-auto p-5 sm:p-6 sm:px-8">
+=======
+      <main className="space-y-4 p-4 sm:p-6">
+        {formOpen && (
+          <form onSubmit={submitForm} noValidate className="space-y-2">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              <input
+                className={FORM_INPUT}
+                placeholder="Name"
+                aria-label="Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+              <input
+                className={FORM_INPUT}
+                placeholder="Email"
+                type="email"
+                aria-label="Email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+              <select
+                className={FORM_INPUT}
+                aria-label="Role"
+                value={form.role}
+                onChange={(e) => {
+                  const role = e.target.value as Role
+                  setForm({ ...form, role, floor: floorForRole(role, form.floor) })
+                }}
+              >
+                {roleOptions.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                className={FORM_INPUT}
+                aria-label="Floor"
+                value={form.floor}
+                disabled={form.role === 'Super Admin'}
+                onChange={(e) => setForm({ ...form, floor: e.target.value as FloorValue })}
+              >
+                {floorOptions.map((f) => (
+                  <option key={f} value={f}>
+                    {f === 'All' ? 'All floors' : `Floor ${f}`}
+                  </option>
+                ))}
+              </select>
+              <div className="flex gap-2">
+                <button type="submit" className="btn-primary !h-10 flex-1 !rounded-xl !py-0 !text-[14px]">
+                  {editingId !== null ? 'Save' : 'Add'}
+                </button>
+                {editingId !== null && (
+                  <button type="button" className="btn-outline !h-10 !rounded-xl !py-0 !text-[14px]" onClick={closeForm}>
+                    Cancel
+                  </button>
+                )}
+              </div>
+            </div>
+            {error && (
+              <p role="alert" className="text-[13px] text-red-600">
+                {error}
+              </p>
+            )}
+          </form>
+        )}
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         {/* แถวบน: แท็บสถานะ + ช่องค้นหา */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <StatusTabs value={status} onChange={setStatus} />
@@ -619,12 +925,21 @@ function Permissions() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+<<<<<<< HEAD
               aria-label={t('permissions.searchMember')}
               className="h-[36px] w-full rounded-xl border border-[var(--border)] bg-transparent pl-3.5 pr-9 text-[13px] text-[var(--text)] outline-none focus:border-brand"
             />
             <Search
               size={15}
               className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]"
+=======
+              aria-label="Search member"
+              className="h-[36px] w-full rounded-xl border border-[#D2D2D7] bg-white pl-3.5 pr-9 text-[13px] text-[#212121] outline-none focus:border-brand"
+            />
+            <Search
+              size={15}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#AEAEB2]"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             />
           </div>
         </div>
@@ -639,14 +954,21 @@ function Permissions() {
               searchKeys={NO_SEARCH_KEYS}
               searchPlaceholder=""
               emptyText={
+<<<<<<< HEAD
                 <div className="flex min-h-[340px] flex-col items-center justify-center py-12 text-center text-ink-1">
                   <p className="text-[17px] font-normal">{t('permissions.empty.title')}</p>
                   <p className="mt-2 text-[13px] font-normal">{t('permissions.empty.hint')}</p>
+=======
+                <div className="flex min-h-[340px] flex-col items-center justify-center py-12 text-center text-[#0F172A]">
+                  <p className="text-[17px] font-normal">No Members Found</p>
+                  <p className="mt-2 text-[13px] font-normal">Click “Add new member” to add one.</p>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 </div>
               }
             />
           </div>
         </div>
+<<<<<<< HEAD
 
         {/* popover เชิญสมาชิก: ลอยทับมุมขวาบน ใต้ปุ่ม Add new member */}
         {formOpen && (
@@ -734,6 +1056,10 @@ function Permissions() {
         )}
       </main>
     </div>
+=======
+      </main>
+    </>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 

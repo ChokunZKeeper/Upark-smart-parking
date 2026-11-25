@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "tailwindcss";
 
 @theme {
@@ -173,6 +174,1077 @@
   --heat-gradient: linear-gradient(0deg, #ffd2a3 10%, #ff9429 20%, #e77f1f 30%, #d06a14 40%, #b8550a 50%, #7c3c0a 60%, #41220a 70%, #090909 90%);
 }
 
+=======
+<<<<<<< HEAD
+@font-face {
+  font-family: "SF Compact light";
+  src: url("fonts/Inter_24pt-Light.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Compact regular";
+  src: url("fonts/Inter_24pt-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Logo font";
+  src: url("fonts/Logo_Font.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro medium";
+  src: url("fonts/Inter_24pt-Medium.ttf");
+  font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --blue: #2874df;
+    --background: #f5f5f7;
+    --border: #dedee3;
+    --danger: #e5484d;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+    background: #202020;
+    color: #0F172A;
+    overflow-x: hidden;
+}
+
+a:link{
+    color: #1487F0;
+}
+
+.layout {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    /* minmax(0, ...) กันไม่ให้คอลัมน์ถูกเนื้อหาดันจนล้น */
+    grid-template-columns: minmax(0, 52.2%) minmax(0, 47.8%);
+}
+
+/* LEFT PANEL */
+
+.brand {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #000;
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 9%;
+    font-family: "SF Compact light", system-ui, sans-serif;
+}
+
+.brand-content h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-size: clamp(28px, 2.5vw, 56px);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.SFPro_med {
+    font-family: "SF Pro medium", system-ui, sans-serif;
+    font-size: 225%;
+}
+
+.Logo-A {
+    font-size: 105%;
+    font-family: "Logo font";
+}
+
+.LightSF {
+    font-size: 105%;
+    font-family: "SF Compact light";
+}
+
+.BoldSF {
+    font-size: 105%;
+    font-family: "SF Compact regular";
+}
+
+.logo-mark {
+    flex: none;
+    width: 0.78em;
+    height: 0.78em;
+}
+
+.brand-content p,
+.brand-content p1 {
+    display: block;
+    margin-top: 0.7em;
+    font-size: clamp(16px, 1.65vw, 34px);
+    font-weight: 350;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: #fff;
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 35px 24px 55px;
+    min-width: 0;
+}
+
+/* SCREEN */
+
+.screen {
+    display: none;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* CARD */
+
+.card {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 17.5px;
+    padding: 30px 36px;
+}
+
+.card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* ACCOUNT TYPE */
+
+.account-card {
+    max-width: 430px;
+}
+
+.hint {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 26px;
+}
+
+.outline-btn {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: #777;
+    cursor: pointer;
+}
+
+.outline-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+/* SIGN IN */
+
+.signin-card {
+    --pad-x: clamp(22px, 3vw, 47px);
+    max-width: 520px;
+    padding: clamp(24px, 3vw, 39px) var(--pad-x);
+}
+
+.signin-card h2 {
+    font-size: clamp(20px, 1.8vw, 26px);
+    margin-bottom: 12px;
+}
+
+.new-user {
+    font-size: 10px;
+    font-family: "SF Compact light";
+    color: #0F172A;
+    margin-bottom: 38.5px;
+    margin-top: 18px;
+}
+
+a {
+    color: #2681e8;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 16px; /* 16px ขึ้นไป กัน iOS ซูมจออัตโนมัติตอนแตะช่องกรอก */
+    outline: none;
+}
+
+input:focus {
+    border-color: #8db7ef;
+}
+
+input.error {
+    border-color: var(--danger);
+}
+
+input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    padding: 0;
+}
+
+.primary-btn {
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "SF Compact light";
+    font-size: 14px;
+}
+
+.primary-btn:hover {
+    background: #1d65c8;
+}
+
+.signin-card input {
+    height: clamp(38px, 2.6vw, 46px);
+    font-size: clamp(16px, 1.05vw, 18px);
+    padding: 0 14px;
+}
+
+.signin-card .primary-btn {
+    height: clamp(40px, 2.7vw, 48px);
+    font-size: clamp(15px, 1vw, 18px);
+}
+
+/* SEPARATOR */
+
+.separator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 45px calc(var(--pad-x, 36px) * -0.9) 40px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #e7e7eb;
+}
+
+/* SOCIAL LOGIN
+   FIX: ปุ่มกว้างยืดหยุ่น (minmax) + aspect-ratio 1/1
+   ย่อจอแล้วยังเป็นสี่เหลี่ยมจัตุรัส ไม่บิด */
+
+.socials {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 150px));
+    justify-content: center;
+    width: 100%;
+    gap: 14px;
+}
+
+.social-btn {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-height: 135px;
+    padding: 8px 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.2vw, 16px);
+    cursor: pointer;
+}
+
+.social-btn small {
+    font-size: 12px;
+}
+
+.google,
+.facebook,
+.line {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex: none;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    /* ซ่อนข้อความ เหลือแต่รูป */
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.google {
+    background-image: url('/logos/Google.png');
+}
+
+.line {
+    background-image: url('/logos/Line.png');
+    border-radius: 100px;
+}
+
+.facebook {
+    background-image: url('/logos/Facebook.png');
+}
+
+/* FOOTER */
+
+.footer-links {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    margin-top: 50px;
+    font-size: 12px;
+}
+
+.forgot {
+    text-align: center;
+    font-size: 8px;
+    margin-top: 20px;
+}
+
+.password-card .separator {
+    margin-top: 35px;
+}
+
+/* SIGN IN (email + password on one page) */
+
+#signin-form {
+    font-family: "SF Compact light";
+    display: grid;
+    gap: 14px;
+}
+
+#signin-form .forgot {
+    text-align: center;
+    margin-top: 13.5px;
+    font-family: "SF Compact light", system-ui, sans-serif;
+}
+
+#signin-form .primary-btn {
+    margin-top: 8px;
+    border-radius: 9px;
+    font-family: "SF Compact light", system-ui, sans-serif;
+}
+
+#signin-form input::placeholder {
+    color: #88888b;
+    font-family: "SF Compact light", system-ui, sans-serif;
+    opacity: 1;
+}
+
+#signin-form input {
+    font-family: "SF Compact light", system-ui, sans-serif;
+    font-weight: 300;
+}
+.f {
+    color: #000;
+}
+
+.sr-only {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* REGISTER */
+
+.register-card {
+    max-width: 440px;
+}
+
+.register-card h2 {
+    margin-bottom: 24px;
+}
+
+#register-form {
+    display: grid;
+    gap: 8px;
+}
+
+#register-form label {
+    font-size: 12px;
+    color: #555;
+}
+
+#register-form input {
+    height: 36px;
+}
+
+#register-form .primary-btn {
+    margin-top: 12px;
+}
+
+/* OTP */
+
+.otp-card {
+    max-width: 460px;
+}
+
+.otp-description {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.6;
+    margin: 12px 0 22px;
+}
+
+.otp-inputs {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 17.5px;
+}
+
+.otp-inputs input {
+    margin-top: 10px;
+    height: 48px;
+    text-align: center;
+    font-size: 18px;
+    padding: 0;
+    min-width: 0;
+}
+
+.otp-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 50px 0 10px;
+    font-size: 11px;
+    color: #888;
+}
+
+.otp-info b {
+    color: var(--blue);
+    font-weight: 400;
+}
+
+.cancel-btn {
+    display: block;
+    margin: 14px auto 0;
+    border: none;
+    background: transparent;
+    color: #999;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* ============================================================
+   COMPANY FLOW  (ปัจจุบันถูกซ่อนด้วยกฎท้ายไฟล์)
+   ============================================================ */
+
+.co-card {
+    position: relative;
+    max-width: 390px;
+    padding: 26px 44px 24px;
+}
+
+.co-card h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.co-card input:not([type="checkbox"]):not([type="file"]) {
+    display: block;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 13px;
+    padding: 0 12px;
+}
+
+.co-card input::placeholder {
+    color: #9a9aa0;
+    font-weight: 300;
+}
+
+.co-card input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(42, 111, 219, .12);
+}
+
+.co-card input.error {
+    border-color: var(--danger);
+}
+
+.co-card a {
+    text-decoration: underline;
+    font-size: 10px;
+}
+
+.co-card .primary-btn {
+    height: 28px;
+    font-size: 30px;
+    margin-top: 8px;
+    border-radius: 10px;
+}
+
+#company-signin-form input[type="email"],
+#company-signin-form input[type="password"] {
+    margin-bottom: 16px;
+}
+
+.co-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 4px;
+}
+
+.co-remember {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #555;
+    cursor: pointer;
+}
+
+.co-remember input {
+    width: 9px;
+    height: 9px;
+    accent-color: var(--blue);
+    cursor: pointer;
+}
+
+.co-foot {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 38px;
+    color: #333;
+}
+
+.co-logo {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 30px;
+}
+
+.co-logo-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #29c4e6 0%, #7fe0a0 45%, #f5ee1a 100%);
+}
+
+.co-logo-circle.has-logo {
+    background-color: #fff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid var(--border);
+}
+
+.co-step {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    font-size: 10px;
+    color: #666;
+}
+
+.co-form {
+    padding-bottom: 10px;
+}
+
+.co-field {
+    margin-bottom: 14px;
+}
+
+.co-field > label:not(.upload) {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.co-input-icon {
+    position: relative;
+}
+
+.co-input-icon input {
+    padding-right: 30px !important;
+}
+
+.co-input-icon svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9a9aa0;
+    pointer-events: none;
+}
+
+.upload {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 128px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #333;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color .15s, background .15s;
+}
+
+.upload:hover {
+    border-color: #b8b8be;
+    background: #fafafb;
+}
+
+.upload.error {
+    border-color: var(--danger);
+}
+
+.upload-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+}
+
+/* NAVIGATION */
+
+.navigation {
+    position: absolute;
+    bottom: 18px;
+    display: flex;
+    gap: 9px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border: none;
+    border-radius: 50%;
+    background: #c6c6cc;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--blue);
+}
+
+/* REGISTER CARD (desktop)
+   FIX: ย้าย max-width แบบ clamp(520px…) ไปไว้เฉพาะจอ > 860px
+   เดิมอยู่นอก media query ทำให้การ์ดกว้างเกินจอมือถือ */
+
+.card.register-card {
+    padding: clamp(30px, 2.4vw, 46px) clamp(36px, 2.8vw, 54px);
+    border-radius: 14px;
+}
+
+.card.register-card h2,
+.card.register-card > p:first-child {
+    font-family: "SF Pro medium", system-ui, sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 34px;
+}
+
+.register-card #register-form {
+    display: grid;
+    gap: 6px;
+}
+
+.register-card #register-form label {
+    font-family: "SF Compact light", system-ui, sans-serif;
+    font-size: clamp(13px, 0.95vw, 15px);
+    color: #333;
+}
+
+.register-card #register-form label:not(:first-child) {
+    margin-top: 18px;
+}
+
+.register-card #register-form input {
+    height: clamp(38px, 2.6vw, 46px);
+    padding: 0 14px;
+    border: 1px solid #dcdce1;
+    border-radius: 8px;
+    font-family: "SF Compact light", system-ui, sans-serif;
+    font-size: clamp(16px, 1.05vw, 18px);
+}
+
+.register-card #register-form .primary-btn {
+    height: clamp(40px, 2.7vw, 48px);
+    margin-top: 22px;
+    border-radius: 9px;
+    font-family: "SF Compact light", system-ui, sans-serif;
+    font-size: clamp(17px, 1vw, 18px);
+}
+
+.register-card .register-back {
+    margin-top: 22px;
+    text-align: center;
+    font-size: clamp(14px, 0.95vw, 16px);
+}
+
+.register-card .register-back a {
+    color: #333;
+    text-decoration: none;
+    font-family: "SF Compact light", system-ui, sans-serif;
+}
+
+/* Four-screen authentication flow only */
+.navigation, .account-card, .co-card, .co-logo, .co-step,
+.co-field, .co-foot, .co-row, .upload { display: none !important; }
+
+.register-back {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 10px;
+}
+
+.register-back a { text-decoration: underline; }
+
+/* ============================================================
+   DESKTOP: ขนาดเริ่มต้นให้ใหญ่ขึ้น (เฉพาะจอ > 860px)
+   ============================================================ */
+@media (min-width: 861px) {
+
+    .brand-content h1 {
+        font-size: clamp(28px, 3vw, 64px);
+    }
+
+    .brand-content p,
+    .brand-content p1 {
+        font-size: clamp(16px, 2vw, 40px);
+    }
+
+    .card {
+        max-width: clamp(440px, 34vw, 620px);
+        padding: clamp(30px, 2.4vw, 46px) clamp(36px, 2.8vw, 54px);
+    }
+
+    .card.register-card {
+        max-width: clamp(520px, 34vw, 620px);
+    }
+
+    .card h2 {
+        font-size: clamp(20px, 1.7vw, 30px);
+        margin-bottom: clamp(10px, 0.9vw, 16px);
+    }
+
+    /* Sign in */
+    .signin-card {
+        --pad-x: clamp(36px, 2.8vw, 54px);
+        max-width: clamp(520px, 34vw, 620px);
+        padding: clamp(30px, 2.4vw, 46px) var(--pad-x);
+    }
+
+    .signin-card h2 {
+        font-size: clamp(22px, 1.8vw, 32px);
+    }
+
+    .new-user {
+        font-size: clamp(11px, 0.9vw, 15px);
+    }
+
+    .signin-card input {
+        height: clamp(38px, 2.6vw, 46px);
+        font-size: clamp(16px, 1.05vw, 18px);
+    }
+
+    .signin-card .primary-btn {
+        height: clamp(40px, 2.7vw, 48px);
+        font-size: clamp(17px, 1vw, 18px);
+    }
+
+    .separator,
+    .footer-links,
+    .forgot {
+        font-size: clamp(10px, 0.9vw, 14.5px);
+    }
+
+    .social-btn small {
+        font-size: clamp(12px, 0.9vw, 16px);
+    }
+
+    .google, .facebook, .line {
+        width: clamp(36px, 2.6vw, 46px);
+        height: clamp(36px, 2.6vw, 46px);
+    }
+
+    /* Register */
+    #register-form {
+        gap: clamp(8px, 0.7vw, 12px);
+    }
+
+    #register-form label {
+        font-size: clamp(12px, 0.9vw, 16px);
+    }
+
+    #register-form input {
+        height: clamp(40px, 2.9vw, 52px);
+        font-size: clamp(16px, 1.05vw, 18px);
+    }
+
+    #register-form .primary-btn {
+        height: clamp(44px, 3.1vw, 54px);
+        font-size: clamp(15px, 1vw, 18px);
+        margin-top: clamp(12px, 1vw, 18px);
+    }
+
+    /* OTP */
+    .otp-description {
+        font-size: clamp(12px, 0.9vw, 16px);
+    }
+
+    .otp-inputs input {
+        height: clamp(48px, 3.6vw, 64px);
+        font-size: clamp(18px, 1.4vw, 26px);
+    }
+
+    .otp-info {
+        font-size: clamp(12px, 0.9vw, 16px);
+    }
+
+    .otp-card .primary-btn {
+        height: clamp(44px, 3.1vw, 54px);
+        font-size: clamp(15px, 1vw, 18px);
+    }
+
+    .cancel-btn {
+        font-size: clamp(12px, 0.95vw, 16px);
+    }
+}
+
+/* ============================================================
+   TABLET: ลดสัดส่วนฝั่งซ้าย
+   ============================================================ */
+@media (max-width: 1100px) {
+    .layout {
+        grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+    }
+
+    .brand {
+        padding-left: 6%;
+    }
+}
+
+/* ============================================================
+   MOBILE (<= 860px): เรียงแนวตั้ง + การ์ดขาวเต็มจอ
+   ต้องอยู่ท้ายไฟล์ เพื่อทับกฎด้านบน
+   ============================================================ */
+@media (max-width: 860px) {
+
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+    }
+
+    .brand {
+        min-height: 0;
+        padding: 25px 8%;
+    }
+
+    .brand-content h1 {
+        font-size: 25px;
+    }
+
+    .brand-content p,
+    .brand-content p1 {
+        font-size: 18px;
+        margin-top: 12px;
+    }
+
+    /* พื้นหลังขาว ไม่มี padding */
+    .right-panel {
+        min-height: 0;
+        padding: 0;
+        background: #fff;
+        align-items: stretch;
+        justify-content: stretch;
+    }
+
+    .screen.active {
+        align-items: stretch;
+        justify-content: stretch;
+    }
+
+    /* การ์ดยืดเต็มพื้นที่ที่เหลือ */
+    .right-panel .card,
+    .right-panel .card.register-card,
+    .right-panel .card.signin-card,
+    .right-panel .card.otp-card {
+        flex: 1;
+        width: 100%;
+        max-width: none;
+        border: none;
+        border-radius: 0;
+        padding: 32px 24px calc(32px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .SFPro_med {
+        font-size: 28px;
+    }
+
+    .new-user {
+        font-size: 13px;
+        margin-bottom: 24px;
+    }
+
+    .separator {
+        margin: 32px 0 24px;
+        font-size: 12px;
+    }
+
+    .socials {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .social-btn {
+        max-height: 110px;
+    }
+
+    .google,
+    .facebook,
+    .line {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-btn small {
+        font-size: 12px;
+    }
+
+    .forgot {
+        font-size: 12px;
+    }
+
+    .footer-links {
+        font-size: 13px;
+        margin-top: 32px;
+    }
+
+    /* Register */
+    .card.register-card h2,
+    .card.register-card > p:first-child {
+        font-size: 28px;
+        margin-bottom: 26px;
+    }
+
+    /* OTP */
+    .otp-inputs {
+        gap: 8px;
+    }
+
+    .otp-description,
+    .otp-info {
+        font-size: 12px;
+    }
+}
+
+/* จอเล็กมาก */
+@media (max-width: 380px) {
+    .right-panel .card,
+    .right-panel .card.register-card,
+    .right-panel .card.signin-card,
+    .right-panel .card.otp-card {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .socials {
+        gap: 6px;
+    }
+
+    .social-btn small {
+        font-size: 11px;
+    }
+
+    .otp-inputs {
+        gap: 5px;
+    }
+=======
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-logo: 'LogoFont', sans-serif;
+
+  --color-brand: #2771D8;
+  --color-brand-dark: #1c5cb5;
+  --color-brand-light: #4a8df0;
+  --color-brand-soft: #dbe4ff;
+
+  --color-heat-low: #dbe2fb;
+  --color-heat-mid: #b4c0f8;
+  --color-heat-high: #4a6cf0;
+
+  --color-ink: #0F172A;
+  --color-line: #D2D2D7;
+  --color-sidebar: #F5F5F7;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 @font-face {
   font-family: 'Inter';
@@ -202,6 +1274,7 @@
   font-style: normal;
   font-display: swap;
 }
+<<<<<<< HEAD
 @font-face {
   font-family: 'Kanit';
   src: url('../fonts/Kanit-Light.ttf') format('truetype');
@@ -227,6 +1300,8 @@
 :root[lang='th'] {
   --font-sans: 'Kanit', 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 @layer base {
   *,
@@ -234,11 +1309,17 @@
   ::after {
     border-color: var(--color-line);
   }
+<<<<<<< HEAD
 
   /* scrollbar บาง สี thumb ตาม theme, track โปร่งใสให้กลืนกับพื้นหลัง */
   * {
     scrollbar-width: thin;
     scrollbar-color: color-mix(in srgb, var(--text) 25%, transparent) transparent;
+=======
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   }
 
   html,
@@ -246,6 +1327,7 @@
   #root {
     height: 100%;
   }
+<<<<<<< HEAD
 
   body {
     @apply bg-page font-sans text-ink antialiased;
@@ -305,11 +1387,17 @@
   /* กำลังโหลดแบบแอนิเมชัน (JS สลับเฟรมที่ body) */
   body.is-loading-anim * {
     cursor: inherit !important;
+=======
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    margin: 0;
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   }
 }
 
 @layer components {
   .card {
+<<<<<<< HEAD
     @apply rounded-[20px] shadow-card;
     border: 1px solid transparent;
     background:
@@ -391,4 +1479,15 @@
 
   --pc-car-light-display: none;
   --pc-car-dark-display: inline;
+=======
+    @apply rounded-[20px] border border-line bg-white shadow-card;
+  }
+  .btn-primary {
+    @apply rounded-full bg-brand px-4 py-1.5 text-xs font-medium text-white transition hover:bg-brand-dark;
+  }
+  .btn-outline {
+    @apply rounded-full border border-gray-300 bg-white px-4 py-1.5 text-xs font-medium text-ink transition hover:bg-gray-50;
+  }
+>>>>>>> 901b25f (update 2)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }

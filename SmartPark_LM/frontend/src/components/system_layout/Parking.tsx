@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   useEffect,
   useMemo,
@@ -33,6 +34,15 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { canEdit } from '@/constants/viewAs'
 import { useT, type TFunction } from '@/i18n'
 
+=======
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
+import { Plus, Search } from 'lucide-react'
+import Navbar from '@/components/system_layout/layout/Navbar'
+import Segmented from '@/components/system_layout/layout/Segmented'
+import SummaryCards from '@/components/system_layout/layout/SummaryCards'
+import { floors, getParkingLayout, parkingFilters, parkingStatsByFloor } from '@/types/_mockData'
+import carImg from '@/assets/logos/Car_white.png'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Types ---------- */
 
 type SlotStatus = 'occupied' | 'available' | 'offline'
@@ -71,6 +81,7 @@ interface Metrics {
   pull: number
 }
 
+<<<<<<< HEAD
 type SlotContextMenuHandler = (e: MouseEvent, slot: ParkingSlot) => void
 
 interface SlotMenuState {
@@ -105,6 +116,8 @@ interface LocationOption {
   label: string
 }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Constants ---------- */
 
 // zone (1-4) <-> block ในผัง
@@ -114,8 +127,17 @@ const BLOCK_KEY_TO_ZONE: Partial<Record<BlockKey, number>> = { tl: 1, bl: 2, tm:
 // ลำดับ block ในมุมมองทั้งชั้น (grid 3 คอลัมน์ x 2 แถว)
 const FLOOR_GRID_ORDER: BlockKey[] = ['tl', 'tm', 'tr', 'bl', 'bm', 'br']
 
+<<<<<<< HEAD
 // RESET: ไม่มี floor / zone mock แล้ว
 const LOCATION_OPTIONS: LocationOption[] = []
+=======
+const ZONES = [1, 2, 3, 4]
+
+const LOCATION_OPTIONS = floors.flatMap((floor) => [
+  { value: floor, label: `Floor ${floor}` },
+  ...ZONES.map((zone) => ({ value: `${floor}-${zone}`, label: `Floor ${floor} - Zone ${floor}${zone}` })),
+])
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 const EMPTY_STATS: ParkingStats = { total: null, occupied: null, available: null, offline: null }
 
@@ -123,6 +145,7 @@ const AREA_PADDING = 48 // p-6 ซ้าย + ขวา
 const ZONE_VIEW_WIDTH_RATIO = 0.55 // โหมด zone: block เดียวกว้างประมาณ 55% ของกรอบ
 const DEFAULT_SLOTS_PER_ROW = 6
 
+<<<<<<< HEAD
 const CUSTOM_CANVAS_HEIGHT = 480 // ความสูงขั้นต่ำของข้อความ "ไม่มี element" (px)
 const ZONE_CAMERA_PAD = 24 // ตอนซูมเข้า zone: เผื่อขอบรอบ zone (หน่วยโลก px)
 
@@ -144,6 +167,10 @@ const DIVIDER_STYLE: CSSProperties = {
   background:
     'radial-gradient(ellipse closest-side at 50% 50%, var(--border) 20%, rgba(195, 195, 250, 0) 97.5%)',
 }
+=======
+const FACILITY_BUTTON =
+  'h-9 rounded-xl border border-[#d2d2d7] bg-white px-7 text-[13.5px] text-[#6f6f72] transition hover:bg-gray-50'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Helpers ---------- */
 
@@ -186,6 +213,7 @@ const statsOfBlock = (block: ParkingBlock): ParkingStats => {
   }
 }
 
+<<<<<<< HEAD
 /* ---------- parkingStore helpers ---------- */
 
 // read the store and normalise it (always a fresh object, so React re-renders on change)
@@ -233,6 +261,8 @@ const rectOf = (e: ParkingElementData): CameraRect => ({ x: e.x, y: e.y, w: e.w,
 const intersects = (a: CameraRect, b: CameraRect) =>
   a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Hook: วัดความกว้าง container ---------- */
 
 function useElementWidth<T extends HTMLElement>() {
@@ -254,6 +284,7 @@ function useElementWidth<T extends HTMLElement>() {
   return [ref, width] as const
 }
 
+<<<<<<< HEAD
 /* ---------- Icons (context menu) ---------- */
 
 const EyeIcon = (
@@ -367,6 +398,22 @@ function CarIcon({ dimmed, flip, height }: { dimmed: boolean; flip: boolean; hei
         className={cls}
       />
     </>
+=======
+/* ---------- Slot ---------- */
+
+function CarIcon({ dimmed, flip, height }: { dimmed: boolean; flip: boolean; height: number }) {
+  return (
+    <img
+      src={carImg}
+      alt=""
+      draggable={false}
+      aria-hidden="true"
+      style={{ height }}
+      className={`w-auto select-none object-contain transition-opacity ${dimmed ? 'opacity-25' : ''} ${
+        flip ? 'rotate-180' : ''
+      }`}
+    />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 
@@ -376,13 +423,21 @@ function SlotDivider({ side }: { side: 'left' | 'right' }) {
     <div
       aria-hidden="true"
       style={side === 'left' ? { left: 0 } : { right: 0 }}
+<<<<<<< HEAD
       className="pointer-events-none absolute top-0 h-full w-px bg-[var(--border)]" /* เข้มขึ้นถ้าอยากเห็นชัดขึ้น เช่น bg-[#b8b8be] */
+=======
+      className="pointer-events-none absolute top-0 h-full w-px bg-[#d2d2d7]" /* เข้มขึ้นถ้าอยากเห็นชัดขึ้น เช่น bg-[#b8b8be] */
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     />
   )
 }
 
 function SlotLabel({ slot, dimmed, fontSize }: { slot: ParkingSlot; dimmed: boolean; fontSize: number }) {
+<<<<<<< HEAD
   const color = slot.status === 'offline' ? 'font-semibold text-[#e5173f]' : 'text-ink-1'
+=======
+  const color = slot.status === 'offline' ? 'font-semibold text-[#e5173f]' : 'text-[#212121]'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   return (
     <span style={{ fontSize }} className={`${color} ${dimmed ? 'opacity-30' : ''}`}>
@@ -416,11 +471,17 @@ interface SlotProps {
   query: string
   m: Metrics
   isFirst: boolean
+<<<<<<< HEAD
   onSlotContextMenu?: SlotContextMenuHandler
 }
 
 function Slot({ slot, position, filter, query, m, isFirst, onSlotContextMenu }: SlotProps) {
   const t = useT()
+=======
+}
+
+function Slot({ slot, position, filter, query, m, isFirst }: SlotProps) {
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const isTop = position === 'top'
 
   const statusMatch = filter === 'all' || filter === slot.status
@@ -433,11 +494,14 @@ function Slot({ slot, position, filter, query, m, isFirst, onSlotContextMenu }: 
 
   return (
     <div
+<<<<<<< HEAD
       onContextMenu={(e) => {
         if (!onSlotContextMenu) return
         e.preventDefault() // hide the browser's native menu
         onSlotContextMenu(e, slot)
       }}
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       style={{
         width: m.slotW,
         height: m.slotH,
@@ -446,7 +510,11 @@ function Slot({ slot, position, filter, query, m, isFirst, onSlotContextMenu }: 
         paddingBottom: isTop ? 0 : m.padY,
       }}
       className="relative flex shrink-0 flex-col items-center justify-between"
+<<<<<<< HEAD
       title={`${slot.id} - ${t('parking.status.' + slot.status)}`}
+=======
+      title={`${slot.id} - ${slot.status}`}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     >
       {isFirst && <SlotDivider side="left" />}
       <SlotDivider side="right" />
@@ -476,7 +544,10 @@ interface BlockProps {
   query: string
   m: Metrics
   onSelectBlock?: () => void // ถ้าใส่ block จะกดได้ (ใช้ซูมเข้า zone)
+<<<<<<< HEAD
   onSlotContextMenu?: SlotContextMenuHandler
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 function SlotRow({
@@ -485,17 +556,26 @@ function SlotRow({
   filter,
   query,
   m,
+<<<<<<< HEAD
   onSlotContextMenu,
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }: {
   slots: ParkingSlot[]
   position: SlotPosition
   filter: ParkingFilter
   query: string
   m: Metrics
+<<<<<<< HEAD
   onSlotContextMenu?: SlotContextMenuHandler
 }) {
   return (
     <div className={position === 'top' ? 'flex border-b border-[var(--border)]' : 'flex'}>
+=======
+}) {
+  return (
+    <div className={position === 'top' ? 'flex border-b border-[#d2d2d7]' : 'flex'}>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       {slots.map((slot, index) => (
         <Slot
           key={slot.id}
@@ -505,14 +585,21 @@ function SlotRow({
           query={query}
           m={m}
           isFirst={index === 0}
+<<<<<<< HEAD
           onSlotContextMenu={onSlotContextMenu}
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         />
       ))}
     </div>
   )
 }
 
+<<<<<<< HEAD
 function Block({ block, filter, query, m, onSelectBlock, onSlotContextMenu }: BlockProps) {
+=======
+function Block({ block, filter, query, m, onSelectBlock }: BlockProps) {
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   if (!block) return <div />
 
   const clickable = Boolean(onSelectBlock)
@@ -532,6 +619,7 @@ function Block({ block, filter, query, m, onSelectBlock, onSlotContextMenu }: Bl
       tabIndex={clickable ? 0 : undefined}
       className={`inline-block ${clickable ? 'cursor-pointer transition-opacity hover:opacity-90' : ''}`}
     >
+<<<<<<< HEAD
       <SlotRow slots={block.top} position="top" filter={filter} query={query} m={m} onSlotContextMenu={onSlotContextMenu} />
       <SlotRow
         slots={block.bottom}
@@ -541,6 +629,10 @@ function Block({ block, filter, query, m, onSelectBlock, onSlotContextMenu }: Bl
         m={m}
         onSlotContextMenu={onSlotContextMenu}
       />
+=======
+      <SlotRow slots={block.top} position="top" filter={filter} query={query} m={m} />
+      <SlotRow slots={block.bottom} position="bottom" filter={filter} query={query} m={m} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   )
 }
@@ -548,20 +640,31 @@ function Block({ block, filter, query, m, onSelectBlock, onSlotContextMenu }: Bl
 /* ---------- Toolbar ---------- */
 
 function SlotSearch({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+<<<<<<< HEAD
   const t = useT()
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   return (
     <div className="relative">
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+<<<<<<< HEAD
         aria-label={t('parking.toolbar.searchSlot')}
         className="h-8 w-44 rounded-xl border border-[var(--border)] bg-transparent pl-3.5 pr-8 text-xs text-[var(--text)] outline-none focus:border-brand sm:w-[200px]" />
       <Search size={13} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]" />
+=======
+        aria-label="Search slot"
+        className="h-8 w-44 rounded-xl border border-[#d2d2d7] bg-white pl-3.5 pr-8 text-xs outline-none focus:border-brand sm:w-[200px]"
+      />
+      <Search size={13} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400" />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   )
 }
 
+<<<<<<< HEAD
 // Floor / Zone dropdown: ใช้ PillSelect ตัวใหม่ แต่คงหน้าตาเดิม (สูง 32px มุมโค้ง rounded-xl ตัวอักษร 13px สีเทา)
 function LocationSelect({
   value,
@@ -583,21 +686,64 @@ function LocationSelect({
       triggerClassName={LOCATION_TRIGGER}
       panelClassName={LOCATION_PANEL}
     />
+=======
+function LocationSelect({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  return (
+    <div className="relative">
+      <select
+        aria-label="Floor and Zone"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-8 min-w-[176px] cursor-pointer appearance-none rounded-xl border border-[#d2d2d7] bg-white pl-4 pr-7 text-center text-[13px] text-[#6f6f72] outline-none transition hover:bg-gray-50 focus:border-brand"
+      >
+        {LOCATION_OPTIONS.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      {/* สามเหลี่ยมมุมมน: ใช้ stroke + strokeLinejoin round (เพิ่ม strokeWidth = มนขึ้น) */}
+      <svg
+        aria-hidden="true"
+        width="11"
+        height="9"
+        viewBox="0 0 11 9"
+        className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#B9B9BF]"
+      >
+        <polygon
+          points="2,2 9,2 5.5,7"
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 
 /* ---------- Layout area ---------- */
 
 function NoHardware() {
+<<<<<<< HEAD
   const t = useT()
   return (
     <div className="flex min-h-[100%] flex-col items-center justify-center py-16 text-center text-[#7E7E81]">
       <p className="text-[17px] font-normal">{t('parking.empty.noHardwareTitle')}</p>
       <p className="mt-2 text-[13px] font-light">{t('parking.empty.noHardwareDesc')}</p>
+=======
+  return (
+    <div className="flex min-h-[100px] flex-col items-center justify-center py-16 text-center text-[#7E7E81]">
+      <p className="text-[17px] font-normal">No Hardware Found</p>
+      <p className="mt-2 text-[13px] font-light">Please connect your hardware in Settings.</p>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   )
 }
 
+<<<<<<< HEAD
 // saved layout exists, but the selected floor has nothing drawn inside the Focus frame
 function EmptyFloor() {
   const t = useT()
@@ -930,6 +1076,22 @@ function Parking() {
   }, [baseLayout, slotStatus])
 
   const hasLayout = layout.length > 0
+=======
+/* ---------- Page ---------- */
+
+function Parking() {
+  const [filter, setFilter] = useState<ParkingFilter>('all')
+  const [location, setLocation] = useState('A')
+  const [search, setSearch] = useState('')
+  const query = search.trim().toLowerCase()
+
+  // location เป็น "A" (ทั้งชั้น) หรือ "A-1" (ชั้น A โซน 1)
+  const [floor, zoneStr] = location.split('-')
+  const zoneNum = zoneStr ? Number(zoneStr) : null
+
+  const layout: ParkingBlock[] = useMemo(() => getParkingLayout(floor), [floor])
+  const hasLayout = !!layout && layout.length > 0
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   const blockByKey = useMemo(
     () => Object.fromEntries(layout.map((block) => [block.key, block])) as Partial<Record<BlockKey, ParkingBlock>>,
@@ -937,7 +1099,11 @@ function Parking() {
   )
   const activeBlock = zoneNum ? blockByKey[ZONE_BLOCK_KEY[zoneNum]] : undefined
 
+<<<<<<< HEAD
   /* ---------- scale ตามความกว้างจอ (เฉพาะ mock layout เดิม) ---------- */
+=======
+  /* ---------- scale ตามความกว้างจอ ---------- */
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const [areaRef, areaWidth] = useElementWidth<HTMLDivElement>()
 
   // จำนวนช่องต่อแถวของ block ที่กว้างที่สุด
@@ -953,6 +1119,7 @@ function Parking() {
 
   /* ---------- สถิติ ---------- */
   const stats: ParkingStats = useMemo(() => {
+<<<<<<< HEAD
     // saved layout: count the slots drawn inside the Focus frame (or only inside the selected zone)
     if (hasCustomLayout) {
       const slots = scopedElements.filter((e) => e.tool === 'slot')
@@ -989,11 +1156,24 @@ function Parking() {
     { key: 'occupied', label: t('parking.summary.occupied'), value: stats.occupied },
     { key: 'available', label: t('parking.summary.available'), value: stats.available },
     { key: 'offline', label: t('parking.summary.offline'), value: stats.offline },
+=======
+    if (!hasLayout) return EMPTY_STATS
+    if (!activeBlock) return parkingStatsByFloor[floor] ?? EMPTY_STATS
+    return statsOfBlock(activeBlock)
+  }, [hasLayout, activeBlock, floor])
+
+  const summaryItems = [
+    { key: 'total', label: 'Total Slots', value: stats.total },
+    { key: 'occupied', label: 'Occupied', value: stats.occupied },
+    { key: 'available', label: 'Available', value: stats.available },
+    { key: 'offline', label: 'Offline', value: stats.offline },
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   ]
 
   const blockHeight = metrics.slotH * 2 + 1
 
   const renderLayout = () => {
+<<<<<<< HEAD
     // layout designed in the editor: read-only "กล้อง" = กรอบ Focus (หรือ zone ที่เลือก)
     // วาดเป็น stage สัดส่วนเดียวกับ Focus เป๊ะ (contain + กึ่งกลาง) → ตำแหน่งตรงกับ editor
     if (hasCustomLayout) {
@@ -1023,13 +1203,19 @@ function Parking() {
       )
     }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     if (!hasLayout) return <NoHardware />
 
     // โหมด zone: แสดง block เดียวกลางจอ
     if (activeBlock) {
       return (
         <div style={{ minHeight: blockHeight + 48 }} className="flex items-center justify-center py-6">
+<<<<<<< HEAD
           <Block block={activeBlock} filter={filter} query={query} m={metrics} onSlotContextMenu={openSlotMenu} />
+=======
+          <Block block={activeBlock} filter={filter} query={query} m={metrics} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         </div>
       )
     }
@@ -1062,6 +1248,7 @@ function Parking() {
   }
 
   return (
+<<<<<<< HEAD
     <div className="flex h-screen flex-col overflow-hidden">
       <Navbar
         title={t('parking.title')}
@@ -1076,10 +1263,24 @@ function Parking() {
                 <Icon icon="lucide:pencil-line" height="1.25em " className="[&_*]:stroke-[1.75]" /> {t('parking.editFacility')}
               </button>
             )}
+=======
+    <>
+      <Navbar
+        title="Parking Management"
+        actions={
+          <>
+            <button type="button" className={FACILITY_BUTTON}>
+              Remove Facility
+            </button>
+            <button type="button" className={`flex items-center gap-1.5 ${FACILITY_BUTTON}`}>
+              <Plus size={13} /> Add Facility
+            </button>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
           </>
         }
       />
 
+<<<<<<< HEAD
       <main className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto p-5 sm:p-6 sm:px-8">
         <div className="shrink-0">
           <SummaryCards items={summaryItems} />
@@ -1134,6 +1335,29 @@ function Parking() {
         {detailSlot && <SlotDetailsModal slot={detailSlot} onClose={() => setDetailSlot(null)} />}
       </main>
     </div>
+=======
+      <main className="space-y-6 p-5 sm:p-6 sm:px-8">
+        <SummaryCards items={summaryItems} />
+
+        <section className="card overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-[26.5px] py-[14.5px]">
+            <h2 className="text-[18.825px] font-medium text-[#0F172A]">Parking Layout</h2>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <Segmented options={parkingFilters} value={filter} onChange={setFilter} />
+              <SlotSearch value={search} onChange={setSearch} />
+              <LocationSelect value={location} onChange={setLocation} />
+            </div>
+          </div>
+
+          {/* ref วัดความกว้างอยู่ที่ตัวนี้ */}
+          <div ref={areaRef} className="p-6">
+            {renderLayout()}
+          </div>
+        </section>
+      </main>
+    </>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 

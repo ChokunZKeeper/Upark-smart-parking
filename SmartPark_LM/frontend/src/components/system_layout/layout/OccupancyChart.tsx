@@ -10,7 +10,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+<<<<<<< HEAD
 import { useT } from '@/i18n'
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -21,6 +24,7 @@ export interface OccupancyPoint {
 
 export type OccupancyChartType = 'line' | 'bar'
 
+<<<<<<< HEAD
 type TickValue = string | number
 
 interface OccupancyChartProps {
@@ -43,30 +47,49 @@ interface OccupancyChartProps {
   formatTooltipLabel?: (label: TickValue) => TickValue
   // ข้อความบรรทัดค่าของ tooltip (ค่าเริ่มต้น: `Vehicles : ${value}`)
   formatTooltipValue?: (value: number) => string
+=======
+interface OccupancyChartProps {
+  data?: OccupancyPoint[]
+  type: OccupancyChartType
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 interface XTickProps {
   x?: number
   y?: number
+<<<<<<< HEAD
   payload?: { value: TickValue }
   index?: number
   visibleTicksCount?: number
   show?: (index: number, value: TickValue) => boolean
+=======
+  payload?: { value: string | number }
+  index?: number
+  visibleTicksCount?: number
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 interface YTickProps {
   x?: number
   y?: number
+<<<<<<< HEAD
   payload?: { value: TickValue }
   format?: (value: number) => TickValue
+=======
+  payload?: { value: string | number }
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 interface TooltipContentProps {
   active?: boolean
   payload?: { value?: number | null }[]
+<<<<<<< HEAD
   label?: TickValue
   formatLabel?: (label: TickValue) => TickValue
   formatValue?: (value: number) => string
+=======
+  label?: string | number
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 interface StripedBarProps {
@@ -75,6 +98,7 @@ interface StripedBarProps {
   width?: number
   height?: number
   value?: number | null
+<<<<<<< HEAD
   gradients?: boolean
 }
 
@@ -85,11 +109,14 @@ interface AxesOptions {
   yAxisWidth: number
   formatYTick?: (value: number) => TickValue
   showXTick?: (index: number, value: TickValue) => boolean
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 }
 
 /* ---------- Constants ---------- */
 
 const TICK_FONT_SIZE = 13
+<<<<<<< HEAD
 // สีตามธีม: ค่าจริงอยู่ใน CSS global (Light / Dark)
 const TICK_COLOR = 'var(--text-tertiary)'
 const GRID_COLOR = 'var(--border)'
@@ -99,6 +126,11 @@ const DEFAULT_Y_WIDTH = 36
 
 // สีทึบตอนปิด gradient
 const SOLID_BAR_COLOR = '#2563EB'
+=======
+const TICK_COLOR = '#7E7E81'
+const GRID_COLOR = '#D2D2D7'
+const yTicks = [0, 250, 500, 750, 1000]
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 // ตอนยังไม่มีข้อมูล: แสดงเส้นกริดแต่ไม่แสดงค่าบนแกน
 // ปรับจำนวนเส้นได้ที่นี่ (ตอนนี้ 4 เส้น)
@@ -118,18 +150,26 @@ const emptyChartData: OccupancyPoint[] = Array.from({ length: 25 }, (_, i) => ({
 // ไม่มีข้อมูล = ไม่มีจุดเลย หรือทุกจุดเป็น null / 0
 const hasNoData = (data?: OccupancyPoint[]) => !data || data.every((point) => !point.value)
 
+<<<<<<< HEAD
 // อ่านค่าที่บันทึกจากหน้า Settings (ค่าเริ่มต้นคือเปิด)
 const readGradients = () => localStorage.getItem('gradients') !== 'off'
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Ticks / tooltip ---------- */
 
 // tick ที่ไม่วาดอะไรเลย: ให้ Recharts ยังคำนวณ tick (เพื่อใช้วาดเส้นกริด) แต่ไม่แสดงตัวเลข
 // (ถ้าใช้ tick={false} เส้นกริดอาจหายเหลือแค่เส้นบนสุดกับล่างสุด)
 const HiddenTick = () => null
 
+<<<<<<< HEAD
 function XTick({ x = 0, y = 0, payload, index = 0, visibleTicksCount = 0, show }: XTickProps) {
   const visible = show ? show(index, payload?.value ?? '') : index % 4 === 0
   if (!visible) return null
+=======
+function XTick({ x = 0, y = 0, payload, index = 0, visibleTicksCount = 0 }: XTickProps) {
+  if (index % 4 !== 0) return null
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const anchor = index === 0 ? 'start' : index === visibleTicksCount - 1 ? 'end' : 'middle'
   return (
     <text x={x} y={y + 12} dy={4} textAnchor={anchor} fontSize={TICK_FONT_SIZE} fill={TICK_COLOR}>
@@ -138,14 +178,22 @@ function XTick({ x = 0, y = 0, payload, index = 0, visibleTicksCount = 0, show }
   )
 }
 
+<<<<<<< HEAD
 function YTick({ x = 0, y = 0, payload, format }: YTickProps) {
   return (
     <text x={x} y={y} dy={4} textAnchor="end" fontSize={TICK_FONT_SIZE} fill={TICK_COLOR}>
       {format ? format(Number(payload?.value)) : payload?.value}
+=======
+function YTick({ x = 0, y = 0, payload }: YTickProps) {
+  return (
+    <text x={x} y={y} dy={4} textAnchor="end" fontSize={TICK_FONT_SIZE} fill={TICK_COLOR}>
+      {payload?.value}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </text>
   )
 }
 
+<<<<<<< HEAD
 const GOO_ID = 'occupancy-goo'
 
 // ต้อง render ไว้ใน DOM 1 ครั้ง เพื่อให้ CSS filter: url(#...) อ้างถึงได้
@@ -195,11 +243,21 @@ function OccupancyTooltip({ active, payload, label, formatLabel, formatValue }: 
         <span className={`${PILL_MAIN} whitespace-nowrap text-[#212121]`}>{valueText}</span>
         <span className={`${PILL_SUB} whitespace-nowrap text-[#0055ff]`}>{labelText}</span>
       </div>
+=======
+function OccupancyTooltip({ active, payload, label }: TooltipContentProps) {
+  const value = payload?.[0]?.value
+  if (!active || value == null) return null
+  return (
+    <div className="rounded-lg border border-[#D2D2D7] bg-white px-3 py-3 text-[12px] shadow-sm">
+      <div className="text-[#0F172A] mb-1">{label}</div>
+      <div className="text-[#0055ff]">Vehicles : {value}</div>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </div>
   )
 }
 
 // empty = true -> ไม่มีเส้นกริด ไม่มีตัวเลขบนแกน x / y (ยังเว้นพื้นที่แกนไว้ให้ layout ไม่ขยับ)
+<<<<<<< HEAD
 const buildAxes = ({ empty, yDomain, yTicks, yAxisWidth, formatYTick, showXTick }: AxesOptions) => {
   const yProps: { domain?: [number, number]; ticks?: number[] } = empty
     ? { domain: DEFAULT_Y_DOMAIN, ticks: emptyYTicks }
@@ -230,6 +288,30 @@ const buildAxes = ({ empty, yDomain, yTicks, yAxisWidth, formatYTick, showXTick 
     </>
   )
 }
+=======
+const buildAxes = (empty: boolean) => (
+  <>
+    {/* ไม่มีข้อมูล -> ไม่วาดเส้นกริดเลย */}
+    {!empty && <CartesianGrid vertical={false} stroke={GRID_COLOR} shapeRendering="crispEdges" />}
+    <XAxis
+      dataKey="time"
+      tick={empty ? <HiddenTick /> : <XTick />}
+      tickLine={false}
+      axisLine={false}
+      interval={0}
+    />
+    <YAxis
+      domain={[0, 1000]}
+      ticks={empty ? emptyYTicks : yTicks}
+      tick={empty ? <HiddenTick /> : <YTick />}
+      tickLine={false}
+      axisLine={false}
+      interval={0}
+      width={36}
+    />
+  </>
+)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Striped bar ---------- */
 
@@ -237,16 +319,26 @@ const buildAxes = ({ empty, yDomain, yTicks, yAxisWidth, formatYTick, showXTick 
 const barDefs = (
   <defs>
     <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+<<<<<<< HEAD
       <stop offset="10%" stopColor="var(--bar-start)" stopOpacity={1} />
       <stop offset="55%" stopColor="var(--bar-mid)" stopOpacity={0.75} />
       <stop offset="100%" stopColor="var(--bar-end)" stopOpacity={0.25} />
+=======
+      <stop offset="10%" stopColor="#2347E8" stopOpacity={1} />
+      <stop offset="55%" stopColor="#3B82F6" stopOpacity={0.75} />
+      <stop offset="100%" stopColor="#8abaf8" stopOpacity={0.25} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </linearGradient>
   </defs>
 )
 
 // แท่งสิ้นสุดที่เส้น y=0 พอดี: มุมบนมน มุมล่างเหลี่ยม ไม่มีเส้นขอบล่าง (ให้เส้นกริดเป็นเส้นฐานแทน)
+<<<<<<< HEAD
 // gradients = false -> ใช้สีทึบสีเดียว
 function StripedBar({ x = 0, y = 0, width = 0, height = 0, value, gradients = true }: StripedBarProps) {
+=======
+function StripedBar({ x = 0, y = 0, width = 0, height = 0, value }: StripedBarProps) {
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   if (!value || height <= 0) return null
 
   const r = Math.min(2, width / 2, height / 2)
@@ -258,14 +350,20 @@ function StripedBar({ x = 0, y = 0, width = 0, height = 0, value, gradients = tr
 
   return (
     <g>
+<<<<<<< HEAD
       <path d={`${d} Z`} fill={gradients ? 'url(#barGrad)' : SOLID_BAR_COLOR} />
       <path d={d} fill="none" stroke={SOLID_BAR_COLOR} strokeWidth={1} />
+=======
+      <path d={`${d} Z`} fill="url(#barGrad)" />
+      <path d={d} fill="none" stroke="#2563EB" strokeWidth={1} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </g>
   )
 }
 
 /* ---------- Chart ---------- */
 
+<<<<<<< HEAD
 function OccupancyChart({
   data,
   type,
@@ -292,10 +390,17 @@ function OccupancyChart({
     wrapperStyle: { outline: 'none', zIndex: 50, pointerEvents: 'none' as const },
   }
 
+=======
+function OccupancyChart({ data, type }: OccupancyChartProps) {
+  const empty = hasNoData(data)
+  const chartData = empty ? emptyChartData : (data as OccupancyPoint[])
+  const axes = buildAxes(empty)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   return (
     // outline-none: เอากรอบสีส้ม (focus outline) ตอนคลิกกราฟออก
     <div className="relative h-56 w-full sm:h-64 lg:h-[262px] [&_*]:outline-none [&_*:focus]:outline-none [&_*:focus-visible]:outline-none">
+<<<<<<< HEAD
       <GooFilter />
       <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 600, height: 262 }}>
         {type === 'line' ? (
@@ -311,13 +416,31 @@ function OccupancyChart({
                 </linearGradient>
               </defs>
             )}
+=======
+      {/* ไม่มีข้อมูล -> แสดง No Data ตรงกลางกราฟ */}
+      <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 600, height: 262 }}>
+        {type === 'line' ? (
+          <AreaChart accessibilityLayer={false} data={chartData} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="20%" stopColor="#0055ff" stopOpacity={1} />
+                <stop offset="30%" stopColor="#0055ff" stopOpacity={0.9} />
+                <stop offset="55%" stopColor="#0055ffb9" stopOpacity={0.6} />
+                <stop offset="95%" stopColor="#0055ff11" stopOpacity={0.575} />
+              </linearGradient>
+            </defs>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             {axes}
             {/* ไม่มีข้อมูล -> ไม่ใส่ Tooltip / เส้นเลื่อน / จุดวงกลม เลื่อนเมาส์แล้วไม่มีอะไรขยับ */}
             {!empty && (
               <Tooltip
                 isAnimationActive={false}
                 cursor={{ stroke: GRID_COLOR }}
+<<<<<<< HEAD
                 content={tooltipContent}
+=======
+                content={<OccupancyTooltip />}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 wrapperStyle={{ outline: 'none', zIndex: 50 }}
               />
             )}
@@ -326,30 +449,47 @@ function OccupancyChart({
               dataKey="value"
               stroke="#3369FF"
               strokeWidth={2.8}
+<<<<<<< HEAD
               activeDot={empty ? false : { r: 5.15, fill: 'var(--surface)', stroke: '#3369FF', strokeWidth: 3.5 }}
               // ปิด gradient -> เหลือแค่เส้น ไม่มีพื้นที่สีใต้เส้น
               fill={gradients ? 'url(#areaFill)' : 'none'}
+=======
+              activeDot={empty ? false : { r: 5.15, fill: '#ffffff', stroke: '#3369FF', strokeWidth: 3.5 }}
+              fill="url(#areaFill)"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
               fillOpacity={1}
               isAnimationActive={false}
             />
           </AreaChart>
         ) : (
           <BarChart accessibilityLayer={false} data={chartData} margin={{ top: 20, right: 16, left: 0, bottom: 0 }} barCategoryGap="12%">
+<<<<<<< HEAD
             {gradients && barDefs}
+=======
+            {barDefs}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             {axes}
             {!empty && (
               <Tooltip
                 isAnimationActive={false}
                 cursor={{ fill: '#227eff1c' }}
+<<<<<<< HEAD
                 content={tooltipContent}
+=======
+                content={<OccupancyTooltip />}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 wrapperStyle={{ outline: 'none', zIndex: 50 }}
               />
             )}
             <Bar
               dataKey="value"
+<<<<<<< HEAD
               shape={(props: unknown) => (
                 <StripedBar {...(props as StripedBarProps)} gradients={gradients} />
               )}
+=======
+              shape={(props: unknown) => <StripedBar {...(props as StripedBarProps)} />}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
               isAnimationActive={false}
             />
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useRef, useEffect } from "react";
 
 import allmodules from "@/module/Allmodules";
@@ -38,19 +39,45 @@ function Register({ onBack, onPageChange }: RegisterProps) {
     // ช่อง OTP 6 ช่อง + เวลานับถอยหลัง 5 นาที
     const otpRefs = useRef<(HTMLInputElement | null)[]>([])
     const [secondsLeft, setSecondsLeft] = useState<number>(300)
+=======
+import { useState, useRef } from "react";
+
+import type { RegisterForm } from "@/types/global";
+import allmodules from "@/module/Allmodules";
+import mail from "@/constants/mail.json" with {type: "json"}
+import Signin from "@/pages/login/Sign_in";
+
+type RegisterProps = {
+    onBack?: () => void;
+    onOTP?: () => void;
+};
+
+function Register({ onBack, onOTP }: RegisterProps) {
+    const [currentPage, setCurrentPage] = useState<"register" | "otp">("register")
+    const [isVerifyDisabled, setIsVerifyDisabled] = useState<boolean>(true);
+    const [isResendDisabled, setResendDisabled] = useState<boolean>();
+    const [isInput, setInput] = useState<boolean>(true);
+    const [isSignin, setSignin] = useState<boolean>(false);
+    const resendTimer = useRef<ReturnType<typeof setTimeout> | null>(null) // เดียวพรุ่งนี้ศึกษา
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
     const [from, set_from] = useState<RegisterForm>({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
+<<<<<<< HEAD
         confirmPassword: "",
         gradientProfile: "color"
+=======
+        confirmPassword: ""
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     });
     const [read_otp, set_otp] = useState<{ myotp: string }>({
         myotp: ""
     })
 
+<<<<<<< HEAD
     // hook ต้องอยู่ก่อน early return ด้านล่าง
     useEffect(() => {
         if (currentPage !== "otp") return
@@ -71,6 +98,8 @@ function Register({ onBack, onPageChange }: RegisterProps) {
         }
     }, [])
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     if (isSignin) {
         return <Signin onSuccessProps={() => { }} />
     }
@@ -89,12 +118,20 @@ function Register({ onBack, onPageChange }: RegisterProps) {
         if (problems.isAllowedDomain) { console.log("Email domain not allowed"); return }
         if (problems.isStrongPassword) { console.log("Password need a-zA-Z0-9 and a symbol"); return }
         if (problems.isPasswordMatch) { console.log("Password not Confirm password"); return }
+<<<<<<< HEAD
         const checkemail = await allmodules.sendRequest("5000", "checkemail", "post", "application/json", from)
         if (checkemail.exists) { console.log("This email address already exists"); return }
 
         // ไปหน้า OTP ของ Register เอง แล้วส่ง OTP + เปิดช่องกรอก
         setCurrentPage("otp")
         await resendEmail()
+=======
+
+        const checkemail = await allmodules.sendRequest("5000", "checkemail", "post", "application/json", from)
+        if (checkemail.exists) { console.log("This email address already exists"); return }
+
+        return onOTP?.() //setCurrentPage("otp")
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     }
 
     const resendEmail = async () => {
@@ -108,10 +145,15 @@ function Register({ onBack, onPageChange }: RegisterProps) {
         };
 
         set_otp({ myotp: "" });
+<<<<<<< HEAD
         setSecondsLeft(300);
         setIsVerifyDisabled(true);
         setInput(false);
         otpRefs.current[0]?.focus();
+=======
+        setIsVerifyDisabled(true);
+        setInput(false);
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         resendTimer.current = setTimeout(() => { setResendDisabled(false); }, 30000);
     }
 
@@ -127,8 +169,12 @@ function Register({ onBack, onPageChange }: RegisterProps) {
             setInput(true);
             setResendDisabled(true);
 
+<<<<<<< HEAD
             const payload = { ...from, gradientProfile: getRandomColor() ?? "dark" }
             await allmodules.sendRequest("5000", "register", "post", "application/json", payload)
+=======
+            allmodules.sendRequest("5000", "register", "post", "application/json", from) // ส่งข้อมูลที่เรา กรอกไป
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             location.reload()
         }
 
@@ -139,6 +185,7 @@ function Register({ onBack, onPageChange }: RegisterProps) {
         }
     }
 
+<<<<<<< HEAD
     const updateOtp = (otp: string) => {
         set_otp({ myotp: otp });
         setIsVerifyDisabled(otp.length !== 6);
@@ -171,52 +218,89 @@ function Register({ onBack, onPageChange }: RegisterProps) {
     const formatTime = (s: number) =>
         `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     return <>
         {allmodules.formInput(currentPage, "register",
             <div>
                 {/* !gap-[6px] ทับ gap 14px ของ formScope ให้ label ชิดช่องกรอกเหมือนภาพ */}
+<<<<<<< HEAD
                 <form id="register-form" className="grid gap-[6px]" onSubmit={(e) => { e.preventDefault(); summit(); }}>
                     <label htmlFor="reg-first" className={labelCls}>{t("signin.register.firstName")}</label>
                     <input
                         id="reg-first"
                         className={inputCls}
+=======
+                <form id="register-form" className="!gap-[6px]" onSubmit={(e) => { e.preventDefault(); summit(); }}>
+                    <label htmlFor="reg-first">First name</label>
+                    <input
+                        id="reg-first"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                         required
                         type="text"
                         onChange={(text) => set_from({ ...from, firstName: text.target.value.trim() })}
                     />
+<<<<<<< HEAD
                     <label htmlFor="reg-last" className={`${labelCls} mt-[18px]`}>{t("signin.register.lastName")}</label>
                     <input
                         id="reg-last"
                         className={inputCls}
+=======
+                    <label htmlFor="reg-last" className="mt-[18px]">Last name</label>
+                    <input
+                        id="reg-last"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                         required
                         type="text"
                         onChange={(text) => set_from({ ...from, lastName: text.target.value.trim() })}
                     />
+<<<<<<< HEAD
                     <label htmlFor="reg-email" className={`${labelCls} mt-[18px]`}>{t("signin.register.email")}</label>
                     <input
                         id="reg-email"
                         className={inputCls}
+=======
+                    <label htmlFor="reg-email" className="mt-[18px]">Email *</label>
+                    <input
+                        id="reg-email"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                         required
                         type="email"
                         onChange={(text) => set_from({ ...from, email: text.target.value.trim().toLowerCase() })}
                     />
+<<<<<<< HEAD
                     <label htmlFor="reg-password" className={`${labelCls} mt-[18px]`}>{t("signin.register.password")}</label>
                     <input
                         id="reg-password"
                         className={inputCls}
+=======
+                    <label htmlFor="reg-password" className="mt-[18px]">Password *</label>
+                    <input
+                        id="reg-password"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                         required
                         type="password"
                         onChange={(text) => set_from({ ...from, password: text.target.value.trim() })}
                     />
+<<<<<<< HEAD
                     <label htmlFor="confirm-password" className={`${labelCls} mt-[18px]`}>{t("signin.register.confirmPassword")}</label>
                     <input
                         id="confirm-password"
                         className={inputCls}
+=======
+                    <label htmlFor="confirm-password" className="mt-[18px]">Confirm password *</label>
+                    <input
+                        id="confirm-password"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                         required
                         type="password"
                         onChange={(text) => set_from({ ...from, confirmPassword: text.target.value.trim() })}
                     />
+<<<<<<< HEAD
                     <button type="submit" className={buttonCls}>{t("signin.register.submit")}</button>
+=======
+                    <button type="submit" className="!mt-[22px]">Register</button>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 </form>
 
                 <div className="mt-[22px] text-center text-[clamp(14px,0.95vw,16px)]">
@@ -228,13 +312,18 @@ function Register({ onBack, onPageChange }: RegisterProps) {
                             onBack?.();
                         }}
                     >
+<<<<<<< HEAD
                         {t("signin.register.back")}
+=======
+                        Back
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                     </a>
                 </div>
             </div>
         )}
 
         {allmodules.formInput(currentPage, "otp",
+<<<<<<< HEAD
 <div>
     <h2 className="!m-0 !mb-[10px] !text-[24px] !font-medium !leading-[1.25] !text-[#0F172A] min-[861px]:!mb-[17.5px] min-[861px]:!text-[32px]">
         {t("signin.register.otpTitle")}
@@ -300,6 +389,17 @@ function Register({ onBack, onPageChange }: RegisterProps) {
         {t("signin.register.cancel")}
     </button>
 </div>
+=======
+            <div>
+                <h1>OTP</h1>
+                <input disabled={isInput} type="text" inputMode="numeric" maxLength={6} pattern="[0-9]" value={read_otp.myotp} onChange={(text) => {
+                    const otp = text.target.value.replace(/[^0-9]/g, "").slice(0, 6); set_otp({ myotp: otp });
+                    if (otp.length === 6) { setIsVerifyDisabled(false) } else { setIsVerifyDisabled(true) }
+                }} />
+                <button disabled={isResendDisabled} onClick={resendEmail}>resendEmail</button>
+                <button disabled={isVerifyDisabled} onClick={verify_email}>Continue</button>
+            </div>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         )}
 
     </>

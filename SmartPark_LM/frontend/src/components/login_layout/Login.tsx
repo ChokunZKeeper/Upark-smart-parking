@@ -1,13 +1,17 @@
 import { useState, type FormEvent } from "react"
 import allmodules from "@/module/Allmodules"
 import mail from "@/constants/mail.json" with { type: "json" }
+<<<<<<< HEAD
 import { useT } from "@/i18n"
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 interface LoginProps {
     onSuccess: (uuid: string) => void
     onForgot?: () => void
 }
 
+<<<<<<< HEAD
 // Tailwind อ่านได้เฉพาะข้อความที่เขียนตรง ๆ ห้ามประกอบ class ด้วย ${ตัวแปร} ในส่วนของ utility
 const inputCls =
     "block w-full h-[clamp(38px,2.6vw,46px)] px-[14px] bg-white font-sans font-light " +
@@ -94,6 +98,31 @@ function Login({ onSuccess, onForgot }: LoginProps) {
         } finally {
             setLoading(false)
         }
+=======
+function Login({ onSuccess, onForgot }: LoginProps) {
+
+    const [ismail, setmail] = useState<string>("")
+    const [ispassword, setpassword] = useState<string>("")
+
+    const continue_mail = async () => {
+        const allowedDomains = mail.allowedEmailDomains
+        const problems = {
+                hasEmptyField : (ismail === ""),
+                isAllowedDomain : !(allowedDomains.includes(ismail.slice(ismail.indexOf("@") + 1))),
+            }
+
+        if(problems.hasEmptyField){console.log("Null"); return }
+        if(problems.isAllowedDomain){ document.getElementById("input_mail")?.focus(); console.log("Email domain not allowed"); return }
+
+        const checkemail = await allmodules.sendRequest("5000", "checkemail", "post", "application/json",{email: ismail})
+        if(!checkemail.exists){ document.getElementById("input_mail")?.focus(); console.log("This email does not exist in the system"); return }
+        
+        const checkpass = await allmodules.sendRequest("5000", "checkpassword", "post", "application/json",{password: ispassword, email: ismail})
+        if(!checkpass.isMatch){document.getElementById("input_password")?.focus(); console.log("This password does not exist in the system"); return}
+
+        const result = await allmodules.sendRequest("5000","getuuid","post","application/json",{ email: ismail });
+        onSuccess(result.systemid)
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -102,6 +131,7 @@ function Login({ onSuccess, onForgot }: LoginProps) {
     }
 
     return (
+<<<<<<< HEAD
         <form className="grid gap-[14px]" onSubmit={handleSubmit}>
             <label className="sr-only" htmlFor="input_mail">{t("signin.login.email")}</label>
             <input
@@ -131,6 +161,32 @@ function Login({ onSuccess, onForgot }: LoginProps) {
             <div className="mt-[13.5px] text-center font-sans font-light text-[8px] min-[861px]:text-[clamp(10px,0.9vw,14.5px)] max-[860px]:text-[12px]">
                 <a href="#" className="text-[#1487F0] underline cursor-pointer" onClick={(e) => { e.preventDefault(); onForgot?.() }}>
                     {t("signin.login.forgot")}
+=======
+        <form onSubmit={handleSubmit}>
+            <label className="sr-only" htmlFor="input_mail">Email address</label>
+            <input
+                id="input_mail"
+                type="text"
+                placeholder="Email address"
+                autoComplete="email"
+                onChange={(text) => { setmail(text.target.value.trim().toLocaleLowerCase()) }}
+            />
+
+            <label className="sr-only" htmlFor="input_password">Password</label>
+            <input
+                id="input_password"
+                type="password"
+                placeholder="Password"
+                autoComplete="current-password"
+                onChange={(text) => { setpassword(text.target.value.trim()) }}
+            />
+
+            <button type="submit">Continue</button>
+
+            <div className="mt-[13.5px] text-center text-[clamp(10px,0.9vw,14.5px)] max-[860px]:text-[12px]">
+                <a href="#" onClick={(e) => { e.preventDefault(); onForgot?.() }}>
+                    Forgot password?
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 </a>
             </div>
         </form>

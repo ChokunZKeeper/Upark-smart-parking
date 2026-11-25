@@ -1,12 +1,17 @@
+<<<<<<< HEAD
 const path = require("path");
 // ต้องโหลด .env ก่อนอย่างอื่น ไม่งั้น process.env.mail_user / mail_pass จะเป็น undefined ตอนสร้าง transporter
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 
 const { randomUUID } = require("node:crypto");
+=======
+const { randomUUID } = require("node:crypto")
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
+<<<<<<< HEAD
 // multer ใช้รับไฟล์รูปโปรไฟล์ ถ้ายังไม่ได้ติดตั้ง (npm i multer) server ก็ยังสตาร์ตได้ แค่อัปโหลดรูปไม่ได้
 let multer = null;
 try {
@@ -19,6 +24,13 @@ const { otpEmail, generateOtp } = require("../templates/otp");
 
 // Render กำหนดพอร์ตผ่าน process.env.PORT
 const port = process.env.PORT || 5000;
+=======
+const pool = require("../db/databasepg");
+const path = require("path");
+const { otpEmail, generateOtp } = require("../templates/otp");
+
+const port = 5000;
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 const app = express();
 const otpStore = new Map();
 
@@ -30,10 +42,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+<<<<<<< HEAD
+=======
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 // Middleware
 app.use(cors());
 app.use(express.json());
 
+<<<<<<< HEAD
 /* ─────────────────────────────────────────────────────────────────
    Avatar – รูปโปรไฟล์
    เก็บตัวรูปใน Postgres (users.avatar_data / avatar_mime) เพราะดิสก์ของ Render ถูกลบเมื่อ restart/deploy
@@ -144,6 +162,13 @@ app.post("/otp", async (req, res) => {
 
     const key = email.toLowerCase();
     const { otp, expiresAt } = generateOtp(6, 5);
+=======
+app.post("/otp", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const { otp, expiresAt } = generateOtp(6, 5);
+    const iter = otpStore.get(email.toLowerCase());
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
     await transporter.sendMail({
       from: `Upark <${process.env.mail_user}>`,
@@ -153,8 +178,16 @@ app.post("/otp", async (req, res) => {
       html: otpEmail(otp),
     });
 
+<<<<<<< HEAD
     // ขอ OTP ใหม่ทุกครั้ง = เริ่มนับ attempts ใหม่
     otpStore.set(key, { otp, expiresAt, attempts: 1 });
+=======
+    if (iter && iter.otp === "Empty") {
+      iter.otp = otp;
+      iter.expiresAt = expiresAt;
+      iter.attempts = 1;
+    } else otpStore.set(email.toLowerCase(), { otp, expiresAt, attempts: 1 });
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
     return res.json({ message: "Email sent" });
   } catch (err) {
@@ -162,10 +195,17 @@ app.post("/otp", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 app.post("/verifyotp", async (req, res) => {
   try {
     const round = 5;
     const { email, myotp } = req.body;
+<<<<<<< HEAD
     if (!email) {
       return res.status(400).json({ message: "Email field is missing" });
     }
@@ -177,6 +217,10 @@ app.post("/verifyotp", async (req, res) => {
       return res.json({ check: "otp expired" });
     }
 
+=======
+    const iter = otpStore.get(email.toLowerCase());
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     if (Date.now() > iter.expiresAt) {
       iter.otp = "Empty";
       return res.json({ check: "otp expired" });
@@ -184,7 +228,11 @@ app.post("/verifyotp", async (req, res) => {
 
     if (myotp === iter.otp) {
       return res.json({ check: "otp completed" });
+<<<<<<< HEAD
     } else if (iter.attempts >= round) {
+=======
+    } else if (iter.attempts === round) {
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       iter.otp = "Empty";
       return res.json({ check: "max attempts reached" });
     } else {
@@ -192,6 +240,7 @@ app.post("/verifyotp", async (req, res) => {
       return res.json({ check: "otp failed" });
     }
   } catch (err) {
+<<<<<<< HEAD
     return res.status(500).json({ message: err.message });
   }
 });
@@ -200,6 +249,12 @@ app.post("/verifyotp", async (req, res) => {
    Auth / User
    ─────────────────────────────────────────────────────────────── */
 
+=======
+    res.status(500).json({ massage: err.massage });
+  }
+});
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 app.post("/checkemail", async (req, res) => {
   try {
     const { email } = req.body;
@@ -221,15 +276,22 @@ app.post("/checkemail", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 app.post("/getuuid", async (req, res) => {
   try {
     const { email } = req.body;
+=======
+app.post("/getuuid", async(req,res)=>{
+  try{
+    const { email } = req.body
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
     if (!email) {
       return res.status(400).json({ message: "Email field is missing" });
     }
 
     const result = await pool.query(
+<<<<<<< HEAD
       `select uuid from users where email = $1`,
       [email],
     );
@@ -313,10 +375,69 @@ app.post("/checkpassword", async (req, res) => {
 app.post("/register", async (req, res) => {
   const { firstName, lastName, email, password, gradientProfile } = req.body;
   const Default_Role_ID = 1;
+=======
+        `select uuid from users where email = $1`,
+        [email],
+      );
+    if(result.rows.length === 0){
+      return res.status(404).json({massage: "Email not found"})
+    }
+    const systemid = result.rows[0].uuid
+    return res.json({systemid})
+
+  }catch(err){
+    console.log("getuuid error:" + err);
+    return res.status(500).json({ message: "Server error" });
+  }
+})
+
+
+
+
+app.post("/systemuuid",async(req,res)=>{
+    const { user_uuid } = req.body
+    
+    if (!user_uuid) {
+      return res.status(400).json({ message: "UUID is required" })
+    }
+
+  try{
+    const result = await pool.query(
+      `select employee_id, first_name, last_name, email, is_active, created_at from users where uuid = $1`,[user_uuid]
+    )
+    if(result.rows.length === 0){
+      return res.status(404).json({message: "no information"})
+    }
+    const userInfo = result.rows[0]
+    return res.json({userInfo})
+    
+  }catch(err){
+    return res.status(500).json({message: "Server error"})
+  }
+})
+
+
+app.post("/checkpassword",async (req,res) => {
+  const { password, email } = req.body
+  try{
+    const result = await pool.query(`select password_hash from users where email = $1`,[email])
+    const isMatch = await bcrypt.compare(password,result.rows[0].password_hash)
+    return(res.json({isMatch}))
+  }catch(err){
+      return res.status(500).json({ message: "Server error" });
+  }
+})
+
+app.post("/register", async (req, res) => {
+  //
+  const { firstName, lastName, email, password } = req.body;
+  const Default_Role_ID  = 1;
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({ message: "Required field is missing" });
   }
+<<<<<<< HEAD
 
   let client;
   try {
@@ -331,6 +452,23 @@ app.post("/register", async (req, res) => {
         VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING employee_id, first_name, last_name, email`,
       [firstName, lastName, email, passwordhash, userUUID, gradientProfile],
+=======
+  
+  let client
+  try {
+
+    const passwordhash = await bcrypt.hash(password, 10);
+    const userUUID =  randomUUID()
+    client = await pool.connect();
+    
+    await client.query("BEGIN")
+
+    const result = await client.query(
+      `INSERT INTO users (first_name, last_name, email, password_hash, uuid)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING employee_id, first_name, last_name, email`,
+      [firstName, lastName, email, passwordhash, userUUID],
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     );
 
     await client.query(
@@ -340,12 +478,22 @@ app.post("/register", async (req, res) => {
       [result.rows[0].employee_id, Default_Role_ID],
     );
 
+<<<<<<< HEAD
     await client.query("COMMIT");
 
     return res.status(201).json(result.rows[0]);
   } catch (err) {
     if (client) {
       try { await client.query("ROLLBACK"); } catch (_) {}
+=======
+    await client.query("COMMIT")
+
+    return res.status(201).json(result.rows[0]);
+
+  } catch (err) {
+    if(client){
+      try {await client.query("ROLLBACK");} catch(_) {}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     }
     switch (err.code) {
       case "23505":
@@ -359,6 +507,7 @@ app.post("/register", async (req, res) => {
       default:
         return res.status(500).json({ message: "Server error" });
     }
+<<<<<<< HEAD
   } finally {
     if (client) client.release();
   }
@@ -618,3 +767,11 @@ app.delete("/qrcodes/:id", requireCanEdit, async (req, res) => {
 
 // เริ่ม server หลังประกาศ route ครบทุกตัว
 app.listen(port, () => console.log("server has started on :" + port));
+=======
+  }finally{
+    if(client){client.release()}
+  }
+});
+
+app.listen(port, () => console.log("server has stated on :" + port));
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd

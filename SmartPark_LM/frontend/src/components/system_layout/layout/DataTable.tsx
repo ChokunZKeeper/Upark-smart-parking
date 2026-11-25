@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
+<<<<<<< HEAD
 import { useT } from '@/i18n'
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -81,11 +84,18 @@ function SearchBox({
   onChange: (value: string) => void
   placeholder: string
 }) {
+<<<<<<< HEAD
   const t = useT()
   return (
     <div className="mb-3 flex justify-end">
       <label className="relative w-full max-w-[220px]">
         <span className="sr-only">{t('dataTable.search')}</span>
+=======
+  return (
+    <div className="mb-3 flex justify-end">
+      <label className="relative w-full max-w-[220px]">
+        <span className="sr-only">Search</span>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         <input
           type="search"
           value={value}
@@ -110,12 +120,19 @@ function Pagination({
   onPrev: () => void
   onNext: () => void
 }) {
+<<<<<<< HEAD
   const t = useT()
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const buttonClass = 'rounded-md border border-gray-300 p-1 disabled:opacity-40'
 
   return (
     <div className="mt-3 flex items-center justify-end gap-2 text-xs text-gray-600">
+<<<<<<< HEAD
       <button type="button" onClick={onPrev} disabled={page === 1} className={buttonClass} aria-label={t('dataTable.prevPage')}>
+=======
+      <button type="button" onClick={onPrev} disabled={page === 1} className={buttonClass} aria-label="Previous page">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         <ChevronLeft size={14} />
       </button>
 
@@ -123,7 +140,11 @@ function Pagination({
         {page} / {pageCount}
       </span>
 
+<<<<<<< HEAD
       <button type="button" onClick={onNext} disabled={page === pageCount} className={buttonClass} aria-label={t('dataTable.nextPage')}>
+=======
+      <button type="button" onClick={onNext} disabled={page === pageCount} className={buttonClass} aria-label="Next page">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         <ChevronRight size={14} />
       </button>
     </div>
@@ -136,6 +157,7 @@ function DataTable<T extends { id: string | number }>({
   columns,
   rows,
   searchKeys,
+<<<<<<< HEAD
   searchPlaceholder,
   pageSize = 8,
   emptyText,
@@ -143,6 +165,12 @@ function DataTable<T extends { id: string | number }>({
   const t = useT()
   const resolvedPlaceholder = searchPlaceholder ?? t('dataTable.search')
   const resolvedEmptyText = emptyText ?? t('dataTable.noResults')
+=======
+  searchPlaceholder = 'Search',
+  pageSize = 8,
+  emptyText = 'No results found',
+}: DataTableProps<T>) {
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const { query, setQuery, filtered } = useSearch(rows, searchKeys)
   const { page, pageCount, pageItems, hasMultiplePages, goPrev, goNext } = usePagination(filtered, pageSize, query)
 
@@ -151,9 +179,15 @@ function DataTable<T extends { id: string | number }>({
 
   return (
     <div>
+<<<<<<< HEAD
       <SearchBox value={query} onChange={setQuery} placeholder={resolvedPlaceholder} />
 
       <div className="card overflow-x-auto px-4 pb-2">
+=======
+      <SearchBox value={query} onChange={setQuery} placeholder={searchPlaceholder} />
+
+      <div className="card overflow-x-auto">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         <table className="w-full min-w-[720px] text-xs">
           <thead>
             <tr className="border-b border-line">
@@ -167,7 +201,11 @@ function DataTable<T extends { id: string | number }>({
 
           <tbody>
             {pageItems.map((row) => (
+<<<<<<< HEAD
               <tr key={row.id} className="border-b border-line last:border-0">
+=======
+              <tr key={row.id} className="border-b border-line last:border-0 hover:bg-gray-50/70">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 {columns.map((col) => (
                   <td key={col.key} className={`px-4 py-3 ${alignClass(col.align)}`}>
                     {renderCell(row, col)}
@@ -179,7 +217,11 @@ function DataTable<T extends { id: string | number }>({
             {pageItems.length === 0 && (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-10 text-center text-gray-500">
+<<<<<<< HEAD
                   {resolvedEmptyText}
+=======
+                  {emptyText}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
                 </td>
               </tr>
             )}

@@ -1,5 +1,6 @@
 import type React from "react";
 
+<<<<<<< HEAD
 // backend (พอร์ต 5000) ใช้ hostname เดียวกับหน้าเว็บ ทำงานได้ทั้ง localhost และเครื่องอื่นใน LAN
 export const API_BASE = `http://${window.location.hostname}:5000`;
 
@@ -77,3 +78,36 @@ async function sendRequest(
 }
 
 export default { sendRequest, request, formInput };
+=======
+function formInput (from:string, page:string, children:React.ReactNode){
+  return (from === page && children)
+}
+
+async function sendRequest(host: string,route: string,method: string,mimme_type: string = "application/json", payload: object | null = null,) {
+  try {
+    const res = await fetch(`http://localhost:${host}/${route}`, {
+      method: method.toUpperCase(),
+      headers: {
+        "Content-Type": mimme_type.toLowerCase(),
+      },
+      body: (payload !== null)? JSON.stringify(payload) : null,
+    });
+
+    if (!res.ok) {
+      if(res.status === 404){
+        console.log(`Not Found: ${route}`);
+        return null;
+      }
+      console.error(`HTTP Error: ${res.status}`);
+      return null;
+    }
+
+    return await res.json();
+    
+  } catch (err) {
+    console.log("cannot connet Server: ", err);
+  }
+}
+
+export default { sendRequest, formInput};
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd

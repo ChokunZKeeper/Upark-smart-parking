@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import { useMemo, useState, type CSSProperties } from 'react'
+=======
+import { useMemo, useState } from 'react'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 import Navbar from '@/components/system_layout/layout/Navbar'
 import Segmented, { type SegmentedOption } from '@/components/system_layout/layout/Segmented'
 import SummaryCards from '@/components/system_layout/layout/SummaryCards'
 import OccupancyChart, { type OccupancyChartType, type OccupancyPoint } from '@/components/system_layout/layout/OccupancyChart'
 import VehicleTypes from '@/components/system_layout/layout/VehicleTypes'
 import RecentActivity from '@/components/system_layout/layout/RecentActivity'
+<<<<<<< HEAD
 import { getInfomation } from '@/services/data/dbData'
 import { useT } from '@/i18n'
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 // FIX: ใช้ alias @/ ให้เหมือน import อื่น
 import {
@@ -17,7 +24,11 @@ import {
   recentActivity,
   summaryByPeriod,
   vehicleTypes,
+<<<<<<< HEAD
 } from '@/services/data/mockData'
+=======
+} from '@/types/_mockData'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -28,6 +39,7 @@ type Period = keyof typeof chartScaleByPeriod
 
 const MAX_OCCUPANCY = 1000 
 
+<<<<<<< HEAD
 const CHART_TYPE_KEYS: { value: OccupancyChartType; labelKey: string }[] = [
   { value: 'bar', labelKey: 'dashboard.chartType.bar' },
   { value: 'line', labelKey: 'dashboard.chartType.line' },
@@ -40,6 +52,13 @@ const DIVIDER_STYLE: CSSProperties = {
 
 }
 
+=======
+const CHART_TYPE_OPTIONS: SegmentedOption<OccupancyChartType>[] = [
+  { value: 'bar', label: 'Bar Chart' },
+  { value: 'line', label: 'Line Chart' },
+]
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Helpers ---------- */
 
 // ปรับค่าตามช่วงเวลาที่เลือก และไม่ให้เกินค่าสูงสุดของแกน
@@ -74,6 +93,7 @@ function OccupancySection({
   onChartTypeChange: (type: OccupancyChartType) => void
   data: OccupancyPoint[]
 }) {
+<<<<<<< HEAD
   const t = useT()
   const chartTypeOptions: SegmentedOption<OccupancyChartType>[] = CHART_TYPE_KEYS.map((o) => ({
     value: o.value,
@@ -87,6 +107,13 @@ function OccupancySection({
         <h2 className="text-[18.825px] font-medium text-text">{t('dashboard.occupancyByHours')}</h2>
         <Segmented options={chartTypeOptions} value={chartType} onChange={onChartTypeChange} />
         <div aria-hidden className="absolute inset-x-0 bottom-[-1px] h-px" style={DIVIDER_STYLE} />
+=======
+  return (
+    <section className="card overflow-hidden">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-[26.5px] py-[14.5px]">
+        <h2 className="text-[18.825px] font-medium text-[#0F172A]">Occupancy by hours</h2>
+        <Segmented options={CHART_TYPE_OPTIONS} value={chartType} onChange={onChartTypeChange} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       </div>
 
       <div className="p-6 pt-11">
@@ -99,12 +126,16 @@ function OccupancySection({
 /* ---------- Page ---------- */
 
 function Dashboard() {
+<<<<<<< HEAD
   const t = useT()
   const [period, setPeriod] = useState<Period>('today')
   const periodOptions = useMemo(
     () => periods.map((p) => ({ value: p.value, label: t(`dashboard.periods.${p.value}`) })),
     [t],
   )
+=======
+  const [period, setPeriod] = useState<Period>('week')
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const [chartType, setChartType] = useState<OccupancyChartType>('line')
 
   const chartData = useMemo(() => {
@@ -113,6 +144,7 @@ function Dashboard() {
     return source.map((point) => scalePoint(point, scale))
   }, [period, chartType])
 
+<<<<<<< HEAD
   return (
     <div className="flex h-screen flex-col overflow-hidden">
       <Navbar
@@ -120,11 +152,27 @@ function Dashboard() {
         actions={
           <div className="flex items-center gap-2.5">
             <Segmented options={periodOptions} value={period} onChange={setPeriod} />
+=======
+
+
+  return (
+    <>
+      <Navbar
+        // FIX: เปลี่ยน "DashBoard" เป็น "Dashboard" (ถ้าตั้งใจใช้แบบเดิม ให้แก้กลับได้)
+        title="Dashboard"
+        actions={
+          <div className="flex items-center gap-2.5">
+            <Segmented options={periods} value={period} onChange={setPeriod} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
           </div>
         }
       />
 
+<<<<<<< HEAD
       <main className="min-h-0 flex-1 space-y-6 overflow-y-auto p-5 sm:p-6 sm:px-8">
+=======
+      <main className="space-y-6 p-5 sm:p-6 sm:px-8">
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         <SummaryCards items={summaryByPeriod[period]} />
 
         <OccupancySection chartType={chartType} onChartTypeChange={setChartType} data={chartData} />
@@ -134,7 +182,11 @@ function Dashboard() {
           <RecentActivity items={recentActivity} />
         </div>
       </main>
+<<<<<<< HEAD
     </div>
+=======
+    </>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   )
 }
 

@@ -12,6 +12,7 @@ import Settings from "@components/system_layout/Settings";
 import Notifications from "@components/system_layout/Notifications";
 import Taxation from "@components/system_layout/Taxation";
 import Roles from "@components/system_layout/Roles";
+<<<<<<< HEAD
 import SystemSettings from "@components/system_layout/SettingsSystem"
 import EditParkinglayout from "@components/system_layout/EditParkingLayout.tsx";
 import KioskPage from "@components/system_layout/KioskPage";
@@ -61,6 +62,34 @@ const System = () => {
             <Route path="profile" element={<Profile />} />  {/* เพิ่ม */}
             <Route path="*" element={<Navigate to={dashboardPath} replace />} />
       </Routes>
+=======
+
+const System = () => {
+  const [ _, setUserInfo ] = useState<any>(null);
+  const { url_uuid } = useParams()
+
+  useEffect(() => {
+    const getUser = async () => {const result = await allmodules.sendRequest("5000", "systemuuid", "post", "application/json",{user_uuid: url_uuid}); setUserInfo(result.userInfo)}
+    getUser()
+  },[url_uuid])
+
+  return (
+    <Routes>
+      <Route index element={<Navigate to="dashboard" replace />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="parking" element={<Parking />} />
+      <Route path="heatmap" element={<HeatMap />} />
+      <Route path="reports" element={<Reports />} />
+      <Route path="qrcode" element={<QrcodePage />} />
+      <Route path="permissions" element={<Permissions />} />
+      <Route path="vehicle-search" element={<VehicleSearch />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="notifications" element={<Notifications />} />
+      <Route path="taxation" element={<Taxation />} />
+      <Route path="roles" element={<Roles />} />
+      <Route path="*" element={<Navigate to="dashboard" replace />} />
+    </Routes>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   );
 };
 

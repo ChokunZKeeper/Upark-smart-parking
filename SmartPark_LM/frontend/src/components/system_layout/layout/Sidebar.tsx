@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 import { useEffect, useMemo, useState, type ComponentType } from 'react'
 import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom'
+=======
+import { useState } from 'react'
+import { NavLink, useLocation, useParams } from 'react-router-dom'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 import {
   Bell,
   Car,
   CircleHelp,
+<<<<<<< HEAD
   Eye,
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   FileText,
   Flame,
   LayoutDashboard,
@@ -15,6 +23,7 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react'
+<<<<<<< HEAD
 import { footerNavItems, navItems, secondaryNavItems, colorProfile, type ColorName } from '@/services/data/mockData'
 import { useUserInfo } from '@/pages/system/System'
 import * as icons_svg from '@/styles/Icons';
@@ -28,6 +37,9 @@ import {
 } from '@/constants/viewAs'
 import { useT } from '@/i18n'
 import api, { API_BASE } from '@/module/Allmodules'
+=======
+import { company, footerNavItems, navItems, secondaryNavItems } from '@/types/_mockData'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -74,6 +86,7 @@ const SUB_PAGE_OF: Record<string, string> = {
 
 const cx = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ')
 
+<<<<<<< HEAD
 // ข้อมูลโปรไฟล์ล่าสุดจากเซิร์ฟเวอร์ (หรือจาก event ตอนกด Save ในหน้า Profile)
 type ProfileAvatar = { kind: 'gradient'; name: ColorName } | { kind: 'image'; src: string }
 
@@ -134,6 +147,10 @@ const NAV_KEYS: Record<string, string> = {
   '/notifications': 'sidebar.nav.notifications',
 }
 
+=======
+/* ---------- Nav item ---------- */
+
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 function NavItem({
   item,
   collapsed,
@@ -143,8 +160,11 @@ function NavItem({
   collapsed: boolean
   onNavigate: () => void
 }) {
+<<<<<<< HEAD
   const t = useT()
   const navLabel = (i: NavItemData) => (NAV_KEYS[i.path] ? t(NAV_KEYS[i.path]) : i.label)
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const Icon = ICONS[item.icon]
   const { pathname } = useLocation()
   const { url_uuid } = useParams()
@@ -154,14 +174,18 @@ function NavItem({
   const to = `${base}${item.path}`
 
   const isOnSubPage = SUB_PAGE_OF[item.path] === pathname.replace(base, '')
+<<<<<<< HEAD
   // icon ใน mockData เป็นชื่อของ SVG ใน @/styles/Icons (เช่น dashboard_icon) จึงดึงด้วย string key
   const Icon_ = (icons_svg as unknown as Record<string, ComponentType>)[item.icon]
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   return (
     <NavLink
       to={to}
       end
       onClick={onNavigate}
+<<<<<<< HEAD
       title={navLabel(item)}
       className={({ isActive }) =>
         cx(
@@ -175,6 +199,18 @@ function NavItem({
         <Icon_ />
         {collapsed ? <Icon size={20} /> : navLabel(item)}
       </div>
+=======
+      title={item.label}
+      className={({ isActive }) =>
+        cx(
+          'flex items-center rounded-md text-[15px] transition-colors',
+          collapsed ? 'justify-center px-0 py-3' : 'px-4 py-3',
+          isActive || isOnSubPage ? 'font-normal text-[#2771D8]' : 'font-light text-[#6D6D70] hover:text-[#0F172A]',
+        )
+      }
+    >
+      {collapsed ? <Icon size={20} /> : item.label}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </NavLink>
   )
 }
@@ -197,6 +233,7 @@ function NavGroup({
   )
 }
 
+<<<<<<< HEAD
 /* ---------- Header (ผู้ใช้ + เมนูบัญชี) ---------- */
 
 function UserAvatar({
@@ -225,10 +262,23 @@ function UserAvatar({
       {!image_src && <span className="select-none text-[20px] font-light leading-none text-white">{char_name}</span>}
       {/* จุดสีเขียว = ออนไลน์ เดียวมาทำต่อ*/}
       <span className={online_check? "absolute -bottom-0.5 -right-0.5 h-[14.2px] w-[14.2px] rounded-full border-[2.4px] border-sidebar bg-[#3CD815]": "absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-0 border-sidebar bg-[#B9B9BF]" } />
+=======
+/* ---------- Header (บริษัท + เมนูบัญชี) ---------- */
+
+function CompanyAvatar() {
+  return (
+    <span
+      className="relative my-1.5 h-10.25 w-10.25 shrink-0 rounded-full"
+      style={{ background: 'linear-gradient(180deg, #00BBFF 0%, #FFFF00 100%)' }}
+    >
+      {/* จุดสีเขียว = ออนไลน์ */}
+      <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-0 border-sidebar bg-[#3CC719]" />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </span>
   )
 }
 
+<<<<<<< HEAD
 function UserMenu({ onClose }: { onClose: () => void }) {
   const t = useT()
   const navigate = useNavigate()
@@ -259,6 +309,18 @@ function UserMenu({ onClose }: { onClose: () => void }) {
       </button>
       <button type="button" className={itemCls} onClick={handleSignOut}>
         {t('sidebar.signOut')}
+=======
+function CompanyMenu() {
+  const menuItemClass = 'block w-full px-3 py-2.5 text-left hover:bg-gray-50'
+
+  return (
+    <div className="absolute left-3 right-3 top-full z-10 mt-1 rounded-md border border-line bg-white py-1 text-sm shadow-lg">
+      <button type="button" className={menuItemClass}>
+        Switch company
+      </button>
+      <button type="button" className={menuItemClass}>
+        Sign out
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       </button>
     </div>
   )
@@ -266,6 +328,7 @@ function UserMenu({ onClose }: { onClose: () => void }) {
 
 function SidebarHeader({ isCollapsed, onCloseMobile }: { isCollapsed: boolean; onCloseMobile: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false)
+<<<<<<< HEAD
   const userInfo = useUserInfo()
   const t = useT()
   const { url_uuid } = useParams()
@@ -304,6 +367,8 @@ function SidebarHeader({ isCollapsed, onCloseMobile }: { isCollapsed: boolean; o
   const avatar = override?.avatar ?? fallbackAvatar
   const gradientName = avatar?.kind === 'gradient' ? avatar.name : userInfo?.avatar_color
   const imageSrc = avatar?.kind === 'image' ? avatar.src : undefined
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
   return (
     <div className="relative p-4 pb-2 py-5">
@@ -312,6 +377,7 @@ function SidebarHeader({ isCollapsed, onCloseMobile }: { isCollapsed: boolean; o
         onClick={() => setMenuOpen((open) => !open)}
         className={cx('flex w-full items-center gap-3 rounded-md text-left', isCollapsed && 'justify-center')}
       >
+<<<<<<< HEAD
         <UserAvatar online_check={true}
           char_name={firstName.slice(0, 1).toUpperCase()}
           gradient_color={gradientName ?? ''}
@@ -324,18 +390,34 @@ function SidebarHeader({ isCollapsed, onCloseMobile }: { isCollapsed: boolean; o
               {userInfo ? `${firstName} ${lastName}` : ''}
             </span>
             <span className="block truncate text-[11.5px] text-ink-3">{userInfo?.email}</span>
+=======
+        <CompanyAvatar />
+
+        {!isCollapsed && (
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-[15.5px] font-medium">{company.name}</span>
+            <span className="block truncate text-[13.5px] text-[#6D6D70]">{company.email}</span>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
           </span>
         )}
       </button>
 
+<<<<<<< HEAD
       {menuOpen && !isCollapsed && <UserMenu onClose={() => setMenuOpen(false)} />}
+=======
+      {menuOpen && !isCollapsed && <CompanyMenu />}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
       {/* ปุ่มปิด: แสดงเฉพาะ mobile */}
       <button
         type="button"
         onClick={onCloseMobile}
         className="absolute right-2 top-2 rounded p-1 text-gray-500 hover:bg-gray-100 lg:hidden"
+<<<<<<< HEAD
         aria-label={t('sidebar.closeMenu')}
+=======
+        aria-label="Close menu"
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       >
         <X size={18} />
       </button>
@@ -346,10 +428,16 @@ function SidebarHeader({ isCollapsed, onCloseMobile }: { isCollapsed: boolean; o
 /* ---------- Quick actions ---------- */
 
 function QuickActions() {
+<<<<<<< HEAD
   const t = useT()
   return (
     <div className="flex items-center justify-between border-b border-line px-5 py-5.5 text-[15px] font-light text-ink-2">
       <span>{t('sidebar.quickActions')}</span>
+=======
+  return (
+    <div className="flex items-center justify-between border-b border-line px-5 py-5.5 text-[15px] font-light text-[#6D6D70]">
+      <span>Quick actions</span>
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
       <span>
         ⌘<span className="ml-0.5">K</span>
       </span>
@@ -357,6 +445,7 @@ function QuickActions() {
   )
 }
 
+<<<<<<< HEAD
 /* ---------- Viewing as banner ---------- */
 
 function ViewingAsBanner({
@@ -395,12 +484,15 @@ function ViewingAsBanner({
   )
 }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Main component ---------- */
 
 function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
   // บน mobile (drawer) ให้แสดงแบบเต็มเสมอ ไม่ย่อ
   const isCollapsed = collapsed && !mobileOpen
 
+<<<<<<< HEAD
   const navigate = useNavigate()
   const { url_uuid } = useParams()
   const { pathname } = useLocation()
@@ -436,6 +528,8 @@ function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
     navigate(`/system/${url_uuid}/roles`)
   }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   return (
     <>
       {/* พื้นหลังมืดตอนเปิด drawer บน mobile */}
@@ -459,6 +553,7 @@ function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
 
         {!isCollapsed && <QuickActions />}
 
+<<<<<<< HEAD
         {viewAs && <ViewingAsBanner roleName={viewAs.name} collapsed={isCollapsed} onExit={exitViewAs} />}
 
         <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
@@ -469,6 +564,16 @@ function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
 
         <div className="space-y-1 border-t border-line px-3 py-3">
           <NavGroup items={visibleFooterNavItems} collapsed={isCollapsed} onNavigate={onCloseMobile} />
+=======
+        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+          <NavGroup items={navItems} collapsed={isCollapsed} onNavigate={onCloseMobile} />
+          <div className="!my-4 border-t border-line" />
+          <NavGroup items={secondaryNavItems} collapsed={isCollapsed} onNavigate={onCloseMobile} />
+        </nav>
+
+        <div className="space-y-1 border-t border-line px-3 py-3">
+          <NavGroup items={footerNavItems} collapsed={isCollapsed} onNavigate={onCloseMobile} />
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
         </div>
       </aside>
     </>

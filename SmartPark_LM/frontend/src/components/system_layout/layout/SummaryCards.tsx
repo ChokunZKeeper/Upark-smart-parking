@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import type { CSSProperties, ReactNode } from 'react'
 import { ArrowDown, ArrowUp } from 'lucide-react'
 import { useT, type TFunction } from '@/i18n'
+=======
+import type { ReactNode } from 'react'
+import { ArrowDown, ArrowUp } from 'lucide-react'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 
 /* ---------- Types ---------- */
 
@@ -39,6 +44,7 @@ const CARD_CLICKABLE = 'transition hover:border-brand/60'
 // ค่า default เมื่อยังไม่มีข้อมูล
 const DEFAULT_VALUE = 0
 
+<<<<<<< HEAD
 // เส้นคั่นใต้หัวการ์ด: Radial gradient (ตรงกลางเข้ม -> ขอบจางหาย)
 // ใช้สี --border ของธีม จึงเปลี่ยนตาม Light / Dark อัตโนมัติ
 const DIVIDER_STYLE: CSSProperties = {
@@ -46,11 +52,14 @@ const DIVIDER_STYLE: CSSProperties = {
     'radial-gradient(ellipse closest-side at 50% 50%, var(--border) 20%, transparent 97.5%)',
 }
 
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
 /* ---------- Helpers ---------- */
 
 const hasNoValue = (value: SummaryItem['value']) =>
   value === null || value === undefined || value === '' || value === 'No Data'
 
+<<<<<<< HEAD
 // แปลข้อความจาก mock data (ภาษาอังกฤษ) เป็น key ใน summaryCards.json ถ้าไม่ตรงรูปแบบจะแสดงข้อความเดิม
 const LABEL_KEYS: Record<string, string> = {
   'Total Revenue': 'summaryCards.label.totalRevenue',
@@ -81,6 +90,12 @@ const translateText = (t: TFunction, text: string): string => {
 function Trend({ trend, pushLeft }: { trend: SummaryTrend; pushLeft: boolean }) {
   const t = useT()
   const color = trend.up ? 'text-[#24A703]' : 'text-[#DC2626]'
+=======
+/* ---------- Sub components ---------- */
+
+function Trend({ trend, pushLeft }: { trend: SummaryTrend; pushLeft: boolean }) {
+  const color = trend.up ? 'text-[#3A9E21]' : 'text-[#DC2626]'
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   const Arrow = trend.up ? ArrowUp : ArrowDown
 
   return (
@@ -88,19 +103,27 @@ function Trend({ trend, pushLeft }: { trend: SummaryTrend; pushLeft: boolean }) 
       className={`flex shrink-0 items-center gap-0.5 text-[12px] font-medium ${color} ${pushLeft ? 'mr-auto' : ''}`}
     >
       <Arrow size={12} />
+<<<<<<< HEAD
       {translateText(t, trend.text)}
+=======
+      {trend.text}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
     </span>
   )
 }
 
 function CardBody({ item }: { item: SummaryItem }) {
+<<<<<<< HEAD
   const t = useT()
+=======
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
   // ไม่มีข้อมูล -> แสดง 0 และซ่อน left / trend / right (เช่น Private 26%)
   const empty = hasNoValue(item.value)
   const displayValue = empty ? DEFAULT_VALUE : item.value
 
   return (
     <>
+<<<<<<< HEAD
       {/* border-transparent คงความสูงเดิมของเส้น 1px ไว้ แล้ววางเส้น gradient ทับด้านล่าง */}
       <span className="relative block w-full border-b border-transparent px-5 py-[7px] text-[13.25px] font-medium leading-5 text-ink">
         {translateText(t, item.label)}
@@ -115,6 +138,20 @@ function CardBody({ item }: { item: SummaryItem }) {
         {!empty && (item.left || item.trend || item.right) ? (
           <div className="mt-1 flex items-center justify-between gap-1 text-[12px] leading-[18px] text-ink-3">
             {item.left ? <span className="truncate">{typeof item.left === 'string' ? translateText(t, item.left) : item.left}</span> : null}
+=======
+      <span className="block w-full border-b border-line px-5 py-[7px] text-[13.25px] font-medium leading-5 text-[#0F172A]">
+        {item.label}
+      </span>
+
+      <div className="px-5 pb-3 pt-2.5">
+        <span className="block text-[18.5px] font-medium leading-7 tracking-tight text-[#0F172A]">
+          {displayValue}
+        </span>
+
+        {!empty && (item.left || item.trend || item.right) ? (
+          <div className="mt-1 flex items-center justify-between gap-1 text-[12px] leading-[18px] text-[#7E7E81]">
+            {item.left ? <span className="truncate">{item.left}</span> : null}
+>>>>>>> 539eb421145c0c811a5dafaaae5746b3176470cd
             {item.trend && <Trend trend={item.trend} pushLeft={!item.left} />}
             {item.right && <span className="shrink-0">{item.right}</span>}
           </div>
