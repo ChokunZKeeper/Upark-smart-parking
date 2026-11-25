@@ -1,0 +1,49 @@
+{
+  "title": "คิวอาร์โค้ด",
+  "createNew": "สร้าง QR ใหม่",
+  "searchAria": "ค้นหา QR code",
+  "preview": "ตัวอย่าง",
+  "previewFailed": "ไม่สามารถสร้างตัวอย่างได้",
+  "empty": {
+    "title": "ไม่พบ QR Code",
+    "hint": "คลิก “สร้าง QR ใหม่” เพื่อเพิ่ม"
+  },
+  "dialog": {
+    "editTitle": "แก้ไข QR",
+    "createTitle": "สร้าง QR ใหม่",
+    "editSubtitle": "อัปเดตรายละเอียดของ QR code นี้",
+    "createSubtitle": "สร้าง QR code ที่ลิงก์ไปยังโซนจอดรถ",
+    "close": "ปิด",
+    "floor": "ชั้น",
+    "zone": "โซน",
+    "zoneTaken": "โซน {zone} มี QR code อยู่แล้ว กรุณาเลือกโซนอื่นหรือแก้ไขอันเดิม",
+    "name": "ชื่อ QR code",
+    "nameHint": "แสดงในรายการ QR ค่าเริ่มต้นคือชื่อชั้น",
+    "url": "URL",
+    "urlHint": "สร้างอัตโนมัติจากชั้นและโซน แก้ไขเฉพาะเมื่อต้องการลิงก์เอง",
+    "editUrl": "แก้ไข URL",
+    "note": "หมายเหตุ (ไม่บังคับ)",
+    "notePlaceholder": "ใกล้ลิฟต์ ทางเข้าด้านตะวันตก",
+    "active": "เปิดใช้งาน",
+    "downloadFormat": "รูปแบบไฟล์ดาวน์โหลด",
+    "errorCorrection": "การแก้ไขข้อผิดพลาด",
+    "errorHint": "ระดับที่สูงขึ้นยังสแกนได้แม้สติกเกอร์ถูกขีดข่วน"
+  },
+  "footer": {
+    "cancel": "ยกเลิก",
+    "saveDownload": "บันทึกและดาวน์โหลด",
+    "createDownload": "สร้างและดาวน์โหลด",
+    "save": "บันทึกการเปลี่ยนแปลง",
+    "create": "สร้าง QR"
+  },
+  "table": {
+    "name": "ชื่อ QR Code",
+    "urls": "URL",
+    "zone": "โซน",
+    "floor": "ชั้น",
+    "created": "วันที่สร้าง",
+    "download": "ดาวน์โหลด",
+    "edit": "แก้ไข",
+    "remove": "ลบ"
+  }
+}

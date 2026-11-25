@@ -1,0 +1,56 @@
+{
+  "nav": { "faq": "FAQ", "login": "Login" },
+  "hero": {
+    "tagline": "Parking Management System",
+    "titleBold": "PARKING MANAGEMENT",
+    "titleLight": "SYSTEM",
+    "getStarted": "Get started",
+    "line1": "All-in-One Auto Parking Management System",
+    "line2": "CCTV - License Plate Recognition | Payment Reports & Admin Control"
+  },
+  "carousel": {
+    "title": "Features Showcasing and Guides",
+    "ariaLabel": "Features Showcasing and Guides",
+    "textInfo": "Text info",
+    "placeholder": "Place Holder",
+    "description": "The videos shown above are tutorials on navigating the website and showcasing its features. They are separated into four videos, which you can switch between by pressing the left or right arrow keys. Each video corresponds to a different topic.",
+    "prev": "Previous video",
+    "next": "Next video",
+    "wantMore": "want to know more?",
+    "clickLink": "click the link"
+  },
+  "whatCan": {
+    "title": "What can UPark do?",
+    "body": "It helps organizations simplify parking administration through tools for managing parking spaces and monitoring occupancy. It aims to reduce administrative workload, improve resource allocation, and provide a more systematic approach to managing company parking facilities."
+  },
+  "whatIs": {
+    "title": "What is UPark?",
+    "body": "UPark is a centralized parking management system designed to make parking operations simpler and easier to use. We recognized the difficulties of using some existing parking management systems, which inspired us to create UPark with a more intuitive and user-friendly experience, making parking management more convenient and efficient."
+  },
+  "who": {
+    "title": "Who uses UPark?",
+    "p1Pre": "UPark is designed specifically for ",
+    "p1Em": "shopping malls",
+    "p1Post": " that operate large parking facilities and require an efficient way to manage their parking resources.",
+    "p2Pre": "It provides ",
+    "p2Em1": "mall administrators and parking management teams",
+    "p2Mid": " with tools to oversee parking areas, organize parking spaces, manage access permissions, and monitor parking operations. By bringing these functions together in one ",
+    "p2Em2": "centralized platform",
+    "p2Post": ", UPark helps shopping malls maintain better control over their parking facilities, improve operational efficiency, and provide a more organized parking experience for both staff and visitors."
+  },
+  "hardware": {
+    "title": "Hardware Compatibility & System Integration",
+    "p1Pre": "UPark is a software-based parking management platform. ",
+    "p1Bold": "It does not provide or manufacture physical hardware",
+    "p1Post": " such as sensors, cameras, or parking barriers. Instead, it acts as a central system that connects compatible hardware devices, collects their data, and displays it through a unified interface, allowing administrators to monitor and manage parking facilities more efficiently.",
+    "important": "Important",
+    "p2": "Organizations are responsible for acquiring and maintaining their own hardware."
+  },
+  "footer": {
+    "copyright": "Copyright © 2026 UPark Inc. All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of use",
+    "legal": "Legal",
+    "contact": "Contact"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "signOut":  "ออกจากระบบ",
+    "profile": "โปรไฟล์",
+    "closeMenu":  "ปิดเมนู",
+    "quickActions":  "การดำเนินการด่วน",
+    "viewingAs": "กำลังดูในมุมมอง {role}",
+    "exitViewAs": "ออก",
+    "nav":  {
+                "vehicleSearch":  "ค้นหายานพาหนะ",
+                "reports":  "รายงาน",
+                "qrcode":  "คิวอาร์โค้ด",
+                "notifications":  "การแจ้งเตือน",
+                "permissions":  "สิทธิ์การใช้งาน",
+                "parking":  "ที่จอดรถ",
+                "dashboard":  "แดชบอร์ด",
+                "settings":  "ตั้งค่า",
+                "systemSettings":  "ตั้งค่าระบบ",
+                "heatmap":  "แผนที่ความหนาแน่น"
+            }
+}

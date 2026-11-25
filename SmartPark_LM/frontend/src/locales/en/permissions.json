@@ -1,0 +1,46 @@
+{
+  "title": "Permissions",
+  "manageRole": "Manage Role",
+  "addMember": "Add new member",
+  "searchMember": "Search member",
+  "owner": "Owner",
+  "you": "You",
+  "edit": "Edit",
+  "remove": "Remove",
+  "rolesPlaceholder": "Roles",
+  "roleOf": "Role of {name}",
+  "confirmRemove": "Are you sure you want to remove {name}?",
+  "role": { "admin": "Admin", "superAdmin": "Super Admin" },
+  "status": { "all": "All", "active": "Active", "inactive": "Inactive" },
+  "columns": {
+    "profile": "Profile",
+    "name": "Name",
+    "employeeId": "Employee ID",
+    "email": "Email",
+    "joined": "Date of joining",
+    "floor": "Floor Responsible",
+    "role": "Role"
+  },
+  "empty": { "title": "No Members Found", "hint": "Click “Add new member” to add one." },
+  "invite": {
+    "dialog": "Invite members",
+    "placeholder": "Email, name...",
+    "inputLabel": "Email, name",
+    "roleLabel": "Role",
+    "linkRole": "Link role",
+    "save": "Save",
+    "invite": "Invite",
+    "peopleWithAccess": "{count} People with Access",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "errors": {
+    "cannotRemoveOwner": "The Owner cannot be removed",
+    "cannotRemoveLastSuperAdmin": "The last Super Admin cannot be removed",
+    "ownerMustBeSuperAdmin": "The Owner must always be a Super Admin",
+    "needOneSuperAdmin": "At least 1 Super Admin is required",
+    "invalidEmail": "Please enter a valid email",
+    "emailTaken": "This email is already in use",
+    "copyFailed": "Failed to copy link"
+  }
+}

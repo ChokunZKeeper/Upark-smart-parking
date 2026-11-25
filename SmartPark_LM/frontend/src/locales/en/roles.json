@@ -1,0 +1,20 @@
+{
+  "title": "Roles Management",
+  "back": "Back",
+  "addRole": "Add new role",
+  "viewAsRole": "View as Role",
+  "noPermissionAlert": "Role \"{name}\" has no access permissions yet. Please enable at least 1 permission first.",
+  "rolesColumn": "Roles",
+  "permissionsColumn": "Permissions",
+  "form": { "placeholder": "Role name", "ariaLabel": "New role name", "create": "Create", "cancel": "Cancel" },
+  "permissionList": {
+    "permissions_manage": { "title": "Manage Permission", "desc": "Manages permission and create and assign roles to other people." },
+    "dashboard": { "title": "See DashBoard", "desc": "Be able to see activity on the dashboard and export it as pdf or png." },
+    "parking": { "title": "See Parking", "desc": "Be able to see parked vehicles, empty slots and obstructed slots for further fixing." },
+    "heatmap": { "title": "See Heatmap", "desc": "Be able to see percentage of people who parked in each floor throughout the day and week." },
+    "reports": { "title": "See Reports", "desc": "Be able to see daily, weekly, monthly, yearly revenue." },
+    "qr": { "title": "See QR Code", "desc": "Be able to create a fixed QR code for customers to scan and see where they had parked their vehicles." },
+    "system_access": { "title": "System Access", "desc": "Be able to access and configure main system." },
+    "can_edit": { "title": "Can Edit", "desc": "Be able to edit." }
+  }
+}

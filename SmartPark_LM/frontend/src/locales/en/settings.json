@@ -1,0 +1,12 @@
+{
+  "title": "Settings",
+  "tabs": { "normal": "Normal Settings", "system": "System Settings" },
+  "kiosk": "Kiosk",
+  "reset": "Reset",
+  "save": "Save",
+  "noSettings": "No settings found.",
+  "language": { "label": "Language", "description": "Choose the preferred language for the UPark interface." },
+  "timeFormat": { "label": "Time Format", "description": "Choose between 12-hour and 24-hour time display.", "h12": "12 hour", "h24": "24 hour" },
+  "nightMode": { "label": "Night Mode", "description": "Switch between light and dark interface themes." },
+  "gradients": { "label": "Gradients", "description": "Turn gradients on graph on or off." }
+}

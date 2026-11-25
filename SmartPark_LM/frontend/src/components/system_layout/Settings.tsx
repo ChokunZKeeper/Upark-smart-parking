@@ -1,0 +1,278 @@
+import { useState, useEffect, type ReactNode } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import Navbar from '@/components/system_layout/layout/Navbar'
+import PillSelect from '@/styles/Dropdown'
+import { Icon } from '@iconify/react'
+import { useI18n, type Lang } from '@/i18n'
+
+/* ---------- Types ---------- */
+
+type Language = 'English' | 'Thai'
+type TimeFormat = '12hour' | '24hour'
+
+interface SettingsState {
+  // Normal settings
+  language: Language
+  timeFormat: TimeFormat
+  nightMode: boolean
+  gradients: boolean
+}
+
+interface Option<T extends string> {
+  value: T
+  label: string
+}
+
+interface SettingRowConfig {
+  key: string
+  label: string
+  description: string
+  control: ReactNode
+}
+
+// ฟังก์ชันสร้างตัวอัปเดตของแต่ละช่อง: update('language') จะได้ (value) => ...
+type UpdateField = <K extends keyof SettingsState>(key: K) => (value: SettingsState[K]) => void
+
+/* ---------- Constants ---------- */
+
+const DEFAULT_SETTINGS: SettingsState = {
+  language: 'English',
+  timeFormat: '12hour',
+  nightMode: false,
+  gradients: true,
+}
+
+const LANGUAGE_OPTIONS: Option<Language>[] = [
+  { value: 'English', label: 'English' },
+  { value: 'Thai', label: 'ไทย' },
+]
+
+// สีทั้งหมดอิง CSS variables ใน theme (--border, --surface, --text, --text-secondary, --text-tertiary)
+// เหมือนหน้า Parking เพื่อให้เปลี่ยน Light/Dark ได้ ไม่ฮาร์ดโค้ดสี
+
+// ปุ่มบน Navbar: ขนาดเดียวกับหน้า Roles
+const HEADER_BUTTON =
+  'flex h-[40px] min-w-[140px] items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 text-[16px] text-ink-2 transition hover:bg-[#F2F2F2] hover:!text-[#212121] hover:!border-[#E5E5E5]'
+
+// dropdown ในแถวตั้งค่า: ขนาดเดิมของ PillSelect + สีตอน hover
+// (ต้องใส่ขนาดเดิมซ้ำ เพราะ triggerClassName จะแทนที่ค่าเริ่มต้นทั้งก้อน)
+const SELECT_TRIGGER =
+  'h-[40px] rounded-full border-[var(--border)] text-[15.5px] !text-ink-2 hover:bg-[#F2F2F2] hover:!text-[#212121] hover:!border-[#E5E5E5]'
+
+// scrollbar บางและโค้งมน สำหรับรายการตั้งค่า
+const SCROLL_AREA =
+  'flex min-h-0 flex-1 flex-col overflow-y-auto [&::-webkit-scrollbar]:w-[3.5px] [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--border)] [&::-webkit-scrollbar-thumb:hover]:bg-[var(--text-tertiary)] [&::-webkit-scrollbar-track]:my-6 [&::-webkit-scrollbar-track]:bg-transparent'
+
+/* ---------- Helpers ---------- */
+
+const cx = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ')
+
+/* ---------- Controls ---------- */
+
+// สวิตช์เปิด/ปิด (ขนาดเดียวกับหน้า Roles)
+function Toggle({ value, onChange }: { value: boolean; onChange: (value: boolean) => void }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={value}
+      onClick={() => onChange(!value)}
+      style={{ WebkitTapHighlightColor: 'transparent' }}
+      className={cx(
+        'relative inline-flex h-[32px] w-[58px] shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 focus:outline-none',
+        value ? 'bg-[#2771D8]' : 'bg-[var(--border)]',
+      )}
+    >
+      <span
+        className={cx(
+          'inline-block h-[26px] w-[26px] rounded-full bg-white shadow-sm transition-transform duration-200',
+          value ? 'translate-x-[29px]' : 'translate-x-[3px]',
+        )}
+      />
+    </button>
+  )
+}
+
+// ช่องกรอกตัวเลขทรงแคปซูล พร้อมหน่วยต่อท้าย (แสดงหน่วยตอนไม่ได้โฟกัส)
+function PillInput({
+  value,
+  onChange,
+  unit,
+  noSpace = false,
+}: {
+  value: string
+  onChange: (value: string) => void
+  unit: string
+  noSpace?: boolean
+}) {
+  const [focused, setFocused] = useState(false)
+  const displayValue = focused ? value : `${value}${noSpace ? '' : ' '}${unit}`
+
+  return (
+    <input
+      type="text"
+      value={displayValue}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ''))} // รับเฉพาะตัวเลขและจุด
+      className="h-[40px] w-[112px] rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 text-center text-[16px] text-ink-2 outline-none transition hover:bg-[#F2F2F2] hover:!text-[#212121] hover:!border-[#E5E5E5] focus:bg-[#F2F2F2] focus:!text-[#212121] focus:!border-[#E5E5E5]"
+    />
+  )
+}
+
+/* ---------- Layout pieces ---------- */
+
+// แถวเต็มความกว้างการ์ด ส่วนเส้นคั่นวาดด้วย after: เว้นซ้ายขวา 16px
+function SettingRow({ label, description, children }: { label: string; description?: string; children: ReactNode }) {
+  return (
+    <div className="relative flex min-h-[104px] shrink-0 items-center justify-between gap-10 px-10 py-6 after:absolute after:bottom-0 after:left-4 after:right-4 after:h-px after:bg-[var(--border)] after:content-[''] last:after:hidden">
+      <div className="min-w-0 flex-1">
+        <p className="text-[20px] font-normal leading-[1.3] text-ink-1">{label}</p>
+        {description && (
+          <p className="mt-2 max-w-[880px] text-[16px] leading-[1.55] text-ink-2">{description}</p>
+        )}
+      </div>
+      <div className="shrink-0">{children}</div>
+    </div>
+  )
+}
+
+function SettingsList({ rows }: { rows: SettingRowConfig[] }) {
+  const { t } = useI18n()
+  if (rows.length === 0) {
+    return <p className="px-6 py-12 text-center text-[16px] text-ink-2">{t('settings.noSettings')}</p>
+  }
+
+  return (
+    <>
+      {rows.map((row) => (
+        <SettingRow key={row.key} label={row.label} description={row.description}>
+          {row.control}
+        </SettingRow>
+      ))}
+    </>
+  )
+}
+
+/* ---------- Row definitions ---------- */
+
+function buildNormalRows(s: SettingsState, update: UpdateField, t: (k: string) => string): SettingRowConfig[] {
+  const timeFormatOptions: Option<TimeFormat>[] = [
+    { value: '12hour', label: t('settings.timeFormat.h12') },
+    { value: '24hour', label: t('settings.timeFormat.h24') },
+  ]
+  return [
+    {
+      key: 'language',
+      label: t('settings.language.label'),
+      description: t('settings.language.description'),
+      control: (
+        <PillSelect
+          ariaLabel={t('settings.language.label')}
+          value={s.language}
+          onChange={update('language')}
+          options={LANGUAGE_OPTIONS}
+          widthClass="w-[136px]"
+          triggerClassName={SELECT_TRIGGER}
+        />
+      ),
+    },
+    {
+      key: 'timeFormat',
+      label: t('settings.timeFormat.label'),
+      description: t('settings.timeFormat.description'),
+      control: (
+        <PillSelect
+          ariaLabel={t('settings.timeFormat.label')}
+          value={s.timeFormat}
+          onChange={update('timeFormat')}
+          options={timeFormatOptions}
+          widthClass="w-[136px]"
+          triggerClassName={SELECT_TRIGGER}
+        />
+      ),
+    },
+    {
+      key: 'nightMode',
+      label: t('settings.nightMode.label'),
+      description: t('settings.nightMode.description'),
+      control: <Toggle value={s.nightMode} onChange={update('nightMode')} />,
+    },
+    {
+      key: 'gradients',
+      label: t('settings.gradients.label'),
+      description: t('settings.gradients.description'),
+      control: <Toggle value={s.gradients} onChange={update('gradients')} />,
+    },
+  ]
+}
+
+/* ---------- Page ---------- */
+
+function Settings() {
+  const { t, lang, setLang } = useI18n()
+  const navigate = useNavigate()
+  const { url_uuid } = useParams()
+  const [settings, setSettings] = useState<SettingsState>(() => ({
+    ...DEFAULT_SETTINGS,
+    language: lang === 'th' ? 'Thai' : 'English',
+    nightMode: localStorage.getItem('theme') === 'dark',
+    gradients: localStorage.getItem('gradients') === 'on',
+  }))
+  const update: UpdateField = (key) => (value) => setSettings((prev) => ({ ...prev, [key]: value }))
+
+  // เปลี่ยนภาษาทันทีเมื่อเลือก (บันทึกลง localStorage ผ่าน I18nProvider)
+  useEffect(() => {
+    setLang((settings.language === 'Thai' ? 'th' : 'en') as Lang)
+  }, [settings.language, setLang])
+
+  useEffect(() => {
+    const theme = settings.nightMode ? 'dark' : 'light'
+    document.documentElement.dataset.theme = theme
+    localStorage.setItem('theme', theme)
+  }, [settings.nightMode])
+
+  useEffect(() => {
+    const value = settings.gradients ? 'on' : 'off'
+    document.documentElement.dataset.gradients = value
+    localStorage.setItem('gradients', value)
+  }, [settings.gradients])
+
+  const rows = buildNormalRows(settings, update, t)
+
+  return (
+    <>
+      <Navbar
+        title={t('settings.title')}
+        actions={
+          <>
+            <button
+              type="button"
+              className={HEADER_BUTTON}
+              onClick={() => navigate(`/system/${url_uuid}/kiosk`)}
+            >
+              <Icon icon="lucide:monitor" height="1.1em" className="shrink-0 [&_*]:stroke-[1.75] mr-1.5" /> {t('settings.kiosk')}
+            </button>
+            <button type="button" className={HEADER_BUTTON} onClick={() => setSettings(DEFAULT_SETTINGS)}>
+              <Icon icon="lucide:timer-reset" height="1.1em" className="shrink-0 [&_*]:stroke-[1.75] mr-1.5" /> {t('settings.reset')}
+            </button>
+            <button type="button" className={HEADER_BUTTON}>
+              <Icon icon="lucide:save" height="1.1em" className="shrink-0 [&_*]:stroke-[1.75] mr-1.5" /> {t('settings.save')}
+            </button>
+          </>
+        }
+      />
+
+      <main className="flex min-h-0 flex-1 flex-col gap-4 space-y-4 overflow-hidden px-6 py-4 sm:px-8 sm:py-8">
+        {/* ใช้ .card เพื่อให้ขอบเป็น gradient (ห้ามใส่ border / bg-white ซ้ำ ไม่งั้นทับ gradient) */}
+        <section className="card flex max-h-[calc(100dvh-260px)] min-h-0 flex-1 flex-col overflow-hidden rounded-[22px]">
+          <div className={SCROLL_AREA}>
+            <SettingsList rows={rows} />
+          </div>
+        </section>
+      </main>
+    </>
+  )
+}
+
+export default Settings

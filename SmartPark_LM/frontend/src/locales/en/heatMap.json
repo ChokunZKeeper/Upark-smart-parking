@@ -1,0 +1,23 @@
+{
+  "title": "Heat Map",
+  "sectionTitle": "Heat Map Floor {floor}",
+  "floorLabel": "Floor {floor}",
+  "floorZone": "Floor {floor} - Zone {zone}",
+  "noData": "No Data",
+  "occupied": "Occupied",
+  "noHardwareTitle": "No Hardware Found",
+  "noHardwareDesc": "Please connect your hardware in Settings.",
+  "ariaColor": "Color",
+  "ariaFloor": "Floor",
+  "colors": {
+    "Blue": "Blue",
+    "Green": "Green",
+    "Purple": "Purple",
+    "Orange": "Orange"
+  },
+  "legend": {
+    "low": "Low",
+    "mid": "Medium",
+    "high": "High"
+  }
+}

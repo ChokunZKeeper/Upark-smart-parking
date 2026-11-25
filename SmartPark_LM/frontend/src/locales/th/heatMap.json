@@ -1,0 +1,23 @@
+{
+  "title": "ความหนาแน่นของที่จอด",
+  "sectionTitle": "แผนที่ความหนาแน่น ชั้น {floor}",
+  "floorLabel": "ชั้น {floor}",
+  "floorZone": "ชั้น {floor} - โซน {zone}",
+  "noData": "ไม่มีข้อมูล",
+  "occupied": "ไม่ว่าง",
+  "noHardwareTitle": "ไม่พบอุปกรณ์ฮาร์ดแวร์",
+  "noHardwareDesc": "กรุณาเชื่อมต่ออุปกรณ์ในการตั้งค่า",
+  "ariaColor": "สี",
+  "ariaFloor": "ชั้น",
+  "colors": {
+    "Blue": "น้ำเงิน",
+    "Green": "เขียว",
+    "Purple": "ม่วง",
+    "Orange": "ส้ม"
+  },
+  "legend": {
+    "low": "ต่ำ",
+    "mid": "ปานกลาง",
+    "high": "สูง"
+  }
+}

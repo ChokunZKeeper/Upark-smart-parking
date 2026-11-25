@@ -1,0 +1,14 @@
+{
+  "title": "Dashboard",
+  "occupancyByHours": "Occupancy by hours",
+  "chartType": {
+    "bar": "Bar Chart",
+    "line": "Line Chart"
+  },
+  "periods": {
+    "today": "Today",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year"
+  }
+}

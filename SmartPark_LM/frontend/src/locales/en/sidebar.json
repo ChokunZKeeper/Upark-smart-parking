@@ -1,0 +1,20 @@
+{
+    "signOut":  "Sign out",
+    "profile": "Profile",
+    "closeMenu":  "Close menu",
+    "quickActions":  "Quick actions",
+    "viewingAs": "Viewing as {role}",
+    "exitViewAs": "Exit",
+    "nav":  {
+                "vehicleSearch":  "Vehicle Search",
+                "reports":  "Reports",
+                "qrcode":  "QR code",
+                "notifications":  "Notifications",
+                "permissions":  "Permissions",
+                "parking":  "Parking",
+                "dashboard":  "Dashboard",
+                "settings":  "Settings",
+                "systemSettings":  "System Settings",
+                "heatmap":  "Heat Map"
+            }
+}

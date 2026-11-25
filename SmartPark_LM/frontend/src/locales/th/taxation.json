@@ -1,0 +1,27 @@
+{
+    "title":  "ภาษีและบัญชี",
+    "selectDateRange":  "เลือกช่วงวันที่",
+    "seeReports":  "ดูรายงาน",
+    "exportExcel":  "ส่งออก Excel",
+    "revenueVsTax":  "รายได้เทียบกับภาษี",
+    "recentTransaction":  "ธุรกรรมล่าสุด",
+    "taxDeadlines":  "กำหนดเวลาชำระภาษี",
+    "viewAll":  "ดูทั้งหมด",
+    "transactionsMore":  "มากกว่า 50 ธุรกรรม ดูเพิ่มเติม",
+    "deadlinesMore":  "มากกว่า 2 ธุรกรรม ดูเพิ่มเติม",
+    "chart":  {
+                  "revenue":  "รายได้",
+                  "tax":  "ภาษี"
+              },
+    "status":  {
+                   "overdue":  "เกินกำหนด",
+                   "dueSoon":  "ใกล้ครบกำหนด",
+                   "upcoming":  "กำลังจะมาถึง"
+               },
+    "csv":  {
+                "date":  "วันที่",
+                "code":  "รหัส",
+                "description":  "รายละเอียด",
+                "status":  "สถานะ"
+            }
+}

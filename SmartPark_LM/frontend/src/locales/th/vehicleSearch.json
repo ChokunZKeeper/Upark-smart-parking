@@ -1,0 +1,31 @@
+{
+    "title":  "ค้นหารถ",
+    "exportExcel":  "ส่งออก Excel",
+    "dateRange":  "ช่วงวันที่",
+    "timeRange":  "ช่วงเวลา",
+    "allDay":  "ทั้งวัน",
+    "sortBy":  "เรียงตาม",
+    "searchVehicles":  "ค้นหารถ",
+    "noVehicles":  "ไม่พบรถ",
+    "noHardware":  "ไม่พบอุปกรณ์",
+    "connectHardware":  "กรุณาเชื่อมต่ออุปกรณ์ในการตั้งค่า",
+    "previousPage":  "หน้าก่อนหน้า",
+    "nextPage":  "หน้าถัดไป",
+    "goToPage":  "ไปที่หน้า (1-{max})",
+    "goToPageHint":  "พิมพ์เลขหน้า (1-{max}) แล้วกด Enter",
+    "close":  "ปิด",
+    "floorLabel":  "ชั้น",
+    "sort":  {
+                 "default":  "เรียงลำดับ"
+             },
+    "columns":  {
+                    "plate":  "เลขทะเบียน",
+                    "vehicleType":  "ประเภทรถ",
+                    "floor":  "ชั้น",
+                    "zone":  "โซน",
+                    "timeIn":  "เวลาเข้า",
+                    "timeOut":  "เวลาออก",
+                    "date":  "วันที่",
+                    "image":  "รูปภาพ"
+                }
+}

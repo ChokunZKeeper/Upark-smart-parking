@@ -1,0 +1,43 @@
+{
+  "title": "Reports",
+  "seeTaxation": "See Taxation",
+  "exportExcel": "Export Excel",
+  "selectRange": "Select date range",
+  "revenueTrend": "Revenue trend",
+  "noData": "No Data",
+  "dayOct": "{day} Oct",
+  "hrs": "{value} hrs",
+  "thb": "THB {value}",
+  "bar": "Bar Chart",
+  "line": "Line Chart",
+  "metrics": {
+    "revenue": "Revenue",
+    "vehicles": "Vehicles",
+    "parkTime": "Avg. park time",
+    "occupancy": "Occupancy"
+  },
+  "summary": {
+    "totalRevenue": "Total Revenue",
+    "totalVehicles": "Total Vehicles",
+    "avgRevenue": "Avg. Revenue per Vehicle",
+    "avgOccupancy": "Avg. occupancy",
+    "previousPeriod": "{value} previous period"
+  },
+  "columns": {
+    "date": "Date",
+    "vehicles": "Vehicles",
+    "avgOccupancy": "Avg. occupancy",
+    "peakOccupancy": "Peak occupancy",
+    "avgParkTime": "Avg.park time",
+    "revenue": "Revenue"
+  },
+  "csv": {
+    "date": "Date",
+    "vehicles": "Vehicles",
+    "avgOccupancy": "Avg. occupancy (%)",
+    "peakOccupancy": "Peak occupancy (%)",
+    "avgParkTime": "Avg. park time (hrs)",
+    "revenue": "Revenue (THB)"
+  },
+  "showing": "Showing {shown} of {total} days - Export Excel downloads every row in this table."
+}

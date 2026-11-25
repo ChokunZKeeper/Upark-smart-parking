@@ -1,0 +1,19 @@
+{
+  "title": "System Settings",
+  "reset": "Reset",
+  "save": "Save",
+  "noSettings": "No settings found.",
+  "roles": { "roles": "roles", "admin": "Admin", "super_admin": "Super Admin" },
+  "units": { "min": "Min", "hour": "Hour" },
+  "ariaNotifRole": "Notification role",
+  "ariaSyncInterval": "Sync interval",
+  "chargePerTime": { "label": "Charge per time", "description": "Set the parking fee charged for each hour a vehicle occupies a parking space." },
+  "latePaymentFee": { "label": "Late Payment Fee", "description": "Set the maximum amount of time a vehicle can occupy a parking space. (Put 0 if this feature is not desired)" },
+  "customTimeRate": { "label": "Custom Time Rate", "description": "Configure flexible parking rates based on custom time intervals, allowing different charges for specific durations, such as the first hour, subsequent hours, or overnight parking." },
+  "gracePeriod": { "label": "Grace Period", "description": "Set the additional time allowed before parking fees or penalties begin to apply. (Put 0 if this feature is not desired)" },
+  "maxParking": { "label": "Max parking duration", "description": "Set the maximum amount of time a vehicle can occupy a parking space. (Put 0 if this feature is not desired)" },
+  "lateNotif": { "label": "Late Payment Notifications", "description": "Automatically notify designated staff members when a parking payment becomes overdue, allowing them to follow up and manage outstanding payments." },
+  "hardwareAlerts": { "label": "Hardware Connection Alerts", "description": "Notify administrators when connected parking hardware, such as sensors or cameras, loses its connection to the system." },
+  "deviceHealth": { "label": "Device Health Monitoring", "description": "Monitor the operational status of connected hardware devices and identify potential malfunctions or maintenance needs." },
+  "autoSync": { "label": "Automatic Device Synchronization", "description": "Configure how frequently connected hardware devices synchronize their data with the UPark platform to maintain up-to-date parking information." }
+}

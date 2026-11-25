@@ -1,0 +1,43 @@
+{
+  "title": "รายงาน",
+  "seeTaxation": "ดูภาษี",
+  "exportExcel": "ส่งออก Excel",
+  "selectRange": "เลือกช่วงวันที่",
+  "revenueTrend": "แนวโน้มรายได้",
+  "noData": "ไม่มีข้อมูล",
+  "dayOct": "{day} ต.ค.",
+  "hrs": "{value} ชม.",
+  "thb": "{value} บาท",
+  "bar": "กราฟแท่ง",
+  "line": "กราฟเส้น",
+  "metrics": {
+    "revenue": "รายได้",
+    "vehicles": "จำนวนรถ",
+    "parkTime": "เวลาจอดเฉลี่ย",
+    "occupancy": "อัตราการใช้งานที่จอด"
+  },
+  "summary": {
+    "totalRevenue": "รายได้รวม",
+    "totalVehicles": "จำนวนรถรวม",
+    "avgRevenue": "รายได้เฉลี่ยต่อคัน",
+    "avgOccupancy": "อัตราใช้งานเฉลี่ย",
+    "previousPeriod": "{value} จากช่วงก่อนหน้า"
+  },
+  "columns": {
+    "date": "วันที่",
+    "vehicles": "จำนวนรถ",
+    "avgOccupancy": "อัตราใช้งานเฉลี่ย",
+    "peakOccupancy": "อัตราใช้งานสูงสุด",
+    "avgParkTime": "เวลาจอดเฉลี่ย",
+    "revenue": "รายได้"
+  },
+  "csv": {
+    "date": "วันที่",
+    "vehicles": "จำนวนรถ",
+    "avgOccupancy": "อัตราใช้งานเฉลี่ย (%)",
+    "peakOccupancy": "อัตราใช้งานสูงสุด (%)",
+    "avgParkTime": "เวลาจอดเฉลี่ย (ชม.)",
+    "revenue": "รายได้ (บาท)"
+  },
+  "showing": "แสดง {shown} จาก {total} วัน - ส่งออก Excel จะดาวน์โหลดทุกแถวในตารางนี้"
+}

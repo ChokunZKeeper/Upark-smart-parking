@@ -1,0 +1,394 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Kanit', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-logo: 'LogoFont', sans-serif;
+
+  /* สีที่สลับตามธีม (ค่าจริงอยู่ใน :root ด้านล่าง) */
+  --color-page: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-tertiary);
+  --color-brand: var(--primary);
+  --color-on-brand: var(--on-primary);
+  --color-sidebar: var(--bg);
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+/* Heat map: สีเปลี่ยนตามชุดสี (data-heat) และธีม (data-theme)
+ * ต้องใช้ `inline` เพื่อให้ utility อ้าง var(--heat-*) ตรง ๆ
+ * ไม่งั้นค่าจะถูกคำนวณที่ :root แล้วชุดสีที่ container ไม่มีผล
+ * ใช้: bg-heat-low / bg-heat-mid / bg-heat-high / bg-heat-dot */
+@theme inline {
+  --color-heat-low: var(--heat-low);
+  --color-heat-mid: var(--heat-mid);
+  --color-heat-high: var(--heat-high);
+  --color-heat-dot: var(--heat-dot);
+}
+
+:root {
+  color-scheme: light;
+  --bg: #F5F5F7;
+  --surface: #FFFFFF;
+  --border: #D2D2D7;
+  --text: #0F172A;
+  --text-secondary: #6F6F72;
+  --text-tertiary: #898989;
+  --primary: #2771D8;
+  --on-primary: #FFFFFF;
+  --bar-start: #2347E8;
+  --bar-mid: #3B82F6;
+  --bar-end: #8abaf8;
+  --chart-revenue-top: #4D73F8;
+  --chart-revenue-bottom: #D6DFFE;
+  --chart-tax-top: #FF0037;
+  --chart-tax-bottom: #FFD4DC;
+  --range-bar: #E8ECFF;
+  --status-bg: #E3E6EB;
+
+  --dropdown-bg: #FFFFFF;
+  --dropdown-border: #D2D2D7;
+  --dropdown-text: #6F6F72;
+
+  --hover-dropdown-bg: #F3F3F3;
+  --hover-dropdown-border: #E5E5E5;
+  --hover-dropdown-text: #212121;
+
+
+  /* ขอบการ์ด Light: gradient เดิม ไม่แตะ */
+  --card-edge: linear-gradient(
+    180deg,
+    #D2D2D7 0%,
+    #D2D2D7 18%,
+    #D9DAEA 38%,
+    #E6E7F6 56%,
+    #EEEEFA 68%,
+    #E0E1F0 80%,
+    #D2D2D7 100%
+  );
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #101010;
+  --surface: #090909;
+  --border: #2A2A2A;
+  --text: #FDFDFD;
+  --text-secondary: #898989;
+  --text-tertiary: #6F6F72;
+  --primary: #2771D8;
+  --on-primary: #FFFFFF;
+  --bar-start: #2347E8;
+  --bar-mid: #2347e8a2;
+  --bar-end: #8abaf800;
+  --chart-revenue-top: #4D73F8;
+  --chart-revenue-bottom: #4D73F81A;
+  --chart-tax-top: #ff3b65;
+  --chart-tax-bottom: #FF00371A;
+  --dropdown-bg: #090909;
+  --dropdown-border: #2A2A2A;
+  --dropdown-text: #FDFDFD;
+  --range-bar: #1B2150;
+  --status-bg: #1D1D1D;
+
+  --hover-dropdown-bg: #1F1F1F;
+  --hover-dropdown-border: #222222;
+  --hover-dropdown-text: #EDEDED;
+
+  --card-edge: linear-gradient(
+    180deg,
+    #2A2A2A 0%,
+    #2A2A2A 18%,
+    #464646 38%,
+    #464646 56%,
+    #464646 68%,
+    #2A2A2A 80%,
+    #2A2A2A 100%
+  );
+}
+
+/* ───────── Heat map palettes ─────────
+ * ตั้ง data-heat="Blue|Green|Purple|Orange" ที่ container ของ heat map
+ * ไม่ตั้ง = Blue
+ */
+
+/* ---------- Light ---------- */
+:root,
+[data-heat='Blue'] {
+  --heat-low: #e3e9fd;
+  --heat-mid: #8fa4f6;
+  --heat-high: #2f52e0;
+  --heat-dot: #5b7cf5;
+  --heat-gradient: linear-gradient(180deg, #345cfd 10%, #3d63fd 20%, #5475fd 30%, #7490fe 40%, #9aaefe 50%, #bfcbfe 60%, #dfe6ff 70%, #f6f8ff 80%, #ffffff 90%);
+}
+[data-heat='Green'] {
+  --heat-low: #dff4e7;
+  --heat-mid: #7fd1a0;
+  --heat-high: #1f9a52;
+  --heat-dot: #3cb371;
+  --heat-gradient: linear-gradient(180deg, #00c54c 10%, #0bc754 20%, #28ce68 30%, #51d785 40%, #80e2a6 50%, #aeedc6 60%, #d7f6e3 70%, #f4fdf7 80%, #ffffff 90%);
+}
+[data-heat='Purple'] {
+  --heat-low: #ece4fb;
+  --heat-mid: #b392f0;
+  --heat-high: #6a35d8;
+  --heat-dot: #8b5cf6;
+  --heat-gradient: linear-gradient(180deg, #6a35d8 10%, #703eda 20%, #8155de 30%, #9975e4 40%, #b49aec 50%, #d0bff3 60%, #e8dff9 70%, #f9f6fd 80%, #ffffff 90%);
+}
+[data-heat='Orange'] {
+  --heat-low: #feeadb;
+  --heat-mid: #f7a866;
+  --heat-high: #e8650a;
+  --heat-dot: #f59432;
+  --heat-gradient: linear-gradient(180deg, #ff7300 10%, #ff790b 20%, #ff8928 30%, #ff9f51 40%, #ffb980 50%, #ffd3ae 60%, #ffe9d7 70%, #fff9f4 80%, #ffffff 90%);
+}
+
+/* ---------- Dark ----------*/
+:root[data-theme='dark'],
+:root[data-theme='dark'] [data-heat='Blue'] {
+  --heat-low: #121830;
+  --heat-mid: #1d3ac9;
+  --heat-high: #5c7cff;
+  --heat-gradient: linear-gradient(0deg, #a8baff 10%, #5c7cff 20%, #4766ed 30%, #3250db 40%, #1d3ac9 50%, #182c89 60%, #141e4a 70%, #090909 90%);
+}
+:root[data-theme='dark'] [data-heat='Green'] {
+  --heat-low: #0e2517;
+  --heat-mid: #109347;
+  --heat-high: #20f77c;
+  --heat-gradient: linear-gradient(0deg, #b4ffd0 10%, #20f77c 20%, #1bd66a 30%, #15b459 40%, #109347 50%, #0f6533 60%, #0e371f 70%, #090909 90%);
+}
+:root[data-theme='dark'] [data-heat='Purple'] {
+  --heat-low: #1d1230;
+  --heat-mid: #6628bd;
+  --heat-high: #a666ff;
+  --heat-gradient: linear-gradient(0deg, #d6bcff 10%, #a666ff 20%, #9151e9 30%, #7b3dd3 40%, #6628bd 50%, #481f82 60%, #291648 70%, #090909 90%);
+}
+:root[data-theme='dark'] [data-heat='Orange'] {
+  --heat-low: #29180a;
+  --heat-mid: #b8550a;
+  --heat-high: #ff9429;
+  --heat-gradient: linear-gradient(0deg, #ffd2a3 10%, #ff9429 20%, #e77f1f 30%, #d06a14 40%, #b8550a 50%, #7c3c0a 60%, #41220a 70%, #090909 90%);
+}
+
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter_24pt-Medium.ttf') format('truetype');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LogoFont';
+  src: url('./assets/fonts/Logo_Font.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kanit';
+  src: url('../fonts/Kanit-Light.ttf') format('truetype');
+  font-weight: 100 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kanit';
+  src: url('../fonts/Kanit-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kanit';
+  src: url('../fonts/Kanit-Medium.ttf') format('truetype');
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root[lang='th'] {
+  --font-sans: 'Kanit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+
+  /* scrollbar บาง สี thumb ตาม theme, track โปร่งใสให้กลืนกับพื้นหลัง */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--text) 25%, transparent) transparent;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+    margin: 0;
+    transition: background-color 0.2s, color 0.2s;
+    /* เคอร์เซอร์ปกติ */
+    cursor: url('./styles/cursors/arrow.cur') 4 4, auto;
+  }
+
+  /* ปุ่ม / ลิงก์ / select (ตอนปิด) */
+  a,
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  [role="option"],
+  select:not(:disabled),
+  option,
+  label[for],
+  summary {
+    cursor: url('./styles/cursors/hand.cur') 4 4, pointer;
+  }
+
+  /* ปุ่มที่ถูก disable */
+  button:disabled,
+  select:disabled,
+  [role="button"][aria-disabled="true"],
+  [role="option"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* ช่องพิมพ์ข้อความ */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="range"]):not([type="file"]),
+  textarea,
+  [contenteditable="true"] {
+    cursor: url('./styles/cursors/ibeam.cur') 4 4, text;
+  }
+
+  /* กราฟ (Recharts): กันไลบรารีทับเคอร์เซอร์ ยกเว้นปุ่ม/ลิงก์ */
+  .recharts-wrapper,
+  .recharts-wrapper *:not(a):not(button):not([role="button"]) {
+    cursor: url('./styles/cursors/arrow.cur') 4 4, auto !important;
+  }
+
+  /* กำลังโหลดแบบนิ่ง (.cur) */
+  body.is-loading,
+  body.is-loading *,
+  [aria-busy="true"],
+  [aria-busy="true"] * {
+    cursor: url('./styles/cursors/wait.cur') 12 12, wait !important;
+  }
+
+  /* กำลังโหลดแต่ยังใช้งานได้ */
+  .cursor-progress,
+  .cursor-progress * {
+    cursor: url('./styles/cursors/progress.cur') 4 4, progress;
+  }
+
+  /* กำลังโหลดแบบแอนิเมชัน (JS สลับเฟรมที่ body) */
+  body.is-loading-anim * {
+    cursor: inherit !important;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-[20px] shadow-card;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      var(--card-edge) border-box;
+  }
+  .btn-primary {
+    @apply rounded-full bg-brand px-4 py-1.5 text-xs font-medium text-on-brand transition hover:opacity-90;
+  }
+  .btn-outline {
+    @apply rounded-full border border-line bg-surface px-4 py-1.5 text-xs font-medium text-ink transition hover:bg-page;
+  }
+
+  /* legend bar ของ heat map */
+  .heat-legend-bar {
+    background: var(--heat-gradient);
+  }
+}
+
+:root {
+  --pc-stroke: #9ca3af;
+  --pc-light-stroke: #d1d5db;
+  --pc-ink: #0f172a;
+  --pc-lane: #d2d2d7;
+  --pc-chip: #3f3f46;
+  --pc-chip-text: #ffffff;
+  --pc-camera-fill: #eef0ff;
+  --pc-camera-stroke: #c7cdf5;
+  --pc-camera-dot: #4f46e5;
+  --pc-sensor: #10b981;
+  --pc-payment-fill: #faeeda;
+  --pc-payment-stroke: #ad8758;
+  --pc-payment-text: #854f0b;
+  --pc-green-fill: #ecfdf560;
+  --pc-green-stroke: #6ee7b7;
+  --pc-red-fill: #fef2f262;
+  --pc-red-hatch: #fecaca;
+  --pc-red-stroke: #f87171;
+  --pc-purple-fill: #eef0ff;
+  --pc-purple-stroke: #c7cdf5;
+  --pc-gate-fill: #f1fffa;
+  --pc-gate-stroke: #7ab2a3;
+  --pc-selection: #3b82f6;
+  --pc-view-bg: #f8fafc;
+  --pc-grid-dot: #cbd5e1;
+
+  /* รถ: light แสดงรถดำ (Car_black), dark แสดงรถขาว (Car_white) */
+  --pc-car-light-display: inline;
+  --pc-car-dark-display: none;
+}
+
+.dark,
+[data-theme='dark'] {
+  --pc-stroke: #6b7280;
+  --pc-light-stroke: #4b5563;
+  --pc-ink: #f3f4f6;
+  --pc-lane: #4b4b52;
+  --pc-chip: #e4e4e7;
+  --pc-chip-text: #18181b;
+  --pc-camera-fill: #23264a;
+  --pc-camera-stroke: #4a4f8a;
+  --pc-camera-dot: #818cf8;
+  --pc-sensor: #34d399;
+  --pc-payment-fill: #3a2a14;
+  --pc-payment-stroke: #b58a52;
+  --pc-payment-text: #f5c99b;
+  --pc-green-fill: #0f2a2028;
+  --pc-green-stroke: #1f7a56;
+  --pc-red-fill: #2a141641;
+  --pc-red-hatch: #4a2024;
+  --pc-red-stroke: #ef6b6b;
+  --pc-purple-fill: #23264a;
+  --pc-purple-stroke: #4a4f8a;
+  --pc-gate-fill: #12302a;
+  --pc-gate-stroke: #4f8a7b;
+  --pc-selection: #60a5fa;
+  --pc-view-bg: #141517;
+  --pc-grid-dot: #2e3036;
+
+  --pc-car-light-display: none;
+  --pc-car-dark-display: inline;
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Notifications",
+  "dismissAll": "Dismiss All",
+  "dismiss": "Dismiss",
+  "searchAria": "Search notifications",
+  "empty": "No notifications",
+  "columns": {
+    "dateTime": "Date and Time",
+    "contents": "Contents"
+  }
+}

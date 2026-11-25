@@ -1,0 +1,58 @@
+{
+  "title": "Edit Profile",
+  "reset": "Reset",
+  "save": "Save",
+  "pictureTitle": "Profile picture",
+  "infoTitle": "Personal Information",
+  "changePicture": "Change Picture",
+  "pictureHint": "JPG or PNG, at least 400 × 400 px.",
+  "pickAvatar": "Pick an avatar",
+  "username": {
+    "label": "Username",
+    "description": "The name shown to your team and in activity logs."
+  },
+  "firstName": {
+    "label": "First Name",
+    "description": "Your given name, as it appears on your profile and in messages."
+  },
+  "lastName": {
+    "label": "Last Name",
+    "description": "Your family name, as it appears on your profile and in messages."
+  },
+  "email": {
+    "label": "Email",
+    "description": "The address used to sign in and receive notifications."
+  },
+  "phone": {
+    "label": "Phone Number",
+    "description": "Used for account recovery and important alerts."
+  },
+  "address": {
+    "label": "Address",
+    "description": "Your street address, used for billing and official documents."
+  },
+  "country": {
+    "label": "Country",
+    "description": "The country where you live or where your business is registered."
+  },
+  "city": {
+    "label": "City",
+    "description": "The city, area and postal code where you live or where your business operates."
+  },
+  "placeholder": {
+    "phone": "812345678",
+    "address": "House no., street",
+    "city": "City",
+    "area": "Area",
+    "postalCode": "Postal code"
+  },
+  "toast": {
+    "saved": "Profile saved",
+    "nameRequired": "Please enter your first and last name.",
+    "saveFailed": "Could not save. Try a smaller picture.",
+    "badType": "Use a JPG or PNG file.",
+    "tooBig": "Picture must be under 1 MB.",
+    "tooSmall": "Picture must be at least 400 × 400 px.",
+    "readFailed": "Could not read the picture."
+  }
+}

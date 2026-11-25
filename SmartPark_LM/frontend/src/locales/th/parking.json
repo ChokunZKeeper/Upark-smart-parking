@@ -1,0 +1,53 @@
+{
+  "title": "จัดการที่จอดรถ",
+  "editFacility": "แก้ไขผังสถานที่",
+  "layoutTitle": "ผังที่จอดรถ",
+  "summary": {
+    "total": "ช่องจอดทั้งหมด",
+    "occupied": "ไม่ว่าง",
+    "available": "ว่าง",
+    "offline": "ออฟไลน์"
+  },
+  "filter": {
+    "all": "ทั้งหมด",
+    "occupied": "ไม่ว่าง",
+    "available": "ว่าง",
+    "offline": "ออฟไลน์"
+  },
+  "status": {
+    "occupied": "ไม่ว่าง",
+    "available": "ว่าง",
+    "offline": "ออฟไลน์"
+  },
+  "toolbar": {
+    "searchSlot": "ค้นหาช่องจอด",
+    "floorAndZone": "ชั้นและโซน"
+  },
+  "location": {
+    "floor": "ชั้น {name}",
+    "floorZone": "ชั้น {floor} - โซน {zone}",
+    "floorZoneLabel": "ชั้น {floor} - {zone}",
+    "zone": "โซน"
+  },
+  "empty": {
+    "noHardwareTitle": "ไม่พบอุปกรณ์",
+    "noHardwareDesc": "กรุณาเชื่อมต่ออุปกรณ์ในหน้าการตั้งค่า",
+    "noElementsTitle": "ไม่มีองค์ประกอบในชั้นนี้",
+    "noElementsDescPre": "คลิก ",
+    "noElementsDescPost": " เพื่อออกแบบผังของคุณ"
+  },
+  "menu": {
+    "slotError": "ช่องจอดนี้มีข้อผิดพลาด!",
+    "reportedBy": "แจ้งโดย: {name} - {date}",
+    "vehicleDetails": "รายละเอียดรถ",
+    "clearSlot": "ล้างช่องจอด",
+    "resolveError": "แก้ไขข้อผิดพลาดแล้ว",
+    "reportError": "แจ้งข้อผิดพลาด"
+  },
+  "details": {
+    "slot": "ช่องจอด",
+    "status": "สถานะ",
+    "plate": "ทะเบียน",
+    "close": "ปิด"
+  }
+}

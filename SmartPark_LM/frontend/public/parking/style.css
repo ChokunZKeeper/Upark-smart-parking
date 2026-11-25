@@ -1,0 +1,388 @@
+/* Designed on a 340px phone frame. 1rem = 10 design px,
+   so everything scales together on any phone. */
+
+@font-face { font-family:"Inter"; src:url("fonts/Inter_24pt-Light.ttf") format("truetype"); font-weight:300; font-display:swap; }
+@font-face { font-family:"Inter"; src:url("fonts/Inter_24pt-Regular.ttf") format("truetype"); font-weight:400; font-display:swap; }
+@font-face { font-family:"Inter"; src:url("fonts/Inter_24pt-Medium.ttf") format("truetype"); font-weight:500 700; font-display:swap; }
+
+:root {
+  --ink:#0d0d0d;
+  --mut:#6b717d;
+  --ln:#dcdfe5;
+  --lot:#eceef2;        /* concrete */
+  
+  --sign:#1457e5;       /* parking-sign blue */
+  --line:#ffc400;       /* road-marking yellow */
+  --gr:#0f9d4a;
+  box-sizing:border-box;
+}
+
+* { box-sizing:border-box; }
+
+html {
+  font-size:10px;
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+
+@media (max-width:500px) {
+  html { font-size:min(2.941vw, 12.6px); }
+}
+
+body {
+  margin:0;
+  background:var(--lot);
+  color:var(--ink);
+  font-family:"Inter","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Noto Sans Thai",sans-serif;
+  font-weight:400;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+.app {
+  width:34rem;
+  height:min(68rem, calc(100vh - 32px));
+  background:#fff;
+  border-radius:2.4rem;
+  box-shadow:0 1.2rem 4rem rgba(20,30,50,.16);
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+@media (max-width:500px) {
+  body { align-items:flex-start; background:#fff; }
+  .app {
+    width:100%;
+    height:auto;
+    min-height:100vh;
+    min-height:100dvh;
+    border-radius:0;
+    box-shadow:none;
+  }
+}
+
+:focus-visible { outline:.3rem solid var(--sign); outline-offset:.2rem; }
+
+/* ---------- Top bar: logo + painted road line ---------- */
+
+.top {
+  position:sticky;
+  top:0;
+  z-index:5;
+  padding:calc(2.2rem + env(safe-area-inset-top,0px)) 2.2rem 2rem;
+  background:#fff;
+  border-bottom:.1rem solid var(--ln);
+}
+
+
+.brand {
+  display:block;
+  height:2.8rem;
+  width:auto;
+  margin:0 auto;
+}
+
+/* ---------- Common ---------- */
+
+.v { display:none; }
+.v.on { display:block; }
+
+.body { padding:calc(4.4rem + env(safe-area-inset-top,0px)) 2.2rem 3.2rem; }
+
+h1 {
+  margin:0;
+  text-align:center;
+  font-size:2.4rem;
+  line-height:3rem;
+  font-weight:500;
+  letter-spacing:-.01em;
+}
+
+.lead {
+  font-weight:300;
+  margin:.8rem 0 2.4rem;
+  font-size:1.35rem;
+  line-height:2rem;
+  color:var(--mut);
+}
+
+.lead.center { text-align:center; max-width:27rem; margin-left:auto; margin-right:auto; }
+
+label {
+  display:block;
+  text-align:center;
+  margin-bottom:.8rem;
+  font-size:1.3rem;
+  line-height:1.6rem;
+  font-weight:500;
+}
+
+.err {
+  text-align:center;
+  min-height:1.8rem;
+  margin-top:.8rem;
+  font-size:1.2rem;
+  line-height:1.8rem;
+  color:#c9302c;
+}
+
+.btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:4.6rem;
+  margin:1.2rem 0 0;
+  border:0;
+  border-radius:1.2rem;
+  background:var(--sign);
+  color:#fff;
+  font:inherit;
+  font-size:1.5rem;
+  font-weight:500;
+  cursor:pointer;
+  transition:background .15s, transform .1s;
+}
+.btn:hover { background:#0f47bd; }
+.btn:active { transform:scale(.985); }
+
+.btn.ghost {
+  background:#fff;
+  color:var(--ink);
+  border:.1rem solid var(--ln);
+}
+.btn.ghost:hover { background:var(--lot); }
+
+.demo {
+  display:block;
+  margin:1.6rem auto 0;
+  padding:.4rem;
+  background:none;
+  border:0;
+  color:#9aa0ab;
+  font:inherit;
+  font-size:1.15rem;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+/* ---------- License plate + province ---------- */
+
+.plate {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.plate b {
+  font-size:2.8rem;
+  line-height:3.4rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+
+.plate span {
+  font-size:1.4rem;
+  line-height:2rem;
+  font-weight:300;
+  color:var(--mut);
+}
+
+/* search field */
+.plate-input {
+  background:#fff;
+  border:.1rem solid var(--ln);
+  border-radius:1.2rem;
+  transition:border-color .15s, box-shadow .15s;
+}
+.plate-input:focus-within {
+  border-color:var(--sign);
+  box-shadow:0 0 0 .3rem rgba(20,87,229,.15);
+}
+
+.plate-input input {
+  display:block;
+  width:100%;
+  height:5rem;
+  padding:0 1.6rem;
+  border:0;
+  outline:0;
+  background:none;
+  color:var(--ink);
+  font:inherit;
+  font-size:1.8rem;
+  font-weight:400;
+}
+.plate-input input::placeholder { color:#b3b7c0; }
+
+/* ---------- Page 2: result cards ---------- */
+
+#list { display:grid; gap:1.6rem; }
+
+.res {
+  padding:1.8rem 1.6rem 1.6rem;
+  border:.1rem solid var(--ln);
+  border-radius:1.8rem;
+  text-align:center;
+}
+
+.row {
+  display:flex;
+  align-items:stretch;
+  gap:1.4rem;
+  margin-top:1.6rem;
+  text-align:left;
+}
+
+.bay {
+  flex:none;
+  width:8.6rem;
+  display:grid;
+  place-items:center;
+  padding:1.2rem 0;
+  background:var(--lot);
+  border-radius:1.1rem;
+}
+
+.car {
+  display:block;
+  width:4.4rem;
+}
+
+.info {
+  flex:1;
+  min-width:0;
+  display:grid;
+  align-content:center;
+  gap:.9rem;
+  margin:0;
+}
+
+.info div {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:.8rem;
+  font-size:1.25rem;
+  line-height:1.8rem;
+  padding-bottom:.9rem;
+  border-bottom:.1rem solid var(--lot);
+}
+.info div:last-child { border-bottom:0; padding-bottom:0; }
+
+.info dt, .info span { color:var(--mut); font-weight:300; }
+.info b { font-weight:500; text-align:right; }
+
+.btn.pay { margin-top:1.6rem; }
+
+#again { margin-top:2rem; }
+
+/* ---------- Page 3: QR ---------- */
+
+.qplate { margin:1.6rem 0 2rem; text-align:center; }
+
+.qr {
+  padding:2rem;
+  border:.1rem solid var(--ln);
+  border-radius:1.8rem;
+}
+
+.qrbox {
+  position:relative;
+  width:100%;
+  aspect-ratio:1;
+  background:#fff;
+}
+.qrbox svg { display:block; width:100%; height:100%; }
+
+.logo {
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:6rem;
+  height:4.4rem;
+  display:grid;
+  place-items:center;
+  padding:0 .8rem;
+  border-radius:1rem;
+  background:#fff;
+}
+.logo img { display:block; width:100%; }
+
+.exp { opacity:.15; }
+
+.sp {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-top:1.4rem;
+  font-size:1.3rem;
+  line-height:1.8rem;
+}
+.sp span { color:var(--mut); font-weight:300; }
+.sp b { font-weight:500; }
+.sp.total { padding-top:1.2rem; border-top:.1rem dashed var(--ln); }
+.sp.total b { font-size:2rem; line-height:2.4rem; font-weight:500; }
+
+#qr .ghost { margin-top:2rem; }
+
+/* ---------- Page 4: success ---------- */
+
+.tick {
+  display:grid;
+  place-items:center;
+  width:6.4rem;
+  height:6.4rem;
+  margin:1.6rem auto 1.8rem;
+  border-radius:50%;
+  background:var(--gr);
+}
+.tick svg {
+  width:3.2rem;
+  height:3.2rem;
+  fill:none;
+  stroke:#fff;
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.ok { text-align:center; }
+
+
+.sum {
+  padding:0 1.6rem;
+  border:.1rem solid var(--ln);
+  border-radius:1.6rem;
+}
+
+.sum div {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  min-height:4.4rem;
+  font-size:1.25rem;
+  border-bottom:.1rem solid var(--lot);
+}
+.sum div:last-child { border-bottom:0; }
+.sum span { color:var(--mut); font-weight:300; }
+.sum b { font-weight:500; text-align:right; }
+
+.sum .amt { min-height:5.4rem; }
+.sum .amt b { font-size:2.2rem; font-weight:500; }
+
+#success .btn { margin-top:2.4rem; }
+
+@media (prefers-reduced-motion:reduce) {
+  .btn { transition:none; }
+}
+
+/* ---------- Zone chip (from QR link) ---------- */
+.spot { display:flex; justify-content:center; gap:1rem; margin:0 0 2rem; }
+.spot[hidden] { display:none; }
+.spot span { padding:.7rem 1.4rem; border-radius:99rem; background:var(--lot); color:var(--mut); font-size:1.3rem; }
+.spot b { color:var(--sign); font-weight:600; margin-left:.3rem; }

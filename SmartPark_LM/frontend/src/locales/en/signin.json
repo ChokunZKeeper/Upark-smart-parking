@@ -1,0 +1,34 @@
+{
+  "subtitle": "Sign in or create an account",
+  "title": "Sign in",
+  "newHere": "New here?",
+  "createAccount": "Create an account",
+  "otherWays": "Other ways to join",
+  "continueWith": "Continue with {name}",
+  "socialFailed": "Sign in with {name} failed. Please try again.",
+  "troubleSigningIn": "Trouble signing in?",
+  "privacy": "Privacy Policy",
+  "registerTitle": "Register",
+  "login": {
+    "email": "Email address",
+    "password": "Password",
+    "continue": "Continue",
+    "forgot": "Forgot password?"
+  },
+  "register": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email *",
+    "password": "Password *",
+    "confirmPassword": "Confirm password *",
+    "submit": "Register",
+    "back": "Back",
+    "otpTitle": "OTP",
+    "otpDesc": "Please enter OTP (One Time Password) verification number sent to your email / phone number with 5 minutes expiration time to complete this step within only 5 attempts",
+    "remaining": "Remaining time:",
+    "noOtp": "Didn't receive OTP?",
+    "resend": "Resend",
+    "verify": "Verify",
+    "cancel": "Cancel"
+  }
+}

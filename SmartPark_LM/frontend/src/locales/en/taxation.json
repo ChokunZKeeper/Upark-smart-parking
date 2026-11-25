@@ -1,0 +1,27 @@
+{
+    "title":  "Tax \u0026 Accounting",
+    "selectDateRange":  "Select date range",
+    "seeReports":  "See Reports",
+    "exportExcel":  "Export Excel",
+    "revenueVsTax":  "Revenue vs Tax",
+    "recentTransaction":  "Recent Transaction",
+    "taxDeadlines":  "Tax Deadlines",
+    "viewAll":  "View all",
+    "transactionsMore":  "50+ Transactions, More",
+    "deadlinesMore":  "2+ Transactions, More",
+    "chart":  {
+                  "revenue":  "Revenue",
+                  "tax":  "Tax"
+              },
+    "status":  {
+                   "overdue":  "Overdue",
+                   "dueSoon":  "Due Soon",
+                   "upcoming":  "Upcoming"
+               },
+    "csv":  {
+                "date":  "Date",
+                "code":  "Code",
+                "description":  "Description",
+                "status":  "Status"
+            }
+}

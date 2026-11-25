@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UPARK – Find your parked car</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+
+  <!-- Page 1: search -->
+  <section id="search" class="v">
+    <div class="body">
+      <h1>Find your parked car</h1>
+      <p class="lead center">Enter your license plate to see where you parked and pay before you leave.</p>
+
+      <!-- Filled when opened from a zone QR (e.g. /parking/D2) -->
+      <div id="spot" class="spot" hidden></div>
+
+      <label for="plate">License plate number</label>
+      <div class="plate-input">
+        <input id="plate" autocomplete="off" inputmode="text">
+      </div>
+      <div id="err" class="err" role="alert"></div>
+
+      <button class="btn" id="go">Search</button>
+      <button class="demo" id="reset" type="button">Reset demo</button>
+    </div>
+  </section>
+
+  <!-- Page 2: results (pick your car) -->
+  <section id="results" class="v">
+    <div class="body">
+      <h1 id="count">Select your car</h1>
+      <p class="lead center">Check the province, then pay for the car that is yours.</p>
+      <input id="plate2" type="hidden">
+      <div id="list"></div>
+      <button class="btn ghost" id="again">Search again</button>
+    </div>
+  </section>
+
+  <!-- Page 3: QR payment -->
+  <section id="qr" class="v">
+    <div class="body">
+      <h1>Pay by QR code</h1>
+      <div class="qplate" id="qplate"></div>
+      <div class="qr">
+        <div class="qrbox" id="qrbox">
+          <div id="qrsvg"></div>
+        </div>
+        <div class="sp"><span>Payment method</span><b>PromptPay</b></div>
+        <div class="sp"><span>Expires in</span><b id="tm">5:00</b></div>
+        <div class="sp total"><span>Total</span><b>฿180</b></div>
+      </div>
+      <button class="btn ghost" id="back">Back</button>
+      <button class="demo" id="sim">จำลองว่าชำระเงินแล้ว (demo)</button>
+    </div>
+  </section>
+
+  <!-- Page 4: payment successful -->
+  <section id="success" class="v">
+    <div class="body">
+      <div class="tick" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h1 class="ok">Payment complete</h1>
+      <p class="lead center">Please drive out soon to avoid extra parking charges.</p>
+      <div class="sum">
+        <div class="amt"><span>Amount</span><b>฿180</b></div>
+        <div><span>Transaction ID</span><b id="txn"></b></div>
+        <div><span>Payment method</span><b>PromptPay</b></div>
+        <div><span>Date</span><b id="dt"></b></div>
+        <div><span>License plate</span><b id="lp"></b></div>
+      </div>
+      <button class="btn" id="home">Done</button>
+    </div>
+  </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "title": "QR Code",
+  "createNew": "Create new QR",
+  "searchAria": "Search QR code",
+  "preview": "Preview",
+  "previewFailed": "Can’t generate preview",
+  "empty": {
+    "title": "No QR Code Found",
+    "hint": "Click “Create new QR” to add one."
+  },
+  "dialog": {
+    "editTitle": "Edit QR",
+    "createTitle": "Create new QR",
+    "editSubtitle": "Update the details of this QR code",
+    "createSubtitle": "Generate a QR code that links to a parking zone",
+    "close": "Close",
+    "floor": "Floor",
+    "zone": "Zone",
+    "zoneTaken": "Zone {zone} already has a QR code. Use another zone or edit the existing one.",
+    "name": "QR code name",
+    "nameHint": "Shown in the QR list. Defaults to the floor name.",
+    "url": "URL",
+    "urlHint": "Auto-generated from floor and zone. Edit only for a custom link.",
+    "editUrl": "Edit URL",
+    "note": "Note (optional)",
+    "notePlaceholder": "Near the elevator, west entrance",
+    "active": "Active",
+    "downloadFormat": "Download format",
+    "errorCorrection": "Error correction",
+    "errorHint": "Higher levels still scan when the sticker gets scratched."
+  },
+  "footer": {
+    "cancel": "Cancel",
+    "saveDownload": "Save and download",
+    "createDownload": "Create and download",
+    "save": "Save changes",
+    "create": "Create QR"
+  },
+  "table": {
+    "name": "QR Code Name",
+    "urls": "URLs",
+    "zone": "Zone",
+    "floor": "Floor",
+    "created": "Created",
+    "download": "Download",
+    "edit": "Edit",
+    "remove": "Remove"
+  }
+}

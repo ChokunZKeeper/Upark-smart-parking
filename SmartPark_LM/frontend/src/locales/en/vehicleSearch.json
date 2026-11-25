@@ -1,0 +1,31 @@
+{
+    "title":  "Vehicle Search",
+    "exportExcel":  "Export Excel",
+    "dateRange":  "Date range",
+    "timeRange":  "Time range",
+    "allDay":  "All day",
+    "sortBy":  "Sort by",
+    "searchVehicles":  "Search vehicles",
+    "noVehicles":  "No vehicles found",
+    "noHardware":  "No Hardware Found",
+    "connectHardware":  "Please connect your hardware in Settings.",
+    "previousPage":  "Previous page",
+    "nextPage":  "Next page",
+    "goToPage":  "Go to page (1-{max})",
+    "goToPageHint":  "Type a page number (1-{max}) and press Enter",
+    "close":  "Close",
+    "floorLabel":  "Floor",
+    "sort":  {
+                 "default":  "Sort"
+             },
+    "columns":  {
+                    "plate":  "License plate number",
+                    "vehicleType":  "Vehicle Type",
+                    "floor":  "Floor",
+                    "zone":  "Zone",
+                    "timeIn":  "Time in",
+                    "timeOut":  "Time out",
+                    "date":  "Date",
+                    "image":  "Image"
+                }
+}

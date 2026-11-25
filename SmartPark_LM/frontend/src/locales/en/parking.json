@@ -1,0 +1,53 @@
+{
+  "title": "Parking Management",
+  "editFacility": "Edit Facility",
+  "layoutTitle": "Parking Layout",
+  "summary": {
+    "total": "Total Slots",
+    "occupied": "Occupied",
+    "available": "Available",
+    "offline": "Offline"
+  },
+  "filter": {
+    "all": "All",
+    "occupied": "Occupied",
+    "available": "Available",
+    "offline": "Offline"
+  },
+  "status": {
+    "occupied": "occupied",
+    "available": "available",
+    "offline": "offline"
+  },
+  "toolbar": {
+    "searchSlot": "Search slot",
+    "floorAndZone": "Floor and Zone"
+  },
+  "location": {
+    "floor": "Floor {name}",
+    "floorZone": "Floor {floor} - Zone {zone}",
+    "floorZoneLabel": "Floor {floor} - {zone}",
+    "zone": "Zone"
+  },
+  "empty": {
+    "noHardwareTitle": "No Hardware Found",
+    "noHardwareDesc": "Please connect your hardware in Settings.",
+    "noElementsTitle": "No Elements on This Floor",
+    "noElementsDescPre": "Click ",
+    "noElementsDescPost": " to design your layout."
+  },
+  "menu": {
+    "slotError": "This slot has error!",
+    "reportedBy": "Reported by: {name} - {date}",
+    "vehicleDetails": "Vehicle details",
+    "clearSlot": "Clear slot",
+    "resolveError": "Resolve error",
+    "reportError": "Report error"
+  },
+  "details": {
+    "slot": "Slot",
+    "status": "Status",
+    "plate": "Plate",
+    "close": "Close"
+  }
+}

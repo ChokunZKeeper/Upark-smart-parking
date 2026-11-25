@@ -1,0 +1,46 @@
+{
+  "title": "สิทธิ์การใช้งาน",
+  "manageRole": "จัดการบทบาท",
+  "addMember": "เพิ่มสมาชิกใหม่",
+  "searchMember": "ค้นหาสมาชิก",
+  "owner": "เจ้าของ",
+  "you": "คุณ",
+  "edit": "แก้ไข",
+  "remove": "ลบ",
+  "rolesPlaceholder": "บทบาท",
+  "roleOf": "บทบาทของ {name}",
+  "confirmRemove": "ต้องการลบ {name} ใช่หรือไม่?",
+  "role": { "admin": "แอดมิน", "superAdmin": "ซูเปอร์แอดมิน" },
+  "status": { "all": "ทั้งหมด", "active": "ใช้งาน", "inactive": "ไม่ใช้งาน" },
+  "columns": {
+    "profile": "โปรไฟล์",
+    "name": "ชื่อ",
+    "employeeId": "รหัสพนักงาน",
+    "email": "อีเมล",
+    "joined": "วันที่เข้าร่วม",
+    "floor": "ชั้นที่รับผิดชอบ",
+    "role": "บทบาท"
+  },
+  "empty": { "title": "ไม่พบสมาชิก", "hint": "คลิก “เพิ่มสมาชิกใหม่” เพื่อเพิ่ม" },
+  "invite": {
+    "dialog": "เชิญสมาชิก",
+    "placeholder": "อีเมล, ชื่อ...",
+    "inputLabel": "อีเมล, ชื่อ",
+    "roleLabel": "บทบาท",
+    "linkRole": "บทบาทของลิงก์",
+    "save": "บันทึก",
+    "invite": "เชิญ",
+    "peopleWithAccess": "ผู้มีสิทธิ์เข้าถึง {count} คน",
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว"
+  },
+  "errors": {
+    "cannotRemoveOwner": "ไม่สามารถลบเจ้าของได้",
+    "cannotRemoveLastSuperAdmin": "ไม่สามารถลบซูเปอร์แอดมินคนสุดท้ายได้",
+    "ownerMustBeSuperAdmin": "เจ้าของต้องเป็นซูเปอร์แอดมินเสมอ",
+    "needOneSuperAdmin": "ต้องมีซูเปอร์แอดมินอย่างน้อย 1 คน",
+    "invalidEmail": "กรุณากรอกอีเมลให้ถูกต้อง",
+    "emailTaken": "อีเมลนี้ถูกใช้แล้ว",
+    "copyFailed": "คัดลอกลิงก์ไม่สำเร็จ"
+  }
+}
