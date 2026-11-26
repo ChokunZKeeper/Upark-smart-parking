@@ -24,3 +24,11 @@ npx nodemon server.js
 npm install -D sass-embedded
 ```
 cd SmartPark_LM\frontend
+
+
+### How to Run Our App
+
+```js
+cd SmartParK_LM
+npm run upark
+```
